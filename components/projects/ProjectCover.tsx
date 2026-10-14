@@ -3,12 +3,12 @@ import { cn } from "@/lib/utils";
 import type { Project } from "@/types";
 
 const themes: Record<Project["theme"], { bg: string; accent: string; soft: string }> = {
-  blue: { bg: "from-brand-600 to-brand-800", accent: "bg-brand-500", soft: "bg-brand-100" },
-  indigo: { bg: "from-indigo-500 to-brand-800", accent: "bg-indigo-500", soft: "bg-indigo-100" },
-  teal: { bg: "from-accent-500 to-accent-700", accent: "bg-accent-500", soft: "bg-accent-100" },
-  slate: { bg: "from-ink-600 to-ink-900", accent: "bg-ink-600", soft: "bg-ink-100" },
-  amber: { bg: "from-amber-500 to-orange-700", accent: "bg-amber-500", soft: "bg-amber-100" },
-  rose: { bg: "from-rose-500 to-rose-800", accent: "bg-rose-500", soft: "bg-rose-100" },
+  blue: { bg: "from-brand-500 to-brand-700", accent: "bg-brand-500", soft: "bg-brand-100" },
+  indigo: { bg: "from-ink-700 to-ink-950", accent: "bg-brand-500", soft: "bg-brand-100" },
+  teal: { bg: "from-ink-400 to-ink-700", accent: "bg-ink-700", soft: "bg-ink-100" },
+  slate: { bg: "from-ink-800 to-ink-950", accent: "bg-ink-600", soft: "bg-ink-100" },
+  amber: { bg: "from-brand-400 to-brand-600", accent: "bg-brand-500", soft: "bg-brand-50" },
+  rose: { bg: "from-brand-700 to-brand-950", accent: "bg-brand-600", soft: "bg-brand-100" },
 };
 
 /**

@@ -28,7 +28,7 @@ export function ErpEcosystem({ modules }: { modules: ErpModule[] }) {
               y1="50"
               x2={x}
               y2={y}
-              stroke="rgb(142 170 255 / 0.28)"
+              stroke="rgb(245 163 134 / 0.32)"
               strokeWidth="0.18"
               strokeDasharray="0.8 0.8"
               vectorEffect="non-scaling-stroke"
@@ -36,8 +36,8 @@ export function ErpEcosystem({ modules }: { modules: ErpModule[] }) {
           ))}
         </svg>
 
-        <div className="absolute top-1/2 left-1/2 w-60 -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/15 bg-brand-700/90 p-6 text-center shadow-[0_0_80px_-10px_rgb(58_92_243/0.7)] backdrop-blur">
-          <span className="mx-auto inline-flex size-11 items-center justify-center rounded-xl bg-white text-brand-700">
+        <div className="absolute top-1/2 left-1/2 w-60 -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/15 bg-brand-600 p-6 text-center shadow-[0_0_80px_-10px_rgb(228_96_58/0.55)] backdrop-blur">
+          <span className="mx-auto inline-flex size-11 items-center justify-center rounded-xl bg-white text-brand-600">
             <Icon name="boxes" className="size-5" />
           </span>
           <p className="mt-3 font-display text-lg font-bold text-white">4axiz ERP</p>
@@ -63,7 +63,7 @@ export function ErpEcosystem({ modules }: { modules: ErpModule[] }) {
 
       {/* Mobile / tablet grid */}
       <div className="lg:hidden">
-        <div className="mb-4 rounded-xl border border-white/15 bg-brand-700 p-5">
+        <div className="mb-4 rounded-xl border border-white/15 bg-brand-600 p-5">
           <p className="font-display text-lg font-bold text-white">4axiz ERP</p>
           <p className="mt-1 text-sm text-brand-100">One shared data model. Every module connected.</p>
         </div>

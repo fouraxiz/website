@@ -1,52 +1,54 @@
 @import "tailwindcss";
 
 /*
- * 4axiz design tokens.
- * Brand blue is the primary colour; teal is reserved for AI/automation accents.
- * If the official 4axiz brand palette differs, adjust the brand-* scale here —
- * every component reads from these tokens.
+ * 4axiz design tokens, taken from the official logo:
+ *   orange-red #e4603a · charcoal #40464b · grey #98a1a9
+ * Every component reads from these tokens.
  */
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: var(--font-manrope), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
-  --color-brand-50: #eef3ff;
-  --color-brand-100: #dce6ff;
-  --color-brand-200: #bccdff;
-  --color-brand-300: #8eaaff;
-  --color-brand-400: #5d7ffb;
-  --color-brand-500: #3a5cf3;
-  --color-brand-600: #2643dc;
-  --color-brand-700: #1f35b2;
-  --color-brand-800: #1e2f8c;
-  --color-brand-900: #1d2b6e;
-  --color-brand-950: #131a42;
+  /* Brand: 4axiz orange-red (#e4603a, the "x" in the logo). */
+  --color-brand-50: #fef4f0;
+  --color-brand-100: #fde6de;
+  --color-brand-200: #fac9b8;
+  --color-brand-300: #f5a386;
+  --color-brand-400: #ee7d57;
+  --color-brand-500: #e4603a;
+  --color-brand-600: #c94a26;
+  --color-brand-700: #a73b1f;
+  --color-brand-800: #87321f;
+  --color-brand-900: #6f2d1e;
+  --color-brand-950: #3c140c;
 
-  --color-accent-50: #ecfdf8;
-  --color-accent-100: #d1faee;
-  --color-accent-200: #a7f2dd;
-  --color-accent-300: #6ee4c8;
-  --color-accent-400: #34cdae;
-  --color-accent-500: #10b296;
-  --color-accent-600: #07907b;
-  --color-accent-700: #0a7364;
+  /* Secondary accent shares the brand hue so the palette stays to the logo colours. */
+  --color-accent-50: var(--color-brand-50);
+  --color-accent-100: var(--color-brand-100);
+  --color-accent-200: var(--color-brand-200);
+  --color-accent-300: var(--color-brand-300);
+  --color-accent-400: var(--color-brand-400);
+  --color-accent-500: var(--color-brand-500);
+  --color-accent-600: var(--color-brand-600);
+  --color-accent-700: var(--color-brand-700);
 
-  --color-ink-50: #f6f7fb;
-  --color-ink-100: #eceef5;
-  --color-ink-200: #dadfea;
-  --color-ink-300: #bcc3d4;
-  --color-ink-400: #8b93a9;
-  --color-ink-500: #636c84;
-  --color-ink-600: #4a5268;
-  --color-ink-700: #363d52;
-  --color-ink-800: #212738;
-  --color-ink-900: #121726;
-  --color-ink-950: #0a0e19;
+  /* Neutrals: built from the logo charcoal (#40464b = ink-700) and grey (#98a1a9 = ink-400). */
+  --color-ink-50: #f6f7f8;
+  --color-ink-100: #eceef0;
+  --color-ink-200: #d9dde0;
+  --color-ink-300: #bcc2c7;
+  --color-ink-400: #98a1a9;
+  --color-ink-500: #6a737b;
+  --color-ink-600: #575e65;
+  --color-ink-700: #40464b;
+  --color-ink-800: #2e3337;
+  --color-ink-900: #1f2326;
+  --color-ink-950: #121517;
 
   --radius-card: 0.875rem;
 
-  --shadow-soft: 0 1px 2px rgb(18 23 38 / 0.04), 0 4px 16px -4px rgb(18 23 38 / 0.08);
-  --shadow-lift: 0 2px 4px rgb(18 23 38 / 0.04), 0 18px 40px -12px rgb(18 23 38 / 0.18);
+  --shadow-soft: 0 1px 2px rgb(18 21 23 / 0.04), 0 4px 16px -4px rgb(18 21 23 / 0.08);
+  --shadow-lift: 0 2px 4px rgb(18 21 23 / 0.04), 0 18px 40px -12px rgb(18 21 23 / 0.18);
 
   --animate-float: float 7s ease-in-out infinite;
   --animate-pulse-soft: pulse-soft 3.2s ease-in-out infinite;
@@ -105,8 +107,8 @@
   /* Subtle engineering grid used behind hero areas. */
   .bg-grid {
     background-image:
-      linear-gradient(to right, rgb(38 67 220 / 0.06) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(38 67 220 / 0.06) 1px, transparent 1px);
+      linear-gradient(to right, rgb(64 70 75 / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(64 70 75 / 0.06) 1px, transparent 1px);
     background-size: 44px 44px;
   }
   .bg-grid-dark {

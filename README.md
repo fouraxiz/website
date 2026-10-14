@@ -57,7 +57,7 @@ lib/                     metadata helper, icon map, contact validation, utils
 types/                   Content models
 ```
 
-Design tokens (brand palette, fonts, radii, shadows) are in `app/globals.css` under `@theme`. To match the official brand palette, change the `brand-*` scale there.
+Design tokens (brand palette, fonts, radii, shadows) are in `app/globals.css` under `@theme`. The palette is taken from the official logo: orange-red `#e4603a` (`brand-500`), charcoal `#40464b` (`ink-700`) and grey `#98a1a9` (`ink-400`). The logo files are in `public/brand/` (`4axiz-logo.png`, plus `4axiz-logo-white.png` for dark backgrounds).
 
 ## Editing content
 
@@ -74,8 +74,7 @@ All repeatable content lives in `/data` and is typed by `types/index.ts`. To add
 
 The original site (fouraxiz.com) could not be reached while this was built. To avoid inventing anything, unverified facts are `null` in `/data` and appear on the site as clearly marked "to be confirmed" placeholders.
 
-- [ ] **Logo:** `components/layout/Logo.tsx`, `app/icon.svg` and `app/opengraph-image.tsx` use an interim wordmark. Replace them with the official assets.
-- [ ] **Brand colours:** check the `brand-*` scale in `app/globals.css` against the official palette.
+- [x] **Logo and brand colours:** taken from the official logo. A higher-resolution or SVG version of the logo would look sharper on large screens. Replace the files in `public/brand/`.
 - [ ] **Offices** (`data/site.ts`): city, street address, phone, email, business hours and map link for Bangladesh, New Zealand and Kosovo.
 - [ ] **General email and phone** (`site.email`, `site.phone`): also turns on the mailto fallback on the contact page.
 - [ ] **Social profile URLs** (`socialLinks`).

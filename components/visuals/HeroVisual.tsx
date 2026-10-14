@@ -13,13 +13,13 @@ export function HeroVisual() {
       className="relative mx-auto w-full max-w-[38rem]"
     >
       {/* Soft brand halo */}
-      <div className="absolute -inset-10 -z-10 rounded-[3rem] bg-[radial-gradient(closest-side,rgb(58_92_243/0.18),transparent)]" aria-hidden="true" />
+      <div className="absolute -inset-10 -z-10 rounded-[3rem] bg-[radial-gradient(closest-side,rgb(228_96_58/0.14),transparent)]" aria-hidden="true" />
 
       {/* Main workspace */}
       <div className="overflow-hidden rounded-2xl border border-ink-200 bg-white shadow-[var(--shadow-lift)]">
         <div className="flex items-center justify-between border-b border-ink-100 px-4 py-3">
           <div className="flex items-center gap-2">
-            <span className="inline-flex size-6 items-center justify-center rounded-md bg-brand-600 text-white">
+            <span className="inline-flex size-6 items-center justify-center rounded-md bg-ink-800 text-white">
               <Boxes className="size-3.5" aria-hidden="true" />
             </span>
             <span className="font-display text-[0.8rem] font-semibold text-ink-900">Operations overview</span>
@@ -55,7 +55,7 @@ export function HeroVisual() {
                 <div key={l} className="rounded-lg border border-ink-100 p-2.5">
                   <p className="text-[0.62rem] font-medium text-ink-400">{l}</p>
                   <span className="mt-1.5 block h-2 w-3/4 rounded bg-ink-200" />
-                  <span className={`mt-2 block h-1 rounded-full ${i === 1 ? "bg-accent-400" : "bg-brand-400"}`} style={{ width: `${[72, 48, 64][i]}%` }} />
+                  <span className={`mt-2 block h-1 rounded-full ${i === 1 ? "bg-ink-400" : "bg-brand-400"}`} style={{ width: `${[72, 48, 64][i]}%` }} />
                 </div>
               ))}
             </div>
@@ -64,31 +64,31 @@ export function HeroVisual() {
               <div className="flex items-center justify-between">
                 <span className="text-[0.66rem] font-semibold text-ink-700">Performance trend</span>
                 <span className="flex gap-2 text-[0.58rem] text-ink-400">
-                  <span className="flex items-center gap-1"><span className="size-1.5 rounded-full bg-brand-500" />Actual</span>
+                  <span className="flex items-center gap-1"><span className="size-1.5 rounded-full bg-ink-700" />Actual</span>
                   <span className="flex items-center gap-1"><span className="size-1.5 rounded-full bg-accent-400" />Forecast</span>
                 </span>
               </div>
               <svg viewBox="0 0 300 90" className="mt-2 h-24 w-full" aria-hidden="true">
                 <defs>
                   <linearGradient id="hv-area" x1="0" x2="0" y1="0" y2="1">
-                    <stop offset="0%" stopColor="#3a5cf3" stopOpacity="0.22" />
-                    <stop offset="100%" stopColor="#3a5cf3" stopOpacity="0" />
+                    <stop offset="0%" stopColor="#e4603a" stopOpacity="0.2" />
+                    <stop offset="100%" stopColor="#e4603a" stopOpacity="0" />
                   </linearGradient>
                 </defs>
                 {[20, 45, 70].map((y) => (
-                  <line key={y} x1="0" x2="300" y1={y} y2={y} stroke="#eceef5" />
+                  <line key={y} x1="0" x2="300" y1={y} y2={y} stroke="#eceef0" />
                 ))}
                 <path d="M0 72 C 30 66, 50 60, 75 58 S 120 44, 150 46 S 195 30, 210 28 L210 90 L0 90Z" fill="url(#hv-area)" />
-                <path d="M0 72 C 30 66, 50 60, 75 58 S 120 44, 150 46 S 195 30, 210 28" fill="none" stroke="#2643dc" strokeWidth="2.2" />
+                <path d="M0 72 C 30 66, 50 60, 75 58 S 120 44, 150 46 S 195 30, 210 28" fill="none" stroke="#40464b" strokeWidth="2.2" />
                 <path
                   d="M210 28 C 235 24, 255 20, 300 12"
                   fill="none"
-                  stroke="#10b296"
+                  stroke="#e4603a"
                   strokeWidth="2.2"
                   strokeDasharray="5 5"
                   className="animate-dash"
                 />
-                <circle cx="210" cy="28" r="4" fill="#fff" stroke="#2643dc" strokeWidth="2" />
+                <circle cx="210" cy="28" r="4" fill="#fff" stroke="#40464b" strokeWidth="2" />
               </svg>
             </div>
 

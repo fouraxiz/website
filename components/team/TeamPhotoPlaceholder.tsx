@@ -9,7 +9,7 @@ import { offices } from "@/data/site";
 export function TeamPhotoPlaceholder() {
   return (
     <figure className="relative">
-      <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-brand-600 via-brand-700 to-ink-950">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-ink-800 via-ink-900 to-ink-950">
         <div className="bg-grid-dark absolute inset-0" aria-hidden="true" />
         <svg className="absolute -right-16 -bottom-16 size-80 text-white/10" viewBox="0 0 200 200" fill="none" aria-hidden="true">
           <circle cx="100" cy="100" r="99" stroke="currentColor" />
@@ -21,7 +21,7 @@ export function TeamPhotoPlaceholder() {
             <Camera className="size-5" aria-hidden="true" />
           </span>
           <p className="mt-4 text-sm font-semibold text-white">Team photography</p>
-          <p className="mt-1 text-xs text-brand-200">Placeholder — to be replaced with approved photos</p>
+          <p className="mt-1 text-xs text-ink-300">Placeholder — to be replaced with approved photos</p>
         </div>
       </div>
       <ul className="absolute -bottom-6 left-6 flex gap-2 sm:left-8">
