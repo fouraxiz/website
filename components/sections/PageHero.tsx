@@ -1,5 +1,7 @@
 import { Breadcrumbs, type Crumb } from "@/components/layout/Breadcrumbs";
 import { HeroDecor } from "@/components/visuals/HeroDecor";
+import { Edit } from "@/components/cms/Edit";
+import type { EditAction } from "@/components/cms/Editable";
 import { cn } from "@/lib/utils";
 import type { IconName } from "@/types";
 
@@ -14,6 +16,7 @@ export function PageHero({
   children,
   className,
   decor,
+  edit,
 }: {
   crumbs: Crumb[];
   eyebrow?: React.ReactNode;
@@ -25,9 +28,11 @@ export function PageHero({
   className?: string;
   /** Icons for the decorative banner visual, shown when no `aside` is given. */
   decor?: { icons: IconName[]; center?: IconName };
+  /** Edit-mode buttons shown to signed-in editors. */
+  edit?: EditAction[];
 }) {
   const side = aside ?? (decor ? <HeroDecor icons={decor.icons} center={decor.center} /> : null);
-  return (
+  const hero = (
     <section className={cn("relative overflow-hidden bg-ink-50", className)}>
       <div className="bg-grid mask-fade-b pointer-events-none absolute inset-0" aria-hidden="true" />
       <div className="pointer-events-none absolute -top-32 -right-24 size-[30rem] rounded-full bg-gradient-to-br from-violet-200/60 via-sky-200/40 to-transparent blur-3xl" aria-hidden="true" />
@@ -56,4 +61,5 @@ export function PageHero({
       </div>
     </section>
   );
+  return edit?.length ? <Edit actions={edit}>{hero}</Edit> : hero;
 }

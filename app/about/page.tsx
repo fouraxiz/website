@@ -32,6 +32,7 @@ export default async function AboutPage() {
   return (
     <>
       <PageHero
+        edit={[{ label: "Mission, vision & contact", collection: "settings", slug: "site" }, { label: "Values", collection: "values" }, { label: "Team", collection: "team" }]}
         decor={{ icons: ["code", "boxes", "brain", "globe", "users"], center: "layers" }}
         crumbs={[{ label: "Company" }, { label: "About Us" }]}
         eyebrow="About 4axiz"

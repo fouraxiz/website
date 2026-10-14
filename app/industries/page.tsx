@@ -20,6 +20,7 @@ export default async function IndustriesPage() {
   return (
     <>
       <PageHero
+        edit={[{ label: "Heading", collection: "sections", slug: "page.industries" }, { label: "Industries", collection: "industries" }, { label: "Add industry", collection: "industries", create: true }]}
         decor={{ icons: ["stethoscope", "graduation-cap", "shopping-cart", "factory", "truck"], center: "briefcase" }}
         crumbs={[{ label: "Industries" }]}
         eyebrow={copy.eyebrow}

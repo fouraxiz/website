@@ -125,7 +125,8 @@ export const collections: CollectionDef[] = [
     singular: "Section",
     kind: "list",
     titleField: "title",
-    description: "Headings and intro text of page sections. Homepage sections can be hidden or reordered.",
+    description: "Headings and intro text of page sections. Reorder the homepage sections here, or hide one.",
+    fixed: true,
     fields: [
       { name: "eyebrow", label: "Small label", type: "text" },
       { name: "title", label: "Title", type: "text" },
@@ -187,6 +188,7 @@ export const collections: CollectionDef[] = [
   },
   {
     name: "solutions",
+    pathPrefix: "/solutions/",
     label: "Solutions",
     singular: "Solution",
     kind: "list",
@@ -212,6 +214,7 @@ export const collections: CollectionDef[] = [
   },
   {
     name: "erp_modules",
+    pathPrefix: "/solutions/erp/",
     label: "ERP modules",
     singular: "ERP module",
     kind: "list",
@@ -251,6 +254,7 @@ export const collections: CollectionDef[] = [
   },
   {
     name: "products",
+    pathPrefix: "/products/",
     label: "Products",
     singular: "Product",
     kind: "list",
@@ -288,6 +292,7 @@ export const collections: CollectionDef[] = [
   },
   {
     name: "services",
+    pathPrefix: "/services/",
     label: "Services",
     singular: "Service",
     kind: "list",
@@ -312,6 +317,7 @@ export const collections: CollectionDef[] = [
   },
   {
     name: "projects",
+    pathPrefix: "/projects/",
     label: "Projects",
     singular: "Project",
     kind: "list",
@@ -353,6 +359,7 @@ export const collections: CollectionDef[] = [
   },
   {
     name: "industries",
+    pathPrefix: "/industries/",
     label: "Industries",
     singular: "Industry",
     kind: "list",
@@ -466,6 +473,7 @@ export const collections: CollectionDef[] = [
   },
   {
     name: "posts",
+    pathPrefix: "/blog/",
     label: "Blog posts",
     singular: "Blog post",
     kind: "list",

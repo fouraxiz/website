@@ -44,6 +44,7 @@ export default async function TeamPage() {
   return (
     <>
       <PageHero
+        edit={[{ label: "Heading", collection: "sections", slug: "page.team" }, { label: "Team members", collection: "team" }, { label: "Add team member", collection: "team", create: true }]}
         decor={{ icons: ["code", "palette", "test-tube", "headset", "compass"], center: "users" }}
         crumbs={[{ label: "Company", href: "/about" }, { label: "Our Team" }]}
         eyebrow={copy.eyebrow}

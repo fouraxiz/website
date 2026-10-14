@@ -69,6 +69,7 @@ export default async function ServicePage({ params }: { params: Promise<Params> 
   return (
     <>
       <PageHero
+        edit={[{ label: "Edit this service", collection: "services", slug: s.slug }]}
         crumbs={[{ label: "Services", href: "/services" }, { label: s.shortTitle }]}
         eyebrow={s.title}
         title={s.tagline}

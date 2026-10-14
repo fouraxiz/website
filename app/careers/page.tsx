@@ -19,6 +19,7 @@ export default async function CareersPage() {
   return (
     <>
       <PageHero
+        edit={[{ label: "Heading", collection: "sections", slug: "page.careers" }, { label: "Job openings", collection: "jobs" }, { label: "Add job", collection: "jobs", create: true }]}
         decor={{ icons: ["code", "palette", "users", "globe", "trending-up"], center: "rocket" }}
         crumbs={[{ label: "Company", href: "/about" }, { label: "Careers" }]}
         eyebrow={copy.eyebrow}

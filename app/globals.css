@@ -153,3 +153,53 @@
     @apply font-medium text-brand-700 underline underline-offset-2 hover:text-brand-800;
   }
 }
+
+/* Blog article typography (Markdown output). */
+@layer components {
+  .article-body {
+    @apply text-[1.05rem] leading-[1.8] text-ink-700;
+  }
+  .article-body > * + * {
+    @apply mt-5;
+  }
+  .article-body h2 {
+    @apply mt-12 text-2xl font-bold text-ink-950;
+  }
+  .article-body h3 {
+    @apply mt-9 text-xl font-semibold text-ink-950;
+  }
+  .article-body h4,
+  .article-body h5 {
+    @apply mt-7 text-lg font-semibold text-ink-900;
+  }
+  .article-body a {
+    @apply font-medium text-brand-600 underline underline-offset-2 hover:text-brand-700;
+  }
+  .article-body ul {
+    @apply list-disc space-y-2 pl-6;
+  }
+  .article-body ol {
+    @apply list-decimal space-y-2 pl-6;
+  }
+  .article-body blockquote {
+    @apply border-l-4 border-brand-400 bg-ink-50 py-3 pr-4 pl-5 text-ink-600 italic;
+  }
+  .article-body hr {
+    @apply my-10 border-ink-200;
+  }
+  .article-body strong {
+    @apply font-semibold text-ink-900;
+  }
+}
+
+/* Edit mode: outline editable regions on hover. */
+@layer components {
+  [data-edit-mode] .edit-outline {
+    outline: 2px dashed transparent;
+    outline-offset: -2px;
+    transition: outline-color 0.15s;
+  }
+  [data-edit-mode] .edit-outline:hover {
+    outline-color: var(--color-accent-400);
+  }
+}

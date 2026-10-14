@@ -25,6 +25,10 @@ export interface CollectionDef {
   routable?: boolean;
   fields: Field[];
   description?: string;
+  /** Fixed set of entries: editors can edit and reorder, but not add or delete. */
+  fixed?: boolean;
+  /** Public URL of an item, for "View page" links. */
+  pathPrefix?: string;
 }
 
 export const ICON_OPTIONS = [

@@ -38,6 +38,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
   return (
     <>
       <PageHero
+        edit={[{ label: "Edit this product", collection: "products", slug: p.slug }]}
         crumbs={[{ label: "Products", href: "/products" }, { label: p.name }]}
         eyebrow={`${productKindLabel[p.kind]} · ${p.category}`}
         title={p.name}
@@ -59,7 +60,14 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
             )}
           </>
         }
-        aside={<AppMockup title={p.name} icon={p.icon} metricLabels={p.mockup.metricLabels} rows={p.mockup.rows} />}
+        aside={
+          p.image ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={p.image} alt={`${p.name} screenshot`} className="w-full rounded-2xl shadow-[var(--shadow-lift)] ring-1 ring-ink-200" />
+          ) : (
+            <AppMockup title={p.name} icon={p.icon} metricLabels={p.mockup.metricLabels} rows={p.mockup.rows} />
+          )
+        }
       />
 
       <Section labelledBy="features">

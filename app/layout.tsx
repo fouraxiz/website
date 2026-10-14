@@ -7,6 +7,9 @@ import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { site } from "@/data/site";
 import { getErpModules, getNav, getSettings } from "@/lib/cms/content";
+import { getSession } from "@/lib/auth/session";
+import { EditProvider } from "@/components/cms/EditProvider";
+import { Edit } from "@/components/cms/Edit";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const poppins = Poppins({ subsets: ["latin"], variable: "--font-poppins", display: "swap", weight: ["500", "600", "700", "800"] });
@@ -46,7 +49,7 @@ export const viewport: Viewport = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const [settings, nav, erp] = await Promise.all([getSettings(), getNav(), getErpModules()]);
+  const [settings, nav, erp, session] = await Promise.all([getSettings(), getNav(), getErpModules(), getSession()]);
   const sameAs = settings.socials.map((s) => s.url).filter(Boolean);
   const erpLinks = erp.map((m) => ({ label: m.shortTitle, href: `/solutions/erp/${m.slug}`, icon: m.icon }));
   return (
@@ -72,10 +75,32 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             },
           }}
         />
-        <TopBar />
-        <Header nav={nav} erpLinks={erpLinks} phone={settings.phone} />
-        <main id="main">{children}</main>
-        <Footer />
+        {(() => {
+          const page = (
+            <>
+              <Edit
+                actions={[
+                  { label: "Menu", collection: "nav" },
+                  { label: "Top bar & contact", collection: "settings", slug: "site" },
+                ]}
+              >
+                <TopBar />
+              </Edit>
+              {/* Not wrapped: the header must stay sticky. Edit the menu from the top bar or the toolbar. */}
+              <Header nav={nav} erpLinks={erpLinks} phone={settings.phone} />
+              <main id="main">{children}</main>
+              <Edit
+                actions={[
+                  { label: "Contact details", collection: "settings", slug: "site" },
+                  { label: "Offices", collection: "offices" },
+                ]}
+              >
+                <Footer />
+              </Edit>
+            </>
+          );
+          return session ? <EditProvider user={{ name: session.name, email: session.email, role: session.role }}>{page}</EditProvider> : page;
+        })()}
       </body>
     </html>
   );

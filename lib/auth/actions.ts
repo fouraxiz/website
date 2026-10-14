@@ -15,6 +15,7 @@ const LOCK_MS = 15 * 60 * 1000;
 
 export interface LoginState {
   error?: string;
+  email?: string;
 }
 
 export async function login(_prev: LoginState, form: FormData): Promise<LoginState> {
@@ -25,14 +26,14 @@ export async function login(_prev: LoginState, form: FormData): Promise<LoginSta
   const ip = (await headers()).get("x-forwarded-for")?.split(",")[0]?.trim() ?? "local";
   const key = `${ip}|${email}`;
   const a = attempts.get(key);
-  if (a && a.until > Date.now()) return { error: "Too many attempts. Please try again in 15 minutes." };
+  if (a && a.until > Date.now()) return { error: "Too many attempts. Please try again in 15 minutes.", email };
 
   const [u] = email ? await db.select().from(users).where(eq(users.email, email)).limit(1) : [];
   const ok = u && u.active && (await bcrypt.compare(password, u.passwordHash));
   if (!ok) {
     const count = (a?.count ?? 0) + 1;
     attempts.set(key, { count, until: count >= MAX_ATTEMPTS ? Date.now() + LOCK_MS : 0 });
-    return { error: "Incorrect email or password." };
+    return { error: "Incorrect email or password.", email };
   }
   attempts.delete(key);
   await db.update(users).set({ lastLoginAt: new Date() }).where(eq(users.id, u.id));

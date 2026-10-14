@@ -15,6 +15,7 @@ export const solutionLinks: NavLink[] = [
 export const companyLinks: NavLink[] = [
   { label: "About Us", href: "/about", description: "Our story, mission and values", icon: "layers" },
   { label: "Our Team", href: "/team", description: "The people behind 4axiz", icon: "users" },
+  { label: "Blog", href: "/blog", description: "News and insights", icon: "file-text" },
   { label: "Careers", href: "/careers", description: "Build with us", icon: "rocket" },
   { label: "Contact Us", href: "/contact", description: "Offices and project inquiries", icon: "message-square" },
 ];

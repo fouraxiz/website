@@ -18,6 +18,7 @@ export default async function ProjectsPage() {
   return (
     <>
       <PageHero
+        edit={[{ label: "Heading", collection: "sections", slug: "page.projects" }, { label: "Projects", collection: "projects" }, { label: "Add project", collection: "projects", create: true }]}
         decor={{ icons: ["globe", "smartphone", "shopping-cart", "graduation-cap", "landmark"], center: "rocket" }}
         crumbs={[{ label: "Projects" }]}
         eyebrow={copy.eyebrow}

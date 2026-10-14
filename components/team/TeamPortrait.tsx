@@ -7,7 +7,7 @@ export function TeamPortrait({ member, showBio = false }: { member: TeamMember; 
     <figure className="group">
       <div className="relative aspect-[4/5] overflow-hidden rounded-[var(--radius-card)] bg-ink-100">
         {member.photo ? (
-          <Image
+          <Image unoptimized
             src={member.photo.src}
             alt={member.photo.alt}
             fill

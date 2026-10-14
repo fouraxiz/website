@@ -22,6 +22,7 @@ export default async function SolutionsPage() {
   return (
     <>
       <PageHero
+        edit={[{ label: "Heading", collection: "sections", slug: "page.solutions" }, { label: "Solutions", collection: "solutions" }, { label: "ERP modules", collection: "erp_modules" }]}
         decor={{ icons: ["boxes", "brain", "globe", "smartphone", "workflow"], center: "sparkles" }}
         crumbs={[{ label: "Solutions" }]}
         eyebrow={copy.eyebrow}

@@ -33,6 +33,7 @@ export default async function IndustryPage({ params }: { params: Promise<Params>
   return (
     <>
       <PageHero
+        edit={[{ label: "Edit this industry", collection: "industries", slug: i.slug }]}
         decor={{ icons: i.solutions.length ? ["boxes", "brain", "workflow", "bar-chart", "globe"] : [], center: i.icon }}
         crumbs={[{ label: "Industries", href: "/industries" }, { label: i.title }]}
         eyebrow={

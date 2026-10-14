@@ -39,6 +39,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
   return (
     <>
       <PageHero
+        edit={[{ label: "Edit this project", collection: "projects", slug: p.slug }, { label: "Add project", collection: "projects", create: true }]}
         crumbs={[{ label: "Projects", href: "/projects" }, { label: p.name }]}
         eyebrow={p.industry}
         title={p.name}
@@ -128,7 +129,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
             <ul className="mt-6 grid gap-5 sm:grid-cols-2">
               {p.images.slice(1).map((img) => (
                 <li key={img.src} className="overflow-hidden rounded-xl border border-ink-200">
-                  <Image src={img.src} alt={img.alt} width={img.width} height={img.height} sizes="(min-width: 640px) 50vw, 100vw" className="h-auto w-full" />
+                  <Image unoptimized src={img.src} alt={img.alt} width={img.width} height={img.height} sizes="(min-width: 640px) 50vw, 100vw" className="h-auto w-full" />
                 </li>
               ))}
             </ul>

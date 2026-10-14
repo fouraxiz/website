@@ -17,7 +17,7 @@ export function LoginForm({ next }: { next: string }) {
         <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-ink-800">
           Email
         </label>
-        <input id="email" name="email" type="email" autoComplete="username" required className={input} />
+        <input id="email" name="email" type="email" autoComplete="username" required defaultValue={state.email} key={state.email} className={input} />
       </div>
       <div>
         <label htmlFor="password" className="mb-1.5 block text-sm font-medium text-ink-800">

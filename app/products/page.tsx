@@ -22,6 +22,7 @@ export default async function ProductsPage() {
   return (
     <>
       <PageHero
+        edit={[{ label: "Heading", collection: "sections", slug: "page.products" }, { label: "Products", collection: "products" }, { label: "Add product", collection: "products", create: true }]}
         decor={{ icons: ["calculator", "users", "scan-barcode", "package", "graduation-cap"], center: "boxes" }}
         crumbs={[{ label: "Products" }]}
         eyebrow={copy.eyebrow}

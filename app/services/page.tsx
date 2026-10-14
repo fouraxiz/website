@@ -23,6 +23,7 @@ export default async function ServicesPage() {
   return (
     <>
       <PageHero
+        edit={[{ label: "Heading", collection: "sections", slug: "page.services" }, { label: "Services", collection: "services" }, { label: "Add service", collection: "services", create: true }]}
         decor={{ icons: ["code", "smartphone", "cloud", "palette", "plug"], center: "layers" }}
         crumbs={[{ label: "Services" }]}
         eyebrow={copy.eyebrow}

@@ -39,6 +39,7 @@ export default async function ContactPage() {
   return (
     <>
       <PageHero
+        edit={[{ label: "Heading", collection: "sections", slug: "page.contact" }, { label: "Offices", collection: "offices" }, { label: "Contact details", collection: "settings", slug: "site" }]}
         decor={{ icons: ["message-square", "headset", "globe", "file-text", "sparkles"], center: "message-square" }}
         crumbs={[{ label: "Company", href: "/about" }, { label: "Contact Us" }]}
         eyebrow={copy.eyebrow}

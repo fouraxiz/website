@@ -36,6 +36,7 @@ export default async function SolutionPage({ params }: { params: Promise<Params>
   return (
     <>
       <PageHero
+        edit={[{ label: "Edit this solution", collection: "solutions", slug: s.slug }]}
         crumbs={[{ label: "Solutions", href: "/solutions" }, { label: s.shortTitle }]}
         eyebrow={s.shortTitle}
         title={s.tagline}

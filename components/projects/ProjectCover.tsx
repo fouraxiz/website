@@ -20,7 +20,7 @@ export function ProjectCover({ project, className, priority = false }: { project
   if (image) {
     return (
       <div className={cn("relative aspect-[16/10] overflow-hidden bg-ink-100", className)}>
-        <Image
+        <Image unoptimized
           src={image.src}
           alt={image.alt}
           fill

@@ -25,6 +25,7 @@ export async function Footer() {
       { label: "Projects", href: "/projects" },
       { label: "Products", href: "/products" },
       { label: "Industries", href: "/industries" },
+      { label: "Blog", href: "/blog" },
       { label: "Careers", href: "/careers" },
       { label: "Contact Us", href: "/contact" },
     ],

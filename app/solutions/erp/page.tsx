@@ -41,6 +41,7 @@ export default async function ErpPage() {
   return (
     <>
       <PageHero
+        edit={[{ label: "ERP modules", collection: "erp_modules" }, { label: "Add module", collection: "erp_modules", create: true }, { label: "4axiz ERP product", collection: "products", slug: "4axiz-erp" }]}
         crumbs={[{ label: "Solutions", href: "/solutions" }, { label: "ERP" }]}
         eyebrow="ERP solutions"
         title="An integrated platform for running your entire organisation."

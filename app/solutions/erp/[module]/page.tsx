@@ -39,6 +39,7 @@ export default async function ErpModulePage({ params }: { params: Promise<Params
   return (
     <>
       <PageHero
+        edit={[{ label: "Edit this module", collection: "erp_modules", slug: m.slug }]}
         crumbs={[
           { label: "Solutions", href: "/solutions" },
           { label: "ERP", href: "/solutions/erp" },
