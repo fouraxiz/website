@@ -17,7 +17,7 @@ import { services } from "@/data/services";
 import { projects } from "@/data/projects";
 import { industries } from "@/data/industries";
 import { team } from "@/data/team";
-import { clients } from "@/data/clients";
+import { clients, engagements, clientGroups } from "@/data/clients";
 import { testimonials } from "@/data/testimonials";
 import { jobOpenings } from "@/data/careers";
 
@@ -116,6 +116,8 @@ export function buildSeed(): Record<string, SeedItem[]> {
       const { id, ...rest } = o;
       return { slug: id, data: { ...rest } };
     }),
+    engagements: engagements.map((e, i) => ({ slug: `${slugify(e.client)}-${i}`, data: { ...e } })),
+    client_groups: byName(clientGroups, (g) => g.title),
     clients: byName(clients, (c) => c.name, (c) => ({ name: c.name, logo: c.logo.src, url: c.url ?? null })),
     testimonials: byName(
       testimonials.filter((t) => t.approved),

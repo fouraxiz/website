@@ -134,8 +134,12 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
               </div>
             )}
 
-            <h2 className="mt-10 font-display text-2xl font-bold tracking-tight">Highlights</h2>
-            <CheckList items={p.highlights} className="mt-5" />
+            {p.highlights.length > 0 && (
+              <>
+                <h2 className="mt-10 font-display text-2xl font-bold tracking-tight">Highlights</h2>
+                <CheckList items={p.highlights} className="mt-5" />
+              </>
+            )}
           </div>
 
           <aside className="self-start rounded-2xl border border-ink-200 bg-ink-50/70 p-6 lg:sticky lg:top-28">

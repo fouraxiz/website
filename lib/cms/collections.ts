@@ -620,6 +620,31 @@ export const collections: CollectionDef[] = [
     ],
   },
   {
+    name: "engagements",
+    label: "Client engagement record",
+    singular: "Engagement",
+    kind: "list",
+    titleField: "client",
+    fields: [
+      { name: "client", label: "Client", type: "text", required: true },
+      { name: "scope", label: "Scope of work", type: "textarea" },
+      { name: "years", label: "Years (e.g. 5 years, Running)", type: "text" },
+      { name: "href", label: "Link to project page (optional, e.g. /projects/kmix-erp)", type: "text" },
+    ],
+  },
+  {
+    name: "client_groups",
+    label: "Who we work with (by category)",
+    singular: "Category",
+    kind: "list",
+    titleField: "title",
+    slugField: "title",
+    fields: [
+      { name: "title", label: "Category", type: "text", required: true },
+      { name: "names", label: "Organisations", type: "textarea" },
+    ],
+  },
+  {
     name: "testimonials",
     label: "Testimonials",
     singular: "Testimonial",

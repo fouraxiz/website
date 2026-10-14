@@ -56,9 +56,9 @@ Status: ✅ done · 🟡 partly done · ⬜ to do · ❓ needs a decision or dat
 
 | # | PDF content | Where it goes | Status |
 |---|---|---|---|
-| 5.1 | Client engagement record (31 clients: scope + years) | New **Clients** page + a project for every engagement | ⬜ |
+| 5.1 | Client engagement record (31 clients: scope + years) | New **Clients** page + a project for every engagement | ✅ |
 | 5.2 | Client and partner logos | Home, Clients page | ✅ (4 logos need names ❓) |
-| 5.3 | Who we work with, by category + client mix + references available | Clients page | ⬜ |
+| 5.3 | Who we work with, by category + client mix + references available | Clients page | ✅ |
 
 ## Phase 6 — Our People (pp. 51–54)
 

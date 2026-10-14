@@ -205,6 +205,10 @@ export const getHowWeWork = cache(async () =>
   })),
 );
 export const getOutcomes = cache(async () => list("outcomes", (d) => ({ value: str(d.value), label: str(d.label) })));
+export const getEngagements = cache(async () =>
+  list("engagements", (d) => ({ client: str(d.client), scope: str(d.scope), years: str(d.years), href: strOrNull(d.href) })),
+);
+export const getClientGroups = cache(async () => list("client_groups", (d) => ({ title: str(d.title), names: str(d.names) })));
 export const getPillars = cache(async () => list("pillars", (d) => ({ title: str(d.title), description: str(d.description) })));
 export const getPresenceStats = cache(async () => list("presence_stats", (d) => ({ value: str(d.value), label: str(d.label) })));
 export const getStrengths = cache(async () => list("strengths", (d) => ({ title: str(d.title), description: str(d.description) })));

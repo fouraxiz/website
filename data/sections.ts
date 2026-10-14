@@ -43,6 +43,7 @@ export const sectionDefaults: Record<string, SectionCopy> = {
   "page.contact": s("Contact", "Let's talk about what you're building.", null, "Tell us about your organisation, the challenge you're facing or the product you'd like to see. We'll get back to you with practical next steps."),
   "page.approach": s("How we work", "How we design, build, test, deploy and support the systems you depend on.", null, "From the first conversation to long-term support: the features built into every platform, our architecture, a nine-phase methodology, testing, training, SLAs and the controls our clients' auditors expect."),
   "page.technologies": s("Technologies", "Our tech stack.", null, "We choose technology on fit, not fashion — backend, frontend, mobile, data, cloud and commerce platforms our teams work in every day."),
+  "page.clients": s("Clients", "Client by client — what we built, and how long we have been trusted with it.", null, "Government directorates, UN agencies, international and local NGOs, and corporate groups across sixteen years of delivery."),
   "page.blog": s("Blog", "Insights from the 4axiz team.", null, "Practical articles on ERP, AI, software development and running a digital business."),
 };
 

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { CopyTitle } from "@/components/ui/Section";
+import { ButtonLink } from "@/components/ui/Button";
 import { getClients, type SectionEntry } from "@/lib/cms/content";
 
 /** Client logo strip — renders only when client logos have been added. */
@@ -47,6 +48,11 @@ export async function ClientsSection({ copy }: { copy: SectionEntry }) {
             );
           })}
         </ul>
+        <div className="mt-10 text-center">
+          <ButtonLink href="/clients" variant="secondary" arrow>
+            View our track record
+          </ButtonLink>
+        </div>
       </div>
     </section>
   );
