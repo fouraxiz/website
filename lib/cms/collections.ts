@@ -639,6 +639,8 @@ export const collections: CollectionDef[] = [
       { name: "hours", label: "Business hours", type: "text" },
       { name: "timezone", label: "Time zone", type: "text" },
       { name: "mapUrl", label: "Map link", type: "url" },
+      { name: "lat", label: "Latitude (for the world map, e.g. 23.82)", type: "number" },
+      { name: "lng", label: "Longitude (for the world map, e.g. 90.37)", type: "number" },
     ],
   },
   {

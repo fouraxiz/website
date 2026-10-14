@@ -35,7 +35,7 @@ export function PageHero({
   const hero = (
     <section className={cn("relative overflow-hidden bg-ink-50", className)}>
       <div className="bg-grid mask-fade-b pointer-events-none absolute inset-0" aria-hidden="true" />
-      <div className="pointer-events-none absolute -top-32 -right-24 size-[30rem] rounded-full bg-gradient-to-br from-violet-200/60 via-sky-200/40 to-transparent blur-3xl" aria-hidden="true" />
+      <div className="pointer-events-none absolute -top-32 -right-24 size-[30rem] rounded-full bg-gradient-to-br from-brand-100/50 via-ink-100/50 to-transparent blur-3xl" aria-hidden="true" />
       <div className="pointer-events-none absolute -bottom-40 -left-24 size-[24rem] rounded-full bg-brand-100/70 blur-3xl" aria-hidden="true" />
       <svg className="pointer-events-none absolute bottom-10 left-[46%] hidden size-28 text-ink-300/60 lg:block" viewBox="0 0 100 100" aria-hidden="true">
         {Array.from({ length: 36 }).map((_, i) => (

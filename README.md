@@ -23,7 +23,9 @@ Without `DATABASE_URL` the site still runs, using `/data` as read-only content (
 | `npm run lint` / `typecheck` | ESLint and `tsc --noEmit` |
 | `npm run db:generate` | Create a migration after changing `lib/db/schema.ts` |
 | `npm run db:migrate` | Apply migrations |
-| `npm run db:seed` | Fill empty collections from `/data` (never overwrites edits) |
+| `npm run db:seed` | Fill empty collections from `/data` |
+| `npm run db:seed -- --sync` | Update the database to the latest `/data` content while keeping everything edited on the website (runs on every deploy) |
+| `npm run db:seed -- --reset` | Delete all content and load `/data` again (loses website edits) |
 | `npm run user:create` | Create a user, or reset an existing user's password |
 
 **Deployment:** see [`deploy/DEPLOY.md`](deploy/DEPLOY.md) (DigitalOcean VPS, Docker Compose, Nginx, HTTPS, backups, auto-deploy).

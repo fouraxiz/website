@@ -154,6 +154,8 @@ export const offices: Office[] = [
     hours: null,
     timezone: "GMT+6",
     mapUrl: "https://www.google.com/maps/search/?api=1&query=DUIP+Plot+Block+D+Mirpur+12+Dhaka+1216",
+    lat: 23.82,
+    lng: 90.37,
   },
   {
     id: "new-zealand",
@@ -169,6 +171,8 @@ export const offices: Office[] = [
     hours: null,
     timezone: "GMT+12 / +13",
     mapUrl: null,
+    lat: -36.85,
+    lng: 174.76,
   },
   {
     id: "united-states",
@@ -183,6 +187,8 @@ export const offices: Office[] = [
     hours: null,
     timezone: "GMT-6 / -5",
     mapUrl: "https://www.google.com/maps/search/?api=1&query=8120+Jennings+Drive+Cedar+Falls+IA+50613",
+    lat: 42.53,
+    lng: -92.45,
   },
   {
     id: "kosovo",
@@ -197,6 +203,8 @@ export const offices: Office[] = [
     hours: null,
     timezone: "GMT+1 / +2",
     mapUrl: null,
+    lat: 42.66,
+    lng: 21.17,
   },
 ];
 

@@ -47,6 +47,7 @@ export const mainNav: (NavItem & { menu?: MenuKind })[] = [
   { label: "Products", href: "/products", children: productLinks, menu: "products" },
   { label: "Services", href: "/services", children: serviceLinks, menu: "services" },
   { label: "Projects", href: "/projects" },
+  { label: "Clients", href: "/clients" },
   { label: "Industries", href: "/industries" },
   { label: "Company", href: "/about", children: companyLinks, menu: "company" },
 ];

@@ -51,7 +51,7 @@ export function ErpVisual() {
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"];
   return (
     <div className="relative mx-auto w-full max-w-[40rem]" aria-hidden="true">
-      <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-br from-sky-200/60 via-violet-200/40 to-brand-100/50 blur-2xl" />
+      <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-br from-ink-200/60 via-brand-200/40 to-brand-100/50 blur-2xl" />
       <div className={`overflow-hidden rounded-2xl bg-white ring-1 ring-ink-200/70 ${shadow}`}>
         <WindowBar url="erp.4axiz.com/dashboard" />
         <div className="grid grid-cols-[8.5rem_1fr] max-sm:grid-cols-1">
@@ -77,7 +77,7 @@ export function ErpVisual() {
                 </li>
               ))}
             </ul>
-            <div className="mt-4 rounded-xl bg-gradient-to-br from-accent-500 to-sky-500 p-2.5">
+            <div className="mt-4 rounded-xl bg-gradient-to-br from-accent-500 to-ink-600 p-2.5">
               <p className="flex items-center gap-1 text-[0.6rem] font-semibold text-white">
                 <Sparkles className="size-3" /> AI insight
               </p>
@@ -106,8 +106,8 @@ export function ErpVisual() {
             <div className="mt-3 grid grid-cols-3 gap-2">
               {[
                 { l: "Revenue", v: "৳ 8.42M", t: "+12.4%", c: "text-emerald-600 bg-emerald-50" },
-                { l: "Expenses", v: "৳ 3.15M", t: "-4.1%", c: "text-sky-600 bg-sky-50" },
-                { l: "Receivables", v: "৳ 1.27M", t: "+6.8%", c: "text-violet-600 bg-violet-50" },
+                { l: "Expenses", v: "৳ 3.15M", t: "-4.1%", c: "text-ink-700 bg-ink-50" },
+                { l: "Receivables", v: "৳ 1.27M", t: "+6.8%", c: "text-brand-600 bg-brand-50" },
               ].map((k) => (
                 <div key={k.l} className="rounded-xl bg-white p-2.5 ring-1 ring-ink-100">
                   <p className="text-[0.58rem] font-medium text-ink-500">{k.l}</p>
@@ -123,7 +123,7 @@ export function ErpVisual() {
                   <p className="text-[0.62rem] font-semibold text-ink-800">Sales vs purchases</p>
                   <span className="flex gap-2 text-[0.5rem] text-ink-500">
                     <span className="flex items-center gap-1">
-                      <span className="size-1.5 rounded-full bg-sky-500" />
+                      <span className="size-1.5 rounded-full bg-ink-600" />
                       Sales
                     </span>
                     <span className="flex items-center gap-1">
@@ -159,8 +159,8 @@ export function ErpVisual() {
                   {[
                     { l: "PO-1042", s: "Approved", c: "bg-emerald-50 text-emerald-700", d: "bg-emerald-500" },
                     { l: "Payroll · Oct", s: "Processing", c: "bg-amber-50 text-amber-700", d: "bg-amber-500" },
-                    { l: "GRN-221", s: "Received", c: "bg-sky-50 text-sky-700", d: "bg-sky-500" },
-                    { l: "INV-3307", s: "Paid", c: "bg-violet-50 text-violet-700", d: "bg-violet-500" },
+                    { l: "GRN-221", s: "Received", c: "bg-ink-50 text-ink-800", d: "bg-ink-600" },
+                    { l: "INV-3307", s: "Paid", c: "bg-brand-50 text-brand-700", d: "bg-brand-500" },
                   ].map((r) => (
                     <li key={r.l} className="flex items-center gap-1.5 text-[0.56rem]">
                       <span className={`size-1.5 shrink-0 rounded-full ${r.d}`} />
@@ -176,7 +176,7 @@ export function ErpVisual() {
       </div>
 
       <div className={`absolute -bottom-7 -left-8 flex w-56 animate-float items-center gap-3 rounded-2xl bg-white p-3 ring-1 ring-ink-100 max-sm:hidden ${floatShadow}`}>
-        <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-violet-500 to-sky-500 text-[0.65rem] font-bold text-white">RA</span>
+        <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-ink-600 text-[0.65rem] font-bold text-white">RA</span>
         <div className="min-w-0">
           <p className="text-[0.66rem] font-semibold text-ink-900">Leave request</p>
           <p className="text-[0.58rem] text-ink-500">Annual leave · 3 days</p>
@@ -201,10 +201,10 @@ export function ErpVisual() {
 export function AiVisual() {
   return (
     <div className="relative mx-auto w-full max-w-[36rem]" aria-hidden="true">
-      <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-br from-violet-300/50 via-fuchsia-200/40 to-sky-200/50 blur-2xl" />
+      <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-br from-brand-300/50 via-brand-200/40 to-ink-200/50 blur-2xl" />
       <div className={`overflow-hidden rounded-2xl bg-ink-950 ring-1 ring-white/10 ${shadow}`}>
         <div className="flex items-center gap-2.5 border-b border-white/10 px-5 py-3.5">
-          <span className="inline-flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-accent-400 to-sky-500 text-white">
+          <span className="inline-flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-accent-400 to-ink-600 text-white">
             <Sparkles className="size-4" />
           </span>
           <div>
@@ -223,8 +223,8 @@ export function AiVisual() {
             3 invoices are due this week, totalling <span className="font-semibold text-white">৳ 4,85,000</span>:
             <ul className="mt-2.5 space-y-1.5">
               {[
-                { n: "Rahman Traders", a: "৳ 2,10,000", d: "Thu", c: "bg-sky-400" },
-                { n: "Delta Supplies Ltd", a: "৳ 1,55,000", d: "Fri", c: "bg-violet-400" },
+                { n: "Rahman Traders", a: "৳ 2,10,000", d: "Thu", c: "bg-ink-400" },
+                { n: "Delta Supplies Ltd", a: "৳ 1,55,000", d: "Fri", c: "bg-brand-400" },
                 { n: "Green Packaging", a: "৳ 1,20,000", d: "Sun", c: "bg-emerald-400" },
               ].map((r) => (
                 <li key={r.n} className="flex items-center gap-2 rounded-lg bg-white/[0.05] px-2.5 py-1.5">
@@ -253,7 +253,7 @@ export function AiVisual() {
       </div>
       <div className={`absolute -right-8 -bottom-12 w-60 animate-float rounded-2xl bg-white p-4 ring-1 ring-ink-100 max-sm:hidden ${floatShadow}`}>
         <div className="flex items-center gap-2">
-          <span className="inline-flex size-8 items-center justify-center rounded-lg bg-sky-50 text-sky-600">
+          <span className="inline-flex size-8 items-center justify-center rounded-lg bg-ink-50 text-ink-700">
             <FileText className="size-4" />
           </span>
           <div>
@@ -283,14 +283,14 @@ export function AiVisual() {
 
 export function AppsVisual() {
   const products = [
-    { I: Headphones, n: "Wireless Headphones", p: "৳ 3,450", bg: "from-sky-100 to-sky-200", c: "text-sky-600", r: 5 },
-    { I: Watch, n: "Smart Watch", p: "৳ 5,990", bg: "from-violet-100 to-violet-200", c: "text-violet-600", r: 4 },
+    { I: Headphones, n: "Wireless Headphones", p: "৳ 3,450", bg: "from-ink-100 to-ink-200", c: "text-ink-700", r: 5 },
+    { I: Watch, n: "Smart Watch", p: "৳ 5,990", bg: "from-brand-100 to-brand-200", c: "text-brand-600", r: 4 },
     { I: Shirt, n: "Cotton T-Shirt", p: "৳ 890", bg: "from-amber-100 to-amber-200", c: "text-amber-600", r: 5 },
     { I: Camera, n: "Action Camera", p: "৳ 12,500", bg: "from-emerald-100 to-emerald-200", c: "text-emerald-600", r: 4 },
   ];
   return (
     <div className="relative mx-auto w-full max-w-[40rem] pb-8" aria-hidden="true">
-      <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-br from-emerald-200/50 via-sky-200/50 to-violet-200/50 blur-2xl" />
+      <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-br from-emerald-200/50 via-ink-200/50 to-brand-200/50 blur-2xl" />
       <div className={`overflow-hidden rounded-2xl bg-white ring-1 ring-ink-200/70 ${shadow}`}>
         <WindowBar url="shop.example.com" />
         <div className="p-4">
@@ -312,7 +312,7 @@ export function AppsVisual() {
               <span className="absolute -top-1.5 -right-1.5 inline-flex size-3.5 items-center justify-center rounded-full bg-brand-500 text-[0.45rem] font-bold text-white">3</span>
             </span>
           </div>
-          <div className="mt-3 flex items-center overflow-hidden rounded-xl bg-gradient-to-r from-violet-600 via-indigo-500 to-sky-500 p-4">
+          <div className="mt-3 flex items-center overflow-hidden rounded-xl bg-gradient-to-r from-brand-600 via-ink-600 to-ink-600 p-4">
             <div>
               <p className="text-[0.55rem] font-semibold tracking-wider text-white/70 uppercase">Mega Sale</p>
               <p className="mt-0.5 text-[1rem] leading-tight font-extrabold text-white">Up to 40% off</p>

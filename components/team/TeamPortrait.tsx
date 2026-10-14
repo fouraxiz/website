@@ -1,14 +1,7 @@
 import Image from "next/image";
 import type { TeamMember } from "@/types";
 
-const gradients = [
-  "from-violet-500 to-indigo-600",
-  "from-sky-400 to-blue-600",
-  "from-emerald-400 to-teal-600",
-  "from-amber-400 to-rose-500",
-  "from-rose-400 to-fuchsia-600",
-  "from-ink-600 to-ink-900",
-];
+const gradients = ["from-brand-500 to-brand-700", "from-ink-600 to-ink-900"];
 
 function gradient(name: string) {
   let h = 0;

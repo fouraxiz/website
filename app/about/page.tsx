@@ -124,7 +124,7 @@ export default async function AboutPage() {
             <ul className="mt-5 grid gap-4 sm:grid-cols-2">
               {site.practice.map((t) => (
                 <li key={t} className="flex gap-3 rounded-2xl bg-white/[0.04] p-5 text-ink-200 ring-1 ring-white/10">
-                  <Check className="mt-0.5 size-5 shrink-0 text-emerald-400" strokeWidth={2.5} aria-hidden="true" />
+                  <Check className="mt-0.5 size-5 shrink-0 text-brand-400" strokeWidth={2.5} aria-hidden="true" />
                   {t}
                 </li>
               ))}
@@ -152,7 +152,7 @@ export default async function AboutPage() {
         <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {milestones.map((m, i) => (
             <li key={m._id} className="relative rounded-3xl bg-white p-6 shadow-[var(--shadow-soft)] ring-1 ring-ink-100">
-              <span className={`font-display text-4xl font-bold ${["text-brand-500", "text-accent-500", "text-sky-500", "text-emerald-500"][i % 4]}`}>{m.year}</span>
+              <span className={`font-display text-4xl font-bold ${i % 2 === 0 ? "text-brand-500" : "text-ink-700"}`}>{m.year}</span>
               <h3 className="mt-3 font-semibold">{m.title}</h3>
               {m.description && <p className="mt-2 text-sm leading-relaxed text-ink-500">{m.description}</p>}
             </li>

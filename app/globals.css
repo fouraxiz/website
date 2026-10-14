@@ -24,14 +24,15 @@
   --color-brand-950: #3c140c;
 
   /* Secondary accent: violet, used for AI and "colourful" highlights next to the brand orange. */
-  --color-accent-50: #f3f1ff;
-  --color-accent-100: #e9e5ff;
-  --color-accent-200: #d5ceff;
-  --color-accent-300: #b6a7ff;
-  --color-accent-400: #9478fd;
-  --color-accent-500: #7c4ff8;
-  --color-accent-600: #6c33ec;
-  --color-accent-700: #5b25d1;
+  /* Accent = the charcoal/grey from the logo (no extra colours). */
+  --color-accent-50: #f6f7f8;
+  --color-accent-100: #eceef0;
+  --color-accent-200: #d9dde0;
+  --color-accent-300: #bcc2c7;
+  --color-accent-400: #98a1a9;
+  --color-accent-500: #575e65;
+  --color-accent-600: #40464b;
+  --color-accent-700: #2e3337;
 
   /* Neutrals: built from the logo charcoal (#40464b = ink-700) and grey (#98a1a9 = ink-400). */
   --color-ink-50: #f6f7f8;

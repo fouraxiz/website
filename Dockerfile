@@ -21,7 +21,7 @@ WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-CMD ["sh", "-c", "npm run db:migrate && npm run db:seed"]
+CMD ["sh", "-c", "npm run db:migrate && npm run db:seed -- --sync"]
 
 # ---- Runtime ----
 FROM node:22-alpine AS runner

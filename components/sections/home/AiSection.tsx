@@ -16,7 +16,7 @@ export async function AiSection({ copy }: { copy: SectionEntry }) {
     <section className="relative overflow-hidden bg-ink-950 py-20 sm:py-28" aria-labelledby="ai-heading">
       <div className="bg-grid-dark mask-radial pointer-events-none absolute inset-0" aria-hidden="true" />
       <div className="pointer-events-none absolute -top-40 -left-20 size-[32rem] rounded-full bg-accent-600/30 blur-3xl" aria-hidden="true" />
-      <div className="pointer-events-none absolute -right-20 -bottom-40 size-[28rem] rounded-full bg-sky-500/20 blur-3xl" aria-hidden="true" />
+      <div className="pointer-events-none absolute -right-20 -bottom-40 size-[28rem] rounded-full bg-brand-500/15 blur-3xl" aria-hidden="true" />
       <div className="container-site relative grid items-center gap-16 lg:grid-cols-[1.1fr_1fr]">
         <div>
           <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-white ring-1 ring-white/15">
@@ -25,7 +25,7 @@ export async function AiSection({ copy }: { copy: SectionEntry }) {
           </p>
           <h2 id="ai-heading" className="mt-6 text-3xl leading-tight font-bold tracking-tight text-white sm:text-[2.6rem]">
             {copy.title}{" "}
-            <span className="bg-gradient-to-r from-accent-300 via-sky-300 to-emerald-300 bg-clip-text text-transparent">{copy.highlight}</span>
+            <span className="bg-gradient-to-r from-brand-300 via-brand-400 to-brand-200 bg-clip-text text-transparent">{copy.highlight}</span>
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-ink-300">
             {copy.description}

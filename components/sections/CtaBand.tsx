@@ -20,7 +20,7 @@ export async function CtaBand({
         <div className="relative overflow-hidden rounded-3xl bg-ink-950 px-6 py-14 sm:px-12 sm:py-16 lg:px-16">
           <div className="bg-grid-dark absolute inset-0" aria-hidden="true" />
           <div className="absolute -top-24 -right-16 size-80 rounded-full bg-accent-500/40 blur-3xl" aria-hidden="true" />
-          <div className="absolute -bottom-28 left-1/3 size-72 rounded-full bg-sky-500/30 blur-3xl" aria-hidden="true" />
+          <div className="absolute -bottom-28 left-1/3 size-72 rounded-full bg-ink-500/30 blur-3xl" aria-hidden="true" />
           <div className="absolute -bottom-20 -left-16 size-56 rounded-full bg-brand-500/25 blur-3xl" aria-hidden="true" />
           <div className="relative grid items-center gap-10 lg:grid-cols-[1.5fr_1fr]">
             <div>

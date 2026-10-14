@@ -13,11 +13,11 @@ export function PostCard({ post, headingLevel = "h3" }: { post: Post & { _status
   const H = headingLevel;
   return (
     <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-ink-200 transition hover:-translate-y-1 hover:shadow-[var(--shadow-lift)]">
-      <div className="relative aspect-[16/9] overflow-hidden bg-gradient-to-br from-violet-100 via-sky-100 to-brand-50">
+      <div className="relative aspect-[16/9] overflow-hidden bg-gradient-to-br from-ink-100 via-ink-50 to-brand-50">
         {post.cover ? (
           <Image src={post.cover} alt="" fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" unoptimized />
         ) : (
-          <div className="flex size-full items-center justify-center text-violet-400" aria-hidden="true">
+          <div className="flex size-full items-center justify-center text-ink-400" aria-hidden="true">
             <Newspaper className="size-10" strokeWidth={1.5} />
           </div>
         )}

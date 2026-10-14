@@ -7,20 +7,21 @@ import type { IconName } from "@/types";
 
 const hex: Record<Hue, string> = {
   orange: "#e4603a",
-  violet: "#8b5cf6",
-  sky: "#0ea5e9",
-  emerald: "#10b981",
-  amber: "#f59e0b",
-  rose: "#f43f5e",
-  indigo: "#6366f1",
-  teal: "#14b8a6",
+  charcoal: "#40464b",
+  violet: "#40464b",
+  sky: "#40464b",
+  emerald: "#e4603a",
+  amber: "#e4603a",
+  rose: "#e4603a",
+  indigo: "#40464b",
+  teal: "#40464b",
 };
 
 const statuses = [
   { label: "Approved", cls: "bg-emerald-50 text-emerald-700" },
   { label: "Pending", cls: "bg-amber-50 text-amber-700" },
-  { label: "Done", cls: "bg-sky-50 text-sky-700" },
-  { label: "New", cls: "bg-violet-50 text-violet-700" },
+  { label: "Done", cls: "bg-ink-50 text-ink-800" },
+  { label: "New", cls: "bg-brand-50 text-brand-700" },
 ];
 const people = ["RA", "SH", "MK", "TN", "AF"];
 const times = ["2m ago", "18m ago", "1h ago", "3h ago", "Yesterday"];
@@ -52,7 +53,7 @@ export function AppMockup({
   className?: string;
   caption?: boolean;
 }) {
-  const h: Hue = hue ?? (tone === "accent" ? "violet" : "sky");
+  const h: Hue = hue ?? (tone === "accent" ? "orange" : "charcoal");
   const color = hex[h];
   const gid = useId().replace(/:/g, "");
   return (

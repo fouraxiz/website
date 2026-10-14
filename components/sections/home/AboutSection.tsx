@@ -19,7 +19,7 @@ export async function AboutSection({ copy }: { copy: SectionEntry }) {
           <div className="grid grid-cols-[1.4fr_1fr] gap-4">
             <div className="relative row-span-2 overflow-hidden rounded-3xl bg-gradient-to-br from-ink-800 to-ink-950">
               <div className="bg-grid-dark absolute inset-0" aria-hidden="true" />
-              <div className="absolute -top-10 -left-10 size-48 rounded-full bg-accent-500/40 blur-3xl" aria-hidden="true" />
+              <div className="absolute -top-10 -left-10 size-48 rounded-full bg-brand-500/25 blur-3xl" aria-hidden="true" />
               <div className="relative flex aspect-[3/4] flex-col justify-between gap-5 p-6 pb-12">
                 {site.basisMembership && (
                   <div className="flex items-center gap-3 self-start rounded-2xl bg-white p-3">
@@ -50,8 +50,8 @@ export async function AboutSection({ copy }: { copy: SectionEntry }) {
                 </>
               )}
             </div>
-            <div className="rounded-3xl bg-violet-50 p-5 ring-1 ring-violet-100">
-              <p className="text-xs font-semibold text-violet-700">Technologies</p>
+            <div className="rounded-3xl bg-ink-50 p-5 ring-1 ring-ink-100">
+              <p className="text-xs font-semibold text-ink-700">Technologies</p>
               <ul className="mt-3 grid grid-cols-4 gap-2.5">
                 {technologies.slice(0, 8).map((t) => (
                   <li key={t.name} title={t.name} className="flex aspect-square items-center justify-center rounded-xl bg-white shadow-sm">
@@ -63,7 +63,7 @@ export async function AboutSection({ copy }: { copy: SectionEntry }) {
             </div>
           </div>
           <div className="absolute -bottom-6 left-6 flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-[var(--shadow-lift)] ring-1 ring-ink-100 sm:left-10">
-            <span className="inline-flex size-10 items-center justify-center rounded-full bg-emerald-500 text-white">
+            <span className="inline-flex size-10 items-center justify-center rounded-full bg-brand-500 text-white">
               <Check className="size-5" strokeWidth={3} aria-hidden="true" />
             </span>
             <span className="text-sm leading-tight">
@@ -98,7 +98,7 @@ export async function AboutSection({ copy }: { copy: SectionEntry }) {
                     <ul className="grid gap-3 sm:grid-cols-2">
                       {companyValues.map((v) => (
                         <li key={v.title} className="flex gap-2.5 text-sm text-ink-700">
-                          <Check className="mt-0.5 size-4 shrink-0 text-emerald-500" strokeWidth={3} aria-hidden="true" />
+                          <Check className="mt-0.5 size-4 shrink-0 text-brand-500" strokeWidth={3} aria-hidden="true" />
                           <span>
                             <span className="font-semibold">{v.title}</span>
                             {v.tagline && <span className="block text-ink-500">{v.tagline}</span>}

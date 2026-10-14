@@ -18,7 +18,7 @@ export function HeroDecor({ icons, center = "layers" }: { icons: IconName[]; cen
       <div className="absolute inset-[12%] rounded-full border-2 border-dashed border-ink-200" />
       <div className="absolute inset-[28%] rounded-full border border-ink-200/80" />
       <div className="absolute inset-[38%] flex items-center justify-center rounded-[2rem] bg-ink-950 text-white shadow-[0_30px_60px_-20px_rgb(18_21_23/0.45)] [&_svg]:size-10">
-        <div className="absolute -inset-3 -z-10 rounded-[2.4rem] bg-gradient-to-br from-accent-400/40 via-sky-300/30 to-brand-300/40 blur-xl" />
+        <div className="absolute -inset-3 -z-10 rounded-[2.4rem] bg-gradient-to-br from-ink-300/40 via-ink-200/30 to-brand-300/40 blur-xl" />
         <Icon name={center} />
       </div>
       {icons.slice(0, 5).map((ic, i) => {

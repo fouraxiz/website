@@ -254,6 +254,8 @@ export const getOffices = cache(async () =>
     hours: strOrNull(d.hours),
     timezone: str(d.timezone),
     mapUrl: strOrNull(d.mapUrl),
+    lat: typeof d.lat === "number" ? d.lat : null,
+    lng: typeof d.lng === "number" ? d.lng : null,
   })),
 );
 export const getClients = cache(async () => list("clients", (d) => ({ name: str(d.name), logo: str(d.logo), url: strOrNull(d.url) })));

@@ -108,7 +108,7 @@ export default async function TeamPage() {
                       <span className="font-display text-xl font-bold text-white">{it.value}%</span>
                     </div>
                     <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/10">
-                      <div className={`h-full rounded-full ${["bg-brand-500", "bg-accent-500", "bg-sky-400"][i % 3]}`} style={{ width: `${it.value}%` }} />
+                      <div className={`h-full rounded-full ${["bg-brand-500", "bg-brand-300", "bg-ink-400"][i % 3]}`} style={{ width: `${it.value}%` }} />
                     </div>
                   </li>
                 ))}

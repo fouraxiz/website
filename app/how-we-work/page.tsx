@@ -105,7 +105,7 @@ export default async function HowWeWorkPage() {
             <ol className="space-y-3" aria-label="Architecture layers">
               {layers.map((l, i) => (
                 <li key={l._id}>
-                  <div className={cn("rounded-3xl p-6 text-white sm:p-7", ["bg-gradient-to-br from-sky-500 to-indigo-600", "bg-gradient-to-br from-violet-500 to-fuchsia-600", "bg-gradient-to-br from-ink-700 to-ink-950"][i % 3])}>
+                  <div className={cn("rounded-3xl p-6 text-white sm:p-7", ["bg-gradient-to-br from-brand-500 to-brand-700", "bg-gradient-to-br from-ink-600 to-ink-800", "bg-gradient-to-br from-ink-800 to-ink-950"][i % 3])}>
                     <div className="flex items-baseline gap-4">
                       <span className="font-display text-3xl font-bold text-white/60">{String(i + 1).padStart(2, "0")}</span>
                       <div>
@@ -235,7 +235,7 @@ export default async function HowWeWorkPage() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-6 rounded-2xl bg-emerald-50 p-5 text-sm text-emerald-900 ring-1 ring-emerald-100">
+              <p className="mt-6 rounded-2xl bg-brand-50 p-5 text-sm text-ink-800 ring-1 ring-brand-100">
                 <span className="font-semibold">Proven track record:</span> we have delivered hands-on training and comprehensive documentation on every
                 institutional deployment — ensuring smooth system usage and operational independence for the client.
               </p>
@@ -259,7 +259,7 @@ export default async function HowWeWorkPage() {
               <ul className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {sla.map((l, i) => (
                   <li key={l._id} className="overflow-hidden rounded-2xl bg-white ring-1 ring-ink-200/70">
-                    <div className={cn("h-1.5", ["bg-rose-500", "bg-amber-500", "bg-sky-500", "bg-emerald-500"][i % 4])} aria-hidden="true" />
+                    <div className={cn("h-1.5", ["bg-brand-600", "bg-brand-400", "bg-ink-500", "bg-ink-300"][i % 4])} aria-hidden="true" />
                     <div className="p-6">
                       <p className="font-display text-lg font-bold text-ink-900">{l.title}</p>
                       <p className="text-sm text-ink-500">{l.description}</p>
@@ -294,7 +294,7 @@ export default async function HowWeWorkPage() {
                     <ul className="mt-5 space-y-3">
                       {block.list.map((c) => (
                         <li key={c._id} className="flex gap-3 text-sm text-ink-200">
-                          <Check className="mt-0.5 size-4 shrink-0 text-emerald-400" strokeWidth={2.5} aria-hidden="true" />
+                          <Check className="mt-0.5 size-4 shrink-0 text-brand-400" strokeWidth={2.5} aria-hidden="true" />
                           {c.title}
                         </li>
                       ))}

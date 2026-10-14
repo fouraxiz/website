@@ -12,10 +12,10 @@ import Image from "next/image";
 
 const visuals = { erp: ErpVisual, ai: AiVisual, apps: AppsVisual } as const;
 const glows: Record<string, string> = {
-  erp: "from-sky-200/70 via-violet-200/50",
-  ai: "from-violet-200/70 via-fuchsia-200/40",
-  apps: "from-emerald-200/60 via-sky-200/50",
-  image: "from-amber-200/60 via-rose-200/40",
+  erp: "from-brand-100/70 via-ink-100/50",
+  ai: "from-ink-200/60 via-brand-100/40",
+  apps: "from-brand-100/60 via-ink-100/50",
+  image: "from-brand-100/60 via-ink-100/40",
 };
 
 const INTERVAL = 7000;
@@ -64,7 +64,7 @@ export function HeroSlider({ slides: input, trust }: { slides: (Slide & { _id?: 
         aria-hidden="true"
       />
       <div
-        className="pointer-events-none absolute top-1/3 left-[38%] size-[18rem] rounded-full bg-amber-100/60 blur-3xl"
+        className="pointer-events-none absolute top-1/3 left-[38%] size-[18rem] rounded-full bg-brand-100/50 blur-3xl"
         aria-hidden="true"
       />
       <svg
@@ -106,7 +106,7 @@ export function HeroSlider({ slides: input, trust }: { slides: (Slide & { _id?: 
               </p>
               <h2 className="mt-6 text-[2.5rem] leading-[1.08] font-bold tracking-[-0.03em] text-balance text-ink-950 sm:text-[3.4rem] lg:text-[3.6rem]">
                 {s.title}{" "}
-                {s.highlight && <span className="bg-gradient-to-r from-brand-500 to-rose-500 bg-clip-text text-transparent">{s.highlight}</span>}
+                {s.highlight && <span className="bg-gradient-to-r from-brand-500 to-brand-700 bg-clip-text text-transparent">{s.highlight}</span>}
               </h2>
               {s.text && <p className="mt-6 text-lg leading-relaxed text-pretty text-ink-600">{s.text}</p>}
               <div className="mt-9 flex flex-wrap gap-3">

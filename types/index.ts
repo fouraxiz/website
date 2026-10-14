@@ -99,6 +99,9 @@ export interface Office {
   timezone: string;
   /** Only set once a verified street address exists. */
   mapUrl: string | null;
+  /** Map position for the world map in the footer. */
+  lat?: number | null;
+  lng?: number | null;
 }
 
 export interface SocialLink {

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 import { Logo } from "./Logo";
 import { SocialIcons } from "./SocialIcons";
+import { WorldMap } from "./WorldMap";
 import { getNav, getOffices, getProducts, getServices, getSettings } from "@/lib/cms/content";
 
 export async function Footer() {
@@ -12,28 +13,37 @@ export async function Footer() {
   const productNames = products.filter((p) => p.kind !== "erp-module").map((p) => p.name);
   const solutionLinks = nav.find((n) => n.menu === "solutions")?.children ?? [];
   const columns = [
-  { title: "Solutions", links: solutionLinks.map((l) => ({ label: l.label, href: l.href })) },
-  {
-    title: "Services",
-    links: services.slice(0, 7).map((s) => ({ label: s.shortTitle, href: `/services/${s.slug}` })),
-  },
-  {
-    title: "Company",
-    links: [
-      { label: "About Us", href: "/about" },
-      { label: "How We Work", href: "/how-we-work" },
-      { label: "Technologies", href: "/technologies" },
-      { label: "Our Team", href: "/team" },
-      { label: "Projects", href: "/projects" },
-      { label: "Clients", href: "/clients" },
-      { label: "Products", href: "/products" },
-      { label: "Industries", href: "/industries" },
-      { label: "Blog", href: "/blog" },
-      { label: "Careers", href: "/careers" },
-      { label: "Contact Us", href: "/contact" },
-    ],
-  },
-];
+    { title: "Solutions", links: solutionLinks.map((l) => ({ label: l.label, href: l.href })) },
+    {
+      title: "Services",
+      links: services
+        .filter((s) => s.group !== "expertise")
+        .slice(0, 6)
+        .map((s) => ({ label: s.shortTitle, href: `/services/${s.slug}` }))
+        .concat([{ label: "All services", href: "/services" }]),
+    },
+    {
+      title: "Company",
+      links: [
+        { label: "About Us", href: "/about" },
+        { label: "How We Work", href: "/how-we-work" },
+        { label: "Technologies", href: "/technologies" },
+        { label: "Our Team", href: "/team" },
+        { label: "Careers", href: "/careers" },
+        { label: "Contact Us", href: "/contact" },
+      ],
+    },
+    {
+      title: "Our Work",
+      links: [
+        { label: "Projects", href: "/projects" },
+        { label: "Clients", href: "/clients" },
+        { label: "Products", href: "/products" },
+        { label: "Industries", href: "/industries" },
+        { label: "Blog", href: "/blog" },
+      ],
+    },
+  ];
 
 
   return (
@@ -67,7 +77,7 @@ export async function Footer() {
           )}
           {site.email && (
             <a href={`mailto:${site.email}`} className="group flex items-center gap-4">
-              <span className="inline-flex size-12 items-center justify-center rounded-xl bg-accent-500 text-white">
+              <span className="inline-flex size-12 items-center justify-center rounded-xl bg-brand-500 text-white">
                 <Mail className="size-5" aria-hidden="true" />
               </span>
               <span>
@@ -77,7 +87,7 @@ export async function Footer() {
             </a>
           )}
           <Link href="/contact#offices" className="group flex items-center gap-4">
-            <span className="inline-flex size-12 items-center justify-center rounded-xl bg-sky-500 text-white">
+            <span className="inline-flex size-12 items-center justify-center rounded-xl bg-brand-500 text-white">
               <MapPin className="size-5" aria-hidden="true" />
             </span>
             <span>
@@ -89,7 +99,7 @@ export async function Footer() {
           </Link>
         </div>
 
-        <div className="mt-14 grid gap-12 lg:grid-cols-[1.3fr_2fr]">
+        <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_2.2fr]">
           <div className="max-w-sm">
             <Logo inverse />
             {site.coverLine && <p className="mt-5 text-xs font-semibold tracking-[0.12em] text-brand-300 uppercase">{site.coverLine}</p>}
@@ -103,7 +113,7 @@ export async function Footer() {
               <SocialIcons links={socialLinks} />
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             {columns.map((col) => (
               <div key={col.title}>
                 <h3 className="font-display text-sm font-semibold text-white">{col.title}</h3>
@@ -122,16 +132,26 @@ export async function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 border-t border-white/10 pt-8">
-          <ul className="flex flex-wrap gap-x-8 gap-y-3 text-sm">
-            {offices.map((o) => (
-              <li key={o.id} className="flex items-center gap-2">
-                <MapPin className="size-3.5 text-brand-400" aria-hidden="true" />
-                <span className="font-medium text-ink-200">{o.country}</span>
-                {o.address && <span className="hidden text-ink-500 md:inline">— {o.address}</span>}
-              </li>
-            ))}
-          </ul>
+        <div className="mt-14 grid items-center gap-10 border-t border-white/10 pt-12 lg:grid-cols-[1fr_2.2fr]">
+          <div>
+            <h3 className="font-display text-lg font-semibold text-white">Our offices</h3>
+            <ul className="mt-5 space-y-4 text-sm">
+              {offices.map((o) => (
+                <li key={o.id} className="flex gap-3">
+                  <MapPin className="mt-0.5 size-4 shrink-0 text-brand-400" aria-hidden="true" />
+                  <span>
+                    <span className="font-medium text-ink-100">
+                      {o.country}
+                      {o.city ? ` — ${o.city}` : ""}
+                    </span>
+                    {o.role && <span className="block text-xs text-brand-300">{o.role}</span>}
+                    {o.address && <span className="mt-0.5 block text-xs leading-relaxed text-ink-500">{o.address}</span>}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <WorldMap offices={offices} />
         </div>
 
         <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-8 text-sm sm:flex-row sm:items-center sm:justify-between">

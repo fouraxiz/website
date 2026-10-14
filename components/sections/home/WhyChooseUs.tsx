@@ -26,8 +26,8 @@ export async function WhyChooseUs({ copy }: { copy: SectionEntry }) {
 
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           <article className="relative overflow-hidden rounded-3xl bg-ink-950 p-8 md:row-span-2">
-            <div className="absolute -right-16 -bottom-16 size-64 rounded-full bg-accent-500/40 blur-3xl" aria-hidden="true" />
-            <Code2 className="relative size-7 text-accent-300" aria-hidden="true" />
+            <div className="absolute -right-16 -bottom-16 size-64 rounded-full bg-brand-500/25 blur-3xl" aria-hidden="true" />
+            <Code2 className="relative size-7 text-brand-400" aria-hidden="true" />
             <h3 className="relative mt-6 text-2xl font-semibold text-white">
               {years !== null ? `${years}+ years of engineering` : "Proven engineering"}
             </h3>
@@ -36,25 +36,27 @@ export async function WhyChooseUs({ copy }: { copy: SectionEntry }) {
               Java, .NET, PHP, Laravel, React, Flutter and Python.
             </p>
             <pre className="relative mt-8 overflow-hidden rounded-2xl bg-white/[0.05] p-4 font-mono text-[0.72rem] leading-relaxed text-ink-400 ring-1 ring-white/10" aria-hidden="true">
-              <span className="text-accent-300">const</span> partner = {"{"}
-              {"\n"}  quality: <span className="text-emerald-300">&quot;reviewed&quot;</span>,
-              {"\n"}  delivery: <span className="text-emerald-300">&quot;on time&quot;</span>,
-              {"\n"}  support: <span className="text-amber-300">&quot;24/7&quot;</span>,
+              <span className="text-brand-300">const</span> partner = {"{"}
+              {"\n"}  quality: <span className="text-ink-200">&quot;reviewed&quot;</span>,
+              {"\n"}  delivery: <span className="text-ink-200">&quot;on time&quot;</span>,
+              {"\n"}  support: <span className="text-brand-300">&quot;24/7&quot;</span>,
               {"\n"}{"}"};
             </pre>
           </article>
 
-          <article className="rounded-3xl bg-gradient-to-br from-sky-400 to-indigo-500 p-8 text-white md:col-span-2">
-            <Layers className="size-7" aria-hidden="true" />
+          <article className="rounded-3xl bg-white p-8 ring-1 ring-ink-200/70 md:col-span-2">
+            <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-brand-500 text-white">
+              <Layers className="size-6" aria-hidden="true" />
+            </span>
             <h3 className="mt-6 text-2xl font-semibold">16 ready products + custom engineering</h3>
-            <p className="mt-3 max-w-lg leading-relaxed text-sky-50">
+            <p className="mt-3 max-w-lg leading-relaxed text-ink-500">
               Start from ready software — ERP, HR &amp; payroll, POS, school, hospital or smart hostel management — or build something entirely new on
               proven foundations.
             </p>
           </article>
 
           <article className="rounded-3xl bg-white p-8 ring-1 ring-ink-200/70">
-            <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600">
+            <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
               <Headphones className="size-6" aria-hidden="true" />
             </span>
             <h3 className="mt-6 text-lg font-semibold">24/7 support coverage</h3>
@@ -70,18 +72,18 @@ export async function WhyChooseUs({ copy }: { copy: SectionEntry }) {
           </article>
 
           <article className="rounded-3xl bg-white p-8 ring-1 ring-ink-200/70">
-            <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-violet-50 text-violet-600">
+            <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
               <Landmark className="size-6" aria-hidden="true" />
             </span>
             <h3 className="mt-6 text-lg font-semibold">Trusted by the UN &amp; government</h3>
             <p className="mt-2 text-sm leading-relaxed text-ink-500">Software relied on daily by agencies that audit everything.</p>
           </article>
 
-          <article className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-violet-600 to-fuchsia-500 p-8 text-white md:col-span-2">
-            <div className="absolute -top-10 -right-10 size-48 rounded-full bg-white/10 blur-2xl" aria-hidden="true" />
-            <ShieldCheck className="relative size-7" aria-hidden="true" />
-            <h3 className="relative mt-6 text-2xl font-semibold">Built to be secure and reliable</h3>
-            <p className="relative mt-3 max-w-lg leading-relaxed text-violet-50">
+          <article className="relative overflow-hidden rounded-3xl bg-ink-900 p-8 text-white md:col-span-2">
+            <div className="absolute -top-10 -right-10 size-48 rounded-full bg-brand-500/20 blur-2xl" aria-hidden="true" />
+            <ShieldCheck className="relative size-7 text-brand-400" aria-hidden="true" />
+            <h3 className="relative mt-6 text-2xl font-semibold text-white">Built to be secure and reliable</h3>
+            <p className="relative mt-3 max-w-lg leading-relaxed text-ink-300">
               Donor-grade security, role-based access, encrypted transmission and audit-ready architecture — designed in from day one.
             </p>
           </article>

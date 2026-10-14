@@ -210,7 +210,7 @@ function DesktopMenu({
             className={cn("absolute top-full z-50", mega ? "inset-x-4 sm:inset-x-6 lg:inset-x-8" : "left-1/2 w-[24rem] -translate-x-1/2")}
           >
             <div className="overflow-hidden rounded-b-2xl border border-t-0 border-ink-200 bg-white shadow-[0_30px_60px_-20px_rgb(18_21_23/0.3)]">
-              <div className="h-[3px] bg-gradient-to-r from-brand-500 via-accent-500 to-sky-500" aria-hidden="true" />
+              <div className="h-[3px] bg-gradient-to-r from-brand-500 via-brand-400 to-ink-400" aria-hidden="true" />
               {item.menu === "solutions" && <SolutionsMenu links={item.children!} erpLinks={erpLinks} />}
               {item.menu === "services" && <ServicesMenu links={item.children!} />}
               {(item.menu === "products" || item.menu === "company" || !item.menu) && (
@@ -279,7 +279,7 @@ function SolutionsMenu({ links, erpLinks }: { links: NavLink[]; erpLinks: NavLin
           <div className="absolute -top-10 -right-10 size-40 rounded-full bg-accent-500/40 blur-3xl" aria-hidden="true" />
           <div className="absolute -bottom-12 -left-8 size-40 rounded-full bg-brand-500/30 blur-3xl" aria-hidden="true" />
           <span className="relative inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 text-xs font-medium text-white">
-            <Sparkles className="size-3.5 text-amber-300" aria-hidden="true" /> 4axiz ERP
+            <Sparkles className="size-3.5 text-brand-300" aria-hidden="true" /> 4axiz ERP
           </span>
           <p className="relative mt-4 font-display text-lg leading-snug font-semibold text-white">Run your whole business on one connected platform.</p>
           <p className="relative mt-2 text-sm text-ink-300">Finance, HR, procurement, inventory and reporting — together.</p>

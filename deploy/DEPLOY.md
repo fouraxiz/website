@@ -5,7 +5,7 @@ The site runs as three Docker containers on one droplet:
 | Container | What it does |
 | --- | --- |
 | `db` | PostgreSQL 16. Data is stored in `deploy/data/postgres`, and it is not reachable from the internet. |
-| `migrate` | Runs at every deploy: applies database migrations and seeds any empty content. Then it stops. |
+| `migrate` | Runs at every deploy: applies database migrations and syncs content from `/data` (content edited on the website is never overwritten). Then it stops. |
 | `web` | The Next.js website, on `127.0.0.1:3000`. Uploaded images go to `deploy/data/uploads`. |
 
 Nginx on the host handles the domain and HTTPS, and proxies requests to the `web` container.
