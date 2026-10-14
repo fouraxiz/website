@@ -43,7 +43,7 @@ const slides = [
 
 const INTERVAL = 7000;
 
-export function HeroSlider() {
+export function HeroSlider({ trust }: { trust?: React.ReactNode }) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [hovered, setHovered] = useState(false);
@@ -72,9 +72,36 @@ export function HeroSlider() {
     >
       {/* Decorative background */}
       <div className="bg-grid mask-fade-b pointer-events-none absolute inset-0" aria-hidden="true" />
-      <div className={cn("pointer-events-none absolute -top-40 right-[-10%] size-[42rem] rounded-full bg-gradient-to-br to-transparent blur-3xl transition-all duration-700", s.glow)} aria-hidden="true" />
-      <div className="pointer-events-none absolute bottom-[-12rem] left-[-8rem] size-[28rem] rounded-full bg-brand-100/60 blur-3xl" aria-hidden="true" />
-      <svg className="pointer-events-none absolute bottom-0 left-0 w-full text-white" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+      <div
+        className={cn(
+          "pointer-events-none absolute -top-40 right-[-10%] size-[42rem] rounded-full bg-gradient-to-br to-transparent blur-3xl transition-all duration-700",
+          s.glow,
+        )}
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute bottom-[-12rem] left-[-8rem] size-[30rem] rounded-full bg-brand-100/70 blur-3xl"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute top-1/3 left-[38%] size-[18rem] rounded-full bg-amber-100/60 blur-3xl"
+        aria-hidden="true"
+      />
+      <svg
+        className="pointer-events-none absolute top-24 right-[4%] hidden size-40 text-ink-300/70 xl:block"
+        viewBox="0 0 100 100"
+        aria-hidden="true"
+      >
+        {Array.from({ length: 49 }).map((_, i) => (
+          <circle key={i} cx={6 + (i % 7) * 14.6} cy={6 + Math.floor(i / 7) * 14.6} r="1.8" fill="currentColor" />
+        ))}
+      </svg>
+      <svg
+        className="pointer-events-none absolute bottom-0 left-0 w-full text-white"
+        viewBox="0 0 1440 120"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
         <path d="M0 80C240 120 480 120 720 90C960 60 1200 20 1440 40V120H0Z" fill="currentColor" />
       </svg>
 
@@ -90,7 +117,7 @@ export function HeroSlider() {
             animate={{ opacity: 1, x: 0 }}
             exit={reduce ? undefined : { opacity: 0, x: -24 }}
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="grid min-h-[30rem] items-center gap-14 lg:grid-cols-[1fr_1.05fr] lg:gap-10"
+            className="grid min-h-[32rem] items-center gap-16 lg:grid-cols-[1fr_1.15fr] lg:gap-12"
           >
             <div className="max-w-xl">
               <p className="inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-ink-700 shadow-sm ring-1 ring-ink-200">
@@ -116,56 +143,69 @@ export function HeroSlider() {
           </motion.div>
         </AnimatePresence>
 
-        <div className="mt-14 flex items-center gap-4 lg:mt-6">
-          <div className="flex gap-2">
-            <button
-              type="button"
-              onClick={() => go(index - 1)}
-              className="inline-flex size-11 items-center justify-center rounded-full bg-white text-ink-700 shadow-sm ring-1 ring-ink-200 transition hover:bg-brand-500 hover:text-white hover:ring-brand-500"
-            >
-              <ChevronLeft className="size-5" aria-hidden="true" />
-              <span className="sr-only">Previous slide</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => go(index + 1)}
-              className="inline-flex size-11 items-center justify-center rounded-full bg-white text-ink-700 shadow-sm ring-1 ring-ink-200 transition hover:bg-brand-500 hover:text-white hover:ring-brand-500"
-            >
-              <ChevronRight className="size-5" aria-hidden="true" />
-              <span className="sr-only">Next slide</span>
-            </button>
-          </div>
-          <div className="flex items-center gap-2" role="group" aria-label="Choose slide">
-            {slides.map((sl, i) => (
+        <div className="mt-16 flex flex-wrap items-center justify-between gap-x-10 gap-y-6 lg:mt-8">
+          <div className="flex items-center gap-4">
+            <div className="flex gap-2">
               <button
-                key={sl.key}
                 type="button"
-                onClick={() => go(i)}
-                aria-current={i === index ? "true" : undefined}
-                className="group relative h-2.5 py-3"
+                onClick={() => go(index - 1)}
+                className="inline-flex size-11 items-center justify-center rounded-full bg-white text-ink-700 shadow-sm ring-1 ring-ink-200 transition hover:bg-brand-500 hover:text-white hover:ring-brand-500"
               >
-                <span className="sr-only">
-                  Slide {i + 1}: {sl.eyebrow}
-                </span>
-                <span
-                  className={cn(
-                    "block h-1.5 rounded-full transition-all duration-300",
-                    i === index ? "w-10 bg-brand-500" : "w-4 bg-ink-300 group-hover:bg-ink-400",
-                  )}
-                />
+                <ChevronLeft className="size-5" aria-hidden="true" />
+                <span className="sr-only">Previous slide</span>
               </button>
-            ))}
+              <button
+                type="button"
+                onClick={() => go(index + 1)}
+                className="inline-flex size-11 items-center justify-center rounded-full bg-white text-ink-700 shadow-sm ring-1 ring-ink-200 transition hover:bg-brand-500 hover:text-white hover:ring-brand-500"
+              >
+                <ChevronRight className="size-5" aria-hidden="true" />
+                <span className="sr-only">Next slide</span>
+              </button>
+            </div>
+            <div className="flex items-center gap-2" role="group" aria-label="Choose slide">
+              {slides.map((sl, i) => (
+                <button
+                  key={sl.key}
+                  type="button"
+                  onClick={() => go(i)}
+                  aria-current={i === index ? "true" : undefined}
+                  className="group relative h-2.5 py-3"
+                >
+                  <span className="sr-only">
+                    Slide {i + 1}: {sl.eyebrow}
+                  </span>
+                  <span
+                    className={cn(
+                      "relative block h-1.5 overflow-hidden rounded-full transition-all duration-300",
+                      i === index ? "w-12 bg-brand-100" : "w-4 bg-ink-300 group-hover:bg-ink-400",
+                    )}
+                  >
+                    {i === index && (
+                      <span
+                        key={`${index}-${paused || hovered || reduce ? "p" : "r"}`}
+                        className="absolute inset-y-0 left-0 rounded-full bg-brand-500"
+                        style={
+                          paused || hovered || reduce ? { width: "100%" } : { animation: `hero-progress ${INTERVAL}ms linear forwards` }
+                        }
+                      />
+                    )}
+                  </span>
+                </button>
+              ))}
+            </div>
+            {!reduce && (
+              <button
+                type="button"
+                onClick={() => setPaused((p) => !p)}
+                className="ml-1 inline-flex size-9 items-center justify-center rounded-full text-ink-500 hover:bg-white hover:text-ink-900"
+              >
+                {paused ? <Play className="size-4" aria-hidden="true" /> : <Pause className="size-4" aria-hidden="true" />}
+                <span className="sr-only">{paused ? "Play slideshow" : "Pause slideshow"}</span>
+              </button>
+            )}
           </div>
-          {!reduce && (
-            <button
-              type="button"
-              onClick={() => setPaused((p) => !p)}
-              className="ml-1 inline-flex size-9 items-center justify-center rounded-full text-ink-500 hover:bg-white hover:text-ink-900"
-            >
-              {paused ? <Play className="size-4" aria-hidden="true" /> : <Pause className="size-4" aria-hidden="true" />}
-              <span className="sr-only">{paused ? "Play slideshow" : "Pause slideshow"}</span>
-            </button>
-          )}
+          {trust}
         </div>
       </div>
     </section>

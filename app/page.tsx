@@ -1,4 +1,5 @@
 import { HeroSlider } from "@/components/sections/home/HeroSlider";
+import { HeroTrust } from "@/components/sections/home/HeroTrust";
 import { StatsStrip } from "@/components/sections/home/StatsStrip";
 import { AboutSection } from "@/components/sections/home/AboutSection";
 import { ServicesGrid } from "@/components/sections/home/ServicesGrid";
@@ -16,7 +17,7 @@ import { CtaBand } from "@/components/sections/CtaBand";
 export default function HomePage() {
   return (
     <>
-      <HeroSlider />
+      <HeroSlider trust={<HeroTrust />} />
       <StatsStrip />
       <AboutSection />
       <ServicesGrid />

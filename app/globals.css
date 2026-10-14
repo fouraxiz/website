@@ -63,6 +63,10 @@
     0%, 100% { opacity: 0.55; }
     50% { opacity: 1; }
   }
+  @keyframes hero-progress {
+    from { width: 0%; }
+    to { width: 100%; }
+  }
   @keyframes dash {
     to { stroke-dashoffset: -24; }
   }
