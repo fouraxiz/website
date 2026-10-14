@@ -46,11 +46,11 @@ Status: ✅ done · 🟡 partly done · ⬜ to do · ❓ needs a decision or dat
 
 | # | PDF content | Where it goes | Status |
 |---|---|---|---|
-| 4.1 | Six flagship programmes (HI, NGO Forum, Somvabona, UNFPA, UNDP, NTP Aspect) | Projects, Home | 🟡 |
-| 4.2 | Full detail for projects 01–11: every module/feature, technical highlights, numbers, "Impact / Why it matters", technology tags, links | Project pages as structured sections | 🟡 now summarised; show everything |
+| 4.1 | Six flagship programmes (HI, NGO Forum, Somvabona, UNFPA, UNDP, NTP Aspect) | Projects, Home | ✅ |
+| 4.2 | Full detail for projects 01–11: every module/feature, technical highlights, numbers, "Impact / Why it matters", technology tags, links | Project pages as structured sections | ✅ |
 | 4.3 | More platforms in the field (7) | Projects | ✅ |
 | 4.4 | Ready software (16) + licensing options | Products | ✅ |
-| 4.5 | Outcomes that scale (9 numbers) | Home, About | ⬜ |
+| 4.5 | Outcomes that scale (9 numbers) | Home, About | ✅ |
 
 ## Phase 5 — Track Record (pp. 44–50)
 

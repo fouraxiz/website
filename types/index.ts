@@ -228,6 +228,18 @@ export interface Project {
   images: ProjectImage[];
   liveUrl: string | null;
   featured: boolean;
+  /** How long 4axiz has worked on it, e.g. "5 years" or "Running". */
+  duration: string | null;
+  featuresTitle: string | null;
+  /** Modules, features or "what we built". */
+  features: FeatureItem[];
+  technicalTitle: string | null;
+  technical: FeatureItem[];
+  stats: { value: string; label: string }[];
+  impactTitle: string | null;
+  impact: string | null;
+  /** Delivery tags such as "Web application" or "Android application". */
+  deliveryTags: string[];
   /** Visual theme used by the generated cover until real screenshots exist. */
   theme: "blue" | "teal" | "indigo" | "slate" | "amber" | "rose";
   relatedSolutions: string[];

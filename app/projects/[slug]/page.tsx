@@ -11,6 +11,8 @@ import { Badge } from "@/components/ui/Badge";
 import { CheckList } from "@/components/ui/CheckList";
 import { PlaceholderNote, Tbc } from "@/components/ui/PlaceholderNote";
 import { ProjectCover } from "@/components/projects/ProjectCover";
+import { hues, hueAt } from "@/lib/palette";
+import { cn } from "@/lib/utils";
 import { pageMetadata } from "@/lib/metadata";
 import { bySlug, getProjects, getSolutions, pickSlugs } from "@/lib/cms/content";
 
@@ -34,7 +36,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
     .sort((a, b) => b.categories.filter((c) => p.categories.includes(c)).length - a.categories.filter((c) => p.categories.includes(c)).length)
     .slice(0, 3);
   const relatedSolutions = pickSlugs(solutions, p.relatedSolutions);
-  const caseStudyPending = !p.challenge && !p.solution;
+  const caseStudyPending = !p.challenge && !p.solution && p.features.length === 0;
 
   return (
     <>
@@ -54,6 +56,19 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
           ))}
         </div>
       </PageHero>
+
+      {p.stats.length > 0 && (
+        <div className="container-site relative z-10 -mt-8">
+          <dl className={cn("grid gap-px overflow-hidden rounded-2xl bg-ink-200 shadow-[var(--shadow-lift)] ring-1 ring-ink-200", p.stats.length >= 4 ? "grid-cols-2 lg:grid-cols-4" : p.stats.length === 3 ? "grid-cols-3" : "grid-cols-2")}>
+            {p.stats.map((st, i) => (
+              <div key={st.label} className="bg-white p-5 sm:p-6">
+                <dd className={cn("font-display text-2xl font-bold sm:text-3xl", hues[hueAt(i)].text)}>{st.value}</dd>
+                <dt className="mt-1 text-sm text-ink-500">{st.label}</dt>
+              </div>
+            ))}
+          </dl>
+        </div>
+      )}
 
       <Section>
         <div className="grid gap-14 lg:grid-cols-[1fr_20rem]">
@@ -81,9 +96,46 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
               </>
             )}
 
-              <h2>Highlights</h2>
             </div>
-            <CheckList items={p.highlights} />
+
+            {p.features.length > 0 && (
+              <div className="mt-10">
+                <h2 className="font-display text-2xl font-bold tracking-tight">{p.featuresTitle ?? "What we built"}</h2>
+                <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+                  {p.features.map((f, i) => (
+                    <li key={f.title} className="rounded-2xl bg-ink-50 p-5 ring-1 ring-ink-100">
+                      <span className={cn("block h-1 w-8 rounded-full", hues[hueAt(i)].solid)} aria-hidden="true" />
+                      <h3 className="mt-3 font-semibold text-ink-900">{f.title}</h3>
+                      {f.description && <p className="mt-1.5 text-sm leading-relaxed text-ink-500">{f.description}</p>}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {p.technical.length > 0 && (
+              <div className="mt-10">
+                <h2 className="font-display text-2xl font-bold tracking-tight">{p.technicalTitle ?? "Technical highlights"}</h2>
+                <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+                  {p.technical.map((f) => (
+                    <li key={f.title} className="rounded-2xl bg-white p-5 ring-1 ring-ink-200">
+                      <h3 className="font-semibold text-ink-900">{f.title}</h3>
+                      {f.description && <p className="mt-1.5 text-sm leading-relaxed text-ink-500">{f.description}</p>}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {p.impact && (
+              <div className="mt-10 rounded-3xl bg-ink-950 p-7 sm:p-8">
+                <p className="eyebrow text-brand-300">{p.impactTitle ?? "Impact"}</p>
+                <p className="mt-3 text-lg leading-relaxed text-white">{p.impact}</p>
+              </div>
+            )}
+
+            <h2 className="mt-10 font-display text-2xl font-bold tracking-tight">Highlights</h2>
+            <CheckList items={p.highlights} className="mt-5" />
           </div>
 
           <aside className="self-start rounded-2xl border border-ink-200 bg-ink-50/70 p-6 lg:sticky lg:top-28">
@@ -97,6 +149,12 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
                 <dt className="text-ink-500">Industry</dt>
                 <dd className="mt-0.5 font-medium text-ink-900">{p.industry}</dd>
               </div>
+              {p.duration && (
+                <div>
+                  <dt className="text-ink-500">Engagement</dt>
+                  <dd className="mt-0.5 font-medium text-ink-900">{p.duration}</dd>
+                </div>
+              )}
               <div>
                 <dt className="text-ink-500">Platform</dt>
                 <dd className="mt-0.5 font-medium text-ink-900">{p.platform.join(", ")}</dd>
@@ -105,6 +163,18 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
                 <div>
                   <dt className="text-ink-500">Technology</dt>
                   <dd className="mt-0.5 font-medium text-ink-900">{p.technologies.join(", ")}</dd>
+                </div>
+              )}
+              {p.deliveryTags.length > 0 && (
+                <div>
+                  <dt className="text-ink-500">Delivered as</dt>
+                  <dd className="mt-1.5 flex flex-wrap gap-1.5">
+                    {p.deliveryTags.map((t) => (
+                      <span key={t} className="rounded-md bg-white px-2 py-1 text-xs font-medium text-ink-700 ring-1 ring-ink-200 ring-inset">
+                        {t}
+                      </span>
+                    ))}
+                  </dd>
                 </div>
               )}
               {relatedSolutions.length > 0 && (

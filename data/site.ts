@@ -268,3 +268,16 @@ export const clientMix = [
   { value: "10+", label: "Government bodies" },
   { value: "20+", label: "Corporate groups" },
 ];
+
+/** "Outcomes that scale" — Company Profile 2026. */
+export const outcomes = [
+  { value: "16+", label: "Years of continuous delivery" },
+  { value: "45", label: "In-house engineers & specialists" },
+  { value: "180+", label: "Countries reached via partner programmes" },
+  { value: "800+", label: "Upazila health complexes on our TB systems" },
+  { value: "100+", label: "Schools running our digital learning platform" },
+  { value: "20+", label: "Institutions on the Somvabona platform" },
+  { value: "60+", label: "Client organisations served" },
+  { value: "16", label: "Ready-to-deploy software products" },
+  { value: "3", label: "Countries with a 4axiz presence" },
+];

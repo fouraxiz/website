@@ -18,16 +18,57 @@ export const projects: Project[] = [
     summary: "Four interlocking systems — a mutualised core, audit tracker, fleet management and safety reporting — for operations in 180+ countries.",
     overview:
       "4axiz IT Limited is engaged on several critical software development projects for Handicap International, a global organisation dedicated to improving the lives of people with disabilities. Designed to support HI's work in over 180 countries and delivered jointly for HI Bangladesh, France, Germany and the USA, these systems focus on operational efficiency, safety and management across multiple domains.",
-    challenge:
-      "HI needed shared systems that work across national branches and very different operating environments — from audit follow-up and fleet logistics to real-time safety reporting in complex field locations.",
-    solution:
-      "Lot 1 — Mutualization: a shared, scalable core model and technical architecture usable across HI's global operations.\nLot 2 — ART: an Audit & Recommendations Tracker that keeps teams across regions aligned on audits, evaluations and follow-up.\nLot 3 — HI-FLEET: vehicles, routes and drivers management that improves vehicle safety, reduces operational cost and monitors driver activity.\nLot 4 — SECU App: safety and security incident reporting so field staff can report and respond to incidents in real time.",
+    challenge: null,
+    solution: null,
     highlights: ["180+ countries of operation", "4 interlocking lots", "1 mutualised core", "HI Bangladesh, France, Germany and USA"],
     technologies: [],
     images: [],
     liveUrl: null,
     featured: true,
     theme: "indigo",
+    duration: "8 months",
+    featuresTitle: "Four interlocking lots",
+    features: [
+      {
+        "title": "Lot 1 — Mutualization: core model & technical architecture",
+        "description": "A shared, scalable model and technical architecture usable across HI's global operations. A common core framework streamlines processes and improves resource utilisation across all HI branches worldwide."
+      },
+      {
+        "title": "Lot 2 — ART: Audit & Recommendations Tracker",
+        "description": "Tracks and manages audits, evaluations and recommendations in real time, keeping HI teams across regions aligned and improving follow-up efficiency on audit processes and quality management."
+      },
+      {
+        "title": "Lot 3 — HI-FLEET: vehicles, routes & drivers management",
+        "description": "Manages the organisation's fleet, drivers and routes across 180+ countries — enhancing logistics, improving vehicle safety, reducing operational cost and monitoring driver activity."
+      },
+      {
+        "title": "Lot 4 — SECU App: safety & security incident reporting",
+        "description": "Enables field staff across HI branches to report and respond to safety and security incidents promptly, ensuring real-time reporting and staff safety in complex environments."
+      }
+    ],
+    technicalTitle: null,
+    technical: [],
+    stats: [
+      {
+        "value": "180+",
+        "label": "Countries of operation"
+      },
+      {
+        "value": "4",
+        "label": "Interlocking lots"
+      },
+      {
+        "value": "1",
+        "label": "Mutualised core"
+      },
+      {
+        "value": "4",
+        "label": "HI national branches"
+      }
+    ],
+    impactTitle: "Why it matters",
+    impact: "These projects demonstrate our ability to deliver large-scale, robust solutions with an emphasis on security, functionality and scalability for a global humanitarian organisation.",
+    deliveryTags: [],
     relatedSolutions: ["custom-software", "mobile-apps"],
   },
   {
@@ -40,16 +81,56 @@ export const projects: Project[] = [
     summary: "A multi-project, multi-location ERP for the central office and field programmes, including Cox's Bazar.",
     overview:
       "A comprehensive Integrated ERP System designed, developed and implemented to enhance organisational efficiency, strengthen transparency and ensure full compliance with national regulations and international donor requirements. It supports the central office and multiple project offices, including field-level programmes in Cox's Bazar supporting the Rohingya humanitarian response.",
-    challenge:
-      "Multi-project, multi-location operations had to meet both national regulations and international donor requirements, with audit-ready reporting across offices.",
-    solution:
-      "One integrated platform with Human Resource Management, Finance & Accounting, Procurement & Supply Chain, Production Planning & Control, Inventory Management (with GRN and audit trails), Project & Budget Management, Payment Management with approval workflows, and POS sales integrated with inventory and accounting.",
+    challenge: null,
+    solution: null,
     highlights: ["UNHCR-funded programme", "Multi-project, multi-location", "Donor-compliant reporting", "8 integrated modules"],
     technologies: [],
     images: [],
     liveUrl: null,
     featured: true,
     theme: "blue",
+    duration: "9 months",
+    featuresTitle: "Key modules",
+    features: [
+      {
+        "title": "Human Resource Management",
+        "description": "Employee records, payroll, leave management, attendance tracking and performance evaluation."
+      },
+      {
+        "title": "Finance & Accounting",
+        "description": "Budgets, donor funds, multi-currency transactions, expenses and audit-ready financial reports."
+      },
+      {
+        "title": "Procurement & Supply Chain",
+        "description": "Raw material master data, inventory management and material consumption tracking."
+      },
+      {
+        "title": "Production Planning & Control",
+        "description": "Production order creation, stage-wise tracking, wastage monitoring and quality control."
+      },
+      {
+        "title": "Inventory Management",
+        "description": "Real-time stock control, goods received notes (GRN), issuance tracking and audit trails."
+      },
+      {
+        "title": "Project & Budget Management",
+        "description": "Project creation, budget monitoring, milestone tracking and donor-compliant reporting."
+      },
+      {
+        "title": "Payment Management",
+        "description": "Vendor payments, advances and reimbursements with approval workflows and audit logs."
+      },
+      {
+        "title": "POS Sales & Sales Documents",
+        "description": "POS retail sales integrated with inventory and accounting — invoices, delivery notes and sales records in real time."
+      }
+    ],
+    technicalTitle: null,
+    technical: [],
+    stats: [],
+    impactTitle: "Impact",
+    impact: "Streamlined organisational processes, improved reporting accuracy and stronger transparency and accountability — a secure, scalable, fully integrated platform enabling NGO Forum to optimise resources and deliver better services to vulnerable populations.",
+    deliveryTags: [],
     relatedSolutions: ["custom-software", "business-process-automation"],
   },
   {
@@ -62,15 +143,65 @@ export const projects: Project[] = [
     summary: "Connecting GeneXpert TB diagnostic machines across 800+ upazila health complexes for remote monitoring.",
     overview:
       "ASPECT connects GeneXpert diagnostic machines to the internet so every device can be managed and monitored remotely — improving maintenance and coordination and giving fast feedback of results to patients, referring clinicians and treatment teams. 4axiz provides software development and maintenance support, installed the software and routers across the national GeneXpert network, and supports the workflow of TB case tracking, treatment monitoring and reporting in line with national health guidelines.",
-    challenge: "A nationwide network of diagnostic machines had to be connected, configured and supported in health complexes across the country.",
-    solution:
-      "Installation and implementation across 760+ upazila health complexes; device connectivity, configuration and remote monitoring setup; monitoring tools developed alongside SystemOne LLC; real-time TB case tracking and reporting; training for laboratory assistants; and daily first-level support.",
+    challenge: null,
+    solution: null,
     highlights: ["800+ health complexes", "Nationwide rollout", "Field installation", "5 years running"],
     technologies: [],
     images: [{ src: "/images/projects/ntp-aspect.webp", alt: "GeneXpert monitoring setup in a health complex laboratory", width: 326, height: 632 }],
     liveUrl: null,
     featured: true,
     theme: "teal",
+    duration: "5 years",
+    featuresTitle: "What we built",
+    features: [
+      {
+        "title": "Installation and implementation",
+        "description": "Across 760+ upazila health complexes."
+      },
+      {
+        "title": "Device connectivity",
+        "description": "Configuration and remote monitoring setup."
+      },
+      {
+        "title": "Monitoring tools",
+        "description": "Monitoring tools development alongside SystemOne LLC."
+      },
+      {
+        "title": "TB case workflow",
+        "description": "Real-time TB case tracking, treatment monitoring and reporting."
+      },
+      {
+        "title": "Training",
+        "description": "Technical assistance and training for laboratory assistants."
+      },
+      {
+        "title": "Daily support",
+        "description": "Daily support, communication and first-level troubleshooting."
+      }
+    ],
+    technicalTitle: null,
+    technical: [],
+    stats: [
+      {
+        "value": "800+",
+        "label": "Health complexes"
+      },
+      {
+        "value": "760+",
+        "label": "Upazila installations"
+      },
+      {
+        "value": "5 years",
+        "label": "Running"
+      }
+    ],
+    impactTitle: null,
+    impact: null,
+    deliveryTags: [
+      "Nationwide rollout",
+      "Field installation",
+      "Monitoring tools"
+    ],
     relatedSolutions: ["custom-software"],
   },
   {
@@ -83,15 +214,48 @@ export const projects: Project[] = [
     summary: "Offline-first socio-economic data collection and monitoring for urban poverty programmes, hosted on AWS.",
     overview:
       "A robust digital survey and monitoring solution designed, developed, deployed and supported by 4axiz for UNDP under the National Urban Poverty Reduction Programme. It supports large-scale collection of urban poverty indicators — household income, housing conditions, access to services, employment status and vulnerability factors — directly on mobile devices.",
-    challenge: "Accurate, efficient data collection at national scale, often where connectivity is unreliable, with strict data quality and confidentiality.",
-    solution:
-      "Offline-first mobile collection that syncs automatically when the connection returns; validation rules, logical checks and mandatory fields at the point of capture; role-based access; supervisor review workflows and consolidated reporting; and customised MIS software for urban poor communities hosted on AWS.",
+    challenge: null,
+    solution: null,
     highlights: ["Offline-first collection", "Built-in data quality", "Supervisor review workflows", "AWS deployment"],
     technologies: ["AWS"],
     images: [],
     liveUrl: null,
     featured: true,
     theme: "blue",
+    duration: "5 years",
+    featuresTitle: "What we built",
+    features: [
+      {
+        "title": "Offline-first collection",
+        "description": "Data is stored securely on the device and synchronised automatically once internet access returns — no interruption, no data loss."
+      },
+      {
+        "title": "Built-in data quality",
+        "description": "Validation rules, logical checks and mandatory fields ensure high-quality data at the point of capture."
+      },
+      {
+        "title": "Secure access control",
+        "description": "User authentication and role-based access maintain data integrity and confidentiality across survey teams."
+      },
+      {
+        "title": "End-to-end service",
+        "description": "System design, mobile development, backend integration, deployment, training, maintenance and ongoing technical support."
+      },
+      {
+        "title": "Monitoring & analysis",
+        "description": "Supervisor review workflows and consolidated reporting for programme monitoring."
+      },
+      {
+        "title": "AWS deployment",
+        "description": "Customised MIS software for urban poor communities hosted on AWS infrastructure."
+      }
+    ],
+    technicalTitle: null,
+    technical: [],
+    stats: [],
+    impactTitle: "Why it matters",
+    impact: "This project exemplifies 4axiz's capability to deliver internationally recognised digital solutions that enable data-driven decision-making and strengthen development programmes targeting vulnerable urban populations.",
+    deliveryTags: [],
     relatedSolutions: ["mobile-apps", "custom-software"],
   },
   {
@@ -105,14 +269,60 @@ export const projects: Project[] = [
     overview:
       "A modern, interactive digital learning and engagement platform for school-going teenagers. Based on the popular Shahana cartoon, it promotes learning through gamification, quizzes and digital content — encouraging self-learning and helping teachers run a more participatory classroom.",
     challenge: null,
-    solution:
-      "Interactive lessons and multimedia modules, topic-based quizzes with real-time scoring, student engagement tracking, centralised content feeding, automated notifications, and a monitoring dashboard for teachers and administrators.",
+    solution: null,
     highlights: ["100+ schools", "Thousands of students reached", "Gamified learning model"],
     technologies: [],
     images: [],
     liveUrl: null,
     featured: true,
     theme: "rose",
+    duration: null,
+    featuresTitle: "Key features",
+    features: [
+      {
+        "title": "Digital learning system",
+        "description": "Structured educational content through interactive lessons and multimedia-based learning modules."
+      },
+      {
+        "title": "Quiz & assessment system",
+        "description": "Topic-based quizzes with real-time scoring and performance tracking."
+      },
+      {
+        "title": "Real-time data tracking",
+        "description": "Monitors student engagement, progress and performance for data-driven insight."
+      },
+      {
+        "title": "Content feeding system",
+        "description": "Centralised management and distribution of learning materials, quizzes and updates."
+      },
+      {
+        "title": "Scheduling & alerts",
+        "description": "Automated notifications ensure timely participation in learning activities and assessments."
+      },
+      {
+        "title": "Monitoring dashboard",
+        "description": "Performance analytics and usage reports for teachers and administrators."
+      }
+    ],
+    technicalTitle: null,
+    technical: [],
+    stats: [
+      {
+        "value": "100+",
+        "label": "Schools implemented"
+      },
+      {
+        "value": "1000s",
+        "label": "Students reached"
+      },
+      {
+        "value": "Gamified",
+        "label": "Learning model"
+      }
+    ],
+    impactTitle: "Impact",
+    impact: "Significantly improved digital education engagement — learning is more interactive, accessible and enjoyable, helping students develop critical thinking and improving academic performance.",
+    deliveryTags: [],
     relatedSolutions: ["web-applications"],
   },
   {
@@ -126,14 +336,69 @@ export const projects: Project[] = [
     overview:
       "An education and health platform on web and mobile that promotes health awareness, manages student wellbeing and integrates with educational institutions — so schools, colleges, universities and madrasahs can monitor and manage student and staff health effectively.",
     challenge: null,
-    solution:
-      "Real-time health tracking and secure digital health records; tools for mental health support and preventive care; automated check-up scheduling, vaccination reminders and emergency alerts; academic and health information in one platform; encrypted data management and offline-capable mobile access.",
+    solution: null,
     highlights: ["20+ institutions", "Web and mobile", "Encrypted health records"],
     technologies: [],
     images: [],
-    liveUrl: null,
+    liveUrl: "https://pickieforlife.com",
     featured: false,
     theme: "teal",
+    duration: "1 year",
+    featuresTitle: "Platform features",
+    features: [
+      {
+        "title": "Real-time health tracking",
+        "description": "Health records for students and staff with live updates and alerts."
+      },
+      {
+        "title": "Digital health records",
+        "description": "Secure centralised records for vaccinations, check-ups and medical history."
+      },
+      {
+        "title": "Personalised monitoring",
+        "description": "Tools for mental health support, preventive care and individual wellness tracking."
+      },
+      {
+        "title": "Scheduling & alerts",
+        "description": "Automated check-up scheduling, vaccination reminders and emergency health alerts."
+      },
+      {
+        "title": "Educational integration",
+        "description": "Academic and health information combined in one platform for institutional management."
+      },
+      {
+        "title": "Multi-institution deployment",
+        "description": "Standardised health monitoring across 20+ institutions nationwide."
+      }
+    ],
+    technicalTitle: null,
+    technical: [
+      {
+        "title": "Security & privacy",
+        "description": "End-to-end encrypted data management, compliant with data-protection standards."
+      },
+      {
+        "title": "User-friendly design",
+        "description": "Intuitive interface for administrators, teachers and staff with a minimal learning curve."
+      },
+      {
+        "title": "Scalable architecture",
+        "description": "Supports multiple institutions and users with room to expand features."
+      },
+      {
+        "title": "Mobile & offline access",
+        "description": "Responsive design with full mobile functionality, even in low-connectivity environments."
+      }
+    ],
+    stats: [
+      {
+        "value": "20+",
+        "label": "Universities, colleges, schools & madrasahs"
+      }
+    ],
+    impactTitle: "Impact",
+    impact: "Real-time insight, preventive care tools and actionable data create a safer, healthier learning environment — letting administrators act proactively and unifying academic and wellbeing management.",
+    deliveryTags: [],
     relatedSolutions: ["web-applications", "mobile-apps"],
   },
   {
@@ -147,14 +412,55 @@ export const projects: Project[] = [
     overview:
       "A DOT monitoring system with geo-tagging, built on data from mobile service providers, so programme managers can monitor service delivery and keep records of multi-drug-resistant TB patients. Implemented across Bangladesh by NTP, DGHS, with desktop and mobile applications.",
     challenge: null,
-    solution:
-      "Geo-tagged DOT visit capture from the field, an MDR TB patient registry and treatment records, mobile-operator data integration for service verification, supervisor dashboards and nationwide reporting, an Android app on Google Play, and ongoing maintenance and re-engineering.",
+    solution: null,
     highlights: ["Nationwide implementation", "Geo-tagged visits", "Android app on Google Play"],
     technologies: ["Android"],
     images: [{ src: "/images/projects/mdr-tb-dot.webp", alt: "MDR TB DOT Monitoring System mobile app login screen", width: 544, height: 450 }],
     liveUrl: null,
     featured: true,
     theme: "indigo",
+    duration: "7 years",
+    featuresTitle: "What we built",
+    features: [
+      {
+        "title": "Geo-tagged DOT visit capture",
+        "description": "From the field."
+      },
+      {
+        "title": "MDR TB patient registry",
+        "description": "Patient registry and treatment records."
+      },
+      {
+        "title": "Mobile-operator data integration",
+        "description": "For service verification."
+      },
+      {
+        "title": "Supervisor dashboards",
+        "description": "Supervisor dashboards and nationwide reporting."
+      },
+      {
+        "title": "Android application",
+        "description": "Distributed via Google Play."
+      },
+      {
+        "title": "Maintenance & re-engineering",
+        "description": "Ongoing maintenance and software re-engineering."
+      }
+    ],
+    technicalTitle: null,
+    technical: [],
+    stats: [],
+    impactTitle: null,
+    impact: null,
+    deliveryTags: [
+      "Enterprise applications",
+      "Desktop applications",
+      "Web application",
+      "API and add-ons",
+      "Mobile & tablet apps",
+      "Software maintenance",
+      "Software re-engineering"
+    ],
     relatedSolutions: ["mobile-apps"],
   },
   {
@@ -167,15 +473,54 @@ export const projects: Project[] = [
     summary: "A digitised supervisor checklist for SBCC field activity, piloted and scaled in Sylhet and Chattogram divisions.",
     overview:
       "DGHS field-level supervisor tools did not cover monitoring of SBCC inputs, outputs and results. 4axiz digitised the manual checklist: SAMCS lets frontline supervisors monitor day-to-day SBCC activity — interpersonal communication, courtyard meetings and group gatherings — carried out by Health Assistants and Family Welfare Assistants.",
-    challenge: "Supervisors needed a reliable way to monitor field activity in areas with limited connectivity.",
-    solution:
-      "A digitised checklist with scoring, worker-wise activity tracking, online and offline modes (with an offline build shipped on SD card), a Bangla-language interface, sync once connectivity returns, and SLA-backed maintenance of the app and admin panel.",
+    challenge: null,
+    solution: null,
     highlights: ["Piloted and scaled by DGHS", "Offline-first", "Bangla interface"],
     technologies: ["Android"],
     images: [{ src: "/images/projects/samcs.webp", alt: "SAMCS supervisor checklist app screens", width: 578, height: 450 }],
     liveUrl: "https://bit.ly/3EveSOt",
     featured: true,
     theme: "teal",
+    duration: "9 years",
+    featuresTitle: "What we built",
+    features: [
+      {
+        "title": "Digitised supervisor checklist",
+        "description": "With scoring."
+      },
+      {
+        "title": "Worker-wise activity tracking",
+        "description": "And progress views."
+      },
+      {
+        "title": "Online and offline modes",
+        "description": "Offline build shipped on SD card."
+      },
+      {
+        "title": "Bangla-language interface",
+        "description": "For field staff."
+      },
+      {
+        "title": "Sync and consolidation",
+        "description": "Once connectivity returns."
+      },
+      {
+        "title": "SLA-backed maintenance",
+        "description": "Of the app and admin panel."
+      }
+    ],
+    technicalTitle: null,
+    technical: [],
+    stats: [],
+    impactTitle: null,
+    impact: null,
+    deliveryTags: [
+      "Web application",
+      "API and add-ins",
+      "Mobile & tablet apps",
+      "Offline-first",
+      "Software maintenance"
+    ],
     relatedSolutions: ["mobile-apps"],
   },
   {
@@ -189,14 +534,53 @@ export const projects: Project[] = [
     overview:
       "A full ERP platform for an asphalt and ready-mix concrete producer, covering the commercial and production cycle: sales orders and delivery challans at the plant, material and purchase requisitions with budget checks, multi-level approvals, store ledgers with stock valuation, and project-wise consumption and costing. Part of a wider Karim Group programme covering attendance, HR and payroll, property, dredger and supply-chain management across 18+ business units.",
     challenge: null,
-    solution:
-      "Sales orders, delivery challans and customer records; material requisition, purchase order and approval workflow; budget control with rate, quantity and value validation; store ledger with MRR receive, return and adjustment; fuel and diesel stock by depot; and project, vehicle, driver and trip records with printable documents.",
+    solution: null,
     highlights: ["10 years of partnership", "Multi-plant", "Inventory & costing", "HR & payroll"],
     technologies: [],
     images: [{ src: "/images/projects/kmix-erp.webp", alt: "KMIX ERP screens and a printed delivery challan", width: 600, height: 717 }],
     liveUrl: null,
     featured: true,
     theme: "slate",
+    duration: "10 years",
+    featuresTitle: "What we built",
+    features: [
+      {
+        "title": "Sales",
+        "description": "Sales orders, delivery challans and customer records."
+      },
+      {
+        "title": "Requisition & purchasing",
+        "description": "Material requisition, purchase order and approval workflow."
+      },
+      {
+        "title": "Budget control",
+        "description": "Budget control with rate, quantity and value validation."
+      },
+      {
+        "title": "Store ledger",
+        "description": "Store ledger with opening balance, MRR receive, return and adjustment."
+      },
+      {
+        "title": "Fuel & diesel",
+        "description": "Fuel and diesel stock accounting by depot."
+      },
+      {
+        "title": "Fleet & trips",
+        "description": "Project, vehicle, driver and trip records with printable documents."
+      }
+    ],
+    technicalTitle: null,
+    technical: [],
+    stats: [],
+    impactTitle: null,
+    impact: null,
+    deliveryTags: [
+      "Enterprise ERP",
+      "Web application",
+      "Inventory & costing",
+      "HR & payroll",
+      "Multi-plant"
+    ],
     relatedSolutions: ["custom-software", "business-process-automation"],
   },
   {
@@ -210,14 +594,53 @@ export const projects: Project[] = [
     overview:
       "A complete online commerce platform for grocery and retail: a bilingual storefront with deep category navigation, campaign and discount management, cart, wishlist and checkout, order and delivery management and customer accounts — backed by native Android and iOS apps on the same commerce core, plus accounting software for the business behind it.",
     challenge: null,
-    solution:
-      "English/Bangla storefront; catalogue, category and inventory management; offers, discounts and cashback campaigns; cart, wishlist, checkout and payment integration; order management, delivery tracking and returns; Android and iOS apps on a shared backend; accounting management software.",
+    solution: null,
     highlights: ["4 years", "Web, Android and iOS", "Payment gateway integration"],
     technologies: [],
     images: [{ src: "/images/projects/bazarnao.webp", alt: "BazarNao online grocery storefront", width: 941, height: 524 }],
     liveUrl: "https://bazarnao.com/",
     featured: true,
     theme: "amber",
+    duration: "4 years",
+    featuresTitle: "What we built",
+    features: [
+      {
+        "title": "Bilingual storefront",
+        "description": "English / Bangla storefront."
+      },
+      {
+        "title": "Catalogue & inventory",
+        "description": "Catalogue, category and inventory management."
+      },
+      {
+        "title": "Campaigns",
+        "description": "Offers, discounts and cashback campaigns."
+      },
+      {
+        "title": "Checkout",
+        "description": "Cart, wishlist, checkout and payment integration."
+      },
+      {
+        "title": "Orders & delivery",
+        "description": "Order management, delivery tracking and returns."
+      },
+      {
+        "title": "Mobile apps",
+        "description": "Android and iOS applications on a shared backend."
+      }
+    ],
+    technicalTitle: null,
+    technical: [],
+    stats: [],
+    impactTitle: null,
+    impact: null,
+    deliveryTags: [
+      "Web application",
+      "Android application",
+      "iOS application",
+      "Payment gateway",
+      "Accounting software"
+    ],
     relatedSolutions: ["ecommerce", "web-applications"],
   },
   {
@@ -231,14 +654,52 @@ export const projects: Project[] = [
     overview:
       "A SaaS-ready platform for hostels, campuses and institutional accommodation — from admission through billing, meals and maintenance, with AI-assisted forecasting and a multi-tenant super-admin layer. Deployed with Super Hostel including HRM, inventory and supply chain.",
     challenge: null,
-    solution:
-      "Multi-hostel setup with real-time occupancy, online admission, room and bed allocation, visitor and gate-pass control, billing and payment reconciliation, smart attendance and meal management, complaints and asset tracking — plus occupancy prediction, automated reporting and complaint classification.",
+    solution: null,
     highlights: ["Multi-tenant SaaS", "Occupancy prediction", "3 years with Super Hostel"],
     technologies: [],
     images: [],
     liveUrl: null,
     featured: false,
     theme: "indigo",
+    duration: "3 years",
+    featuresTitle: "Platform",
+    features: [
+      {
+        "title": "Dashboard & KPIs",
+        "description": "Multi-hostel setup with real-time occupancy views · Revenue, dues and utilisation at a glance · Configurable alerts for management."
+      },
+      {
+        "title": "Resident lifecycle",
+        "description": "Online admission and document collection · Room and bed allocation with transfers · Visitor management and gate pass control."
+      },
+      {
+        "title": "Operations",
+        "description": "Billing, invoicing and payment reconciliation · Smart attendance and meal management · Complaints, maintenance and asset tracking."
+      }
+    ],
+    technicalTitle: "Intelligence built in",
+    technical: [
+      {
+        "title": "Occupancy prediction",
+        "description": "Forecast demand by block, season and intake cycle."
+      },
+      {
+        "title": "Automated reporting",
+        "description": "Scheduled management reports without manual compilation."
+      },
+      {
+        "title": "Complaint classification",
+        "description": "Incoming issues routed automatically to the right team."
+      },
+      {
+        "title": "SaaS super-admin",
+        "description": "Multi-tenant control for operators running several sites."
+      }
+    ],
+    stats: [],
+    impactTitle: "Who it is for",
+    impact: "University and college hostels · private operators running several sites · hospitals, training centres and corporate housing with rotating occupancy.",
+    deliveryTags: [],
     relatedSolutions: ["ai", "web-applications"],
   },
   {
@@ -258,6 +719,15 @@ export const projects: Project[] = [
     liveUrl: "https://archive.dgfp.gov.bd",
     featured: false,
     theme: "slate",
+    duration: "2 years",
+    featuresTitle: null,
+    features: [],
+    technicalTitle: null,
+    technical: [],
+    stats: [],
+    impactTitle: null,
+    impact: null,
+    deliveryTags: [],
     relatedSolutions: ["custom-software"],
   },
   {
@@ -277,6 +747,15 @@ export const projects: Project[] = [
     liveUrl: "https://etoolkits.dghs.gov.bd",
     featured: false,
     theme: "teal",
+    duration: "4 years",
+    featuresTitle: null,
+    features: [],
+    technicalTitle: null,
+    technical: [],
+    stats: [],
+    impactTitle: null,
+    impact: null,
+    deliveryTags: [],
     relatedSolutions: ["web-applications"],
   },
   {
@@ -297,6 +776,15 @@ export const projects: Project[] = [
     liveUrl: null,
     featured: false,
     theme: "indigo",
+    duration: "5 years",
+    featuresTitle: null,
+    features: [],
+    technicalTitle: null,
+    technical: [],
+    stats: [],
+    impactTitle: null,
+    impact: null,
+    deliveryTags: [],
     relatedSolutions: ["web-applications"],
   },
   {
@@ -317,6 +805,15 @@ export const projects: Project[] = [
     liveUrl: null,
     featured: false,
     theme: "blue",
+    duration: "Running",
+    featuresTitle: null,
+    features: [],
+    technicalTitle: null,
+    technical: [],
+    stats: [],
+    impactTitle: null,
+    impact: null,
+    deliveryTags: [],
     relatedSolutions: ["custom-software"],
   },
   {
@@ -336,6 +833,15 @@ export const projects: Project[] = [
     liveUrl: null,
     featured: false,
     theme: "rose",
+    duration: null,
+    featuresTitle: null,
+    features: [],
+    technicalTitle: null,
+    technical: [],
+    stats: [],
+    impactTitle: null,
+    impact: null,
+    deliveryTags: [],
     relatedSolutions: ["custom-software"],
   },
   {
@@ -355,6 +861,15 @@ export const projects: Project[] = [
     liveUrl: "https://youthorganizationbd.org",
     featured: false,
     theme: "amber",
+    duration: "1 year",
+    featuresTitle: null,
+    features: [],
+    technicalTitle: null,
+    technical: [],
+    stats: [],
+    impactTitle: null,
+    impact: null,
+    deliveryTags: [],
     relatedSolutions: ["web-applications"],
   },
   {
@@ -374,6 +889,15 @@ export const projects: Project[] = [
     liveUrl: null,
     featured: false,
     theme: "teal",
+    duration: null,
+    featuresTitle: null,
+    features: [],
+    technicalTitle: null,
+    technical: [],
+    stats: [],
+    impactTitle: null,
+    impact: null,
+    deliveryTags: [],
     relatedSolutions: ["custom-software", "business-process-automation"],
   },
   {
@@ -393,6 +917,15 @@ export const projects: Project[] = [
     liveUrl: null,
     featured: false,
     theme: "rose",
+    duration: null,
+    featuresTitle: null,
+    features: [],
+    technicalTitle: null,
+    technical: [],
+    stats: [],
+    impactTitle: null,
+    impact: null,
+    deliveryTags: [],
     relatedSolutions: ["ecommerce", "web-applications"],
   },
   {
@@ -412,6 +945,15 @@ export const projects: Project[] = [
     liveUrl: null,
     featured: false,
     theme: "rose",
+    duration: null,
+    featuresTitle: null,
+    features: [],
+    technicalTitle: null,
+    technical: [],
+    stats: [],
+    impactTitle: null,
+    impact: null,
+    deliveryTags: [],
     relatedSolutions: ["mobile-apps", "ecommerce"],
   },
 ];

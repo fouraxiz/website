@@ -20,10 +20,14 @@ export function ProjectCard({ project, headingLevel = "h3" }: { project: Project
             {project.name}
           </Link>
         </H>
+        {project.client && <p className="mt-1 text-xs font-medium text-ink-400">{project.client}</p>}
         <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-500">{project.summary}</p>
-        <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-brand-700">
-          View project <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
-        </span>
+        <div className="mt-5 flex items-center justify-between gap-3">
+          <span className="inline-flex items-center gap-1 text-sm font-semibold text-brand-700">
+            View project <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+          </span>
+          {project.duration && <span className="rounded-full bg-ink-50 px-2.5 py-1 text-xs font-semibold text-ink-600 ring-1 ring-ink-200">{project.duration}</span>}
+        </div>
       </div>
     </article>
   );

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "@/components/sections/PageHero";
 import { TechSection } from "@/components/sections/home/TechSection";
+import { OutcomesBand } from "@/components/sections/OutcomesBand";
 import { StatsStrip } from "@/components/sections/home/StatsStrip";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { OfficeCards } from "@/components/sections/OfficeCards";
@@ -188,6 +189,8 @@ export default async function AboutPage() {
           </div>
         </Section>
       )}
+
+      <OutcomesBand />
 
       <Section labelledBy="expertise">
         <SectionHeading eyebrow="Expertise" id="expertise" title="Capabilities across the software lifecycle." />

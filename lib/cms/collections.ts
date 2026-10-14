@@ -268,6 +268,18 @@ export const collections: CollectionDef[] = [
     ],
   },
   {
+    name: "outcomes",
+    label: "Outcomes that scale",
+    singular: "Number",
+    kind: "list",
+    titleField: "label",
+    slugField: "label",
+    fields: [
+      { name: "value", label: "Value", type: "text", required: true },
+      { name: "label", label: "Label", type: "text", required: true },
+    ],
+  },
+  {
     name: "strengths",
     label: "Key strengths",
     singular: "Strength",
@@ -493,6 +505,24 @@ export const collections: CollectionDef[] = [
           { name: "alt", label: "Description", type: "text" },
         ],
       },
+      { name: "duration", label: "Engagement length (e.g. 5 years, Running)", type: "text" },
+      { name: "featuresTitle", label: "Features heading (e.g. Key modules, What we built)", type: "text" },
+      featureList("features", "Features / modules"),
+      { name: "technicalTitle", label: "Second list heading (e.g. Technical highlights)", type: "text" },
+      featureList("technical", "Technical highlights"),
+      {
+        name: "stats",
+        label: "Numbers",
+        type: "list",
+        itemLabel: "label",
+        fields: [
+          { name: "value", label: "Value", type: "text", required: true },
+          { name: "label", label: "Label", type: "text", required: true },
+        ],
+      },
+      { name: "impactTitle", label: "Impact heading (e.g. Impact, Why it matters)", type: "text" },
+      { name: "impact", label: "Impact text", type: "textarea" },
+      { name: "deliveryTags", label: "Delivery tags", type: "strings" },
       { name: "liveUrl", label: "Live URL", type: "url" },
       { name: "featured", label: "Featured", type: "boolean" },
       {

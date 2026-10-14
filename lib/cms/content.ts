@@ -204,6 +204,7 @@ export const getHowWeWork = cache(async () =>
     points: arr<string>(d.points),
   })),
 );
+export const getOutcomes = cache(async () => list("outcomes", (d) => ({ value: str(d.value), label: str(d.label) })));
 export const getPillars = cache(async () => list("pillars", (d) => ({ title: str(d.title), description: str(d.description) })));
 export const getPresenceStats = cache(async () => list("presence_stats", (d) => ({ value: str(d.value), label: str(d.label) })));
 export const getStrengths = cache(async () => list("strengths", (d) => ({ title: str(d.title), description: str(d.description) })));
@@ -327,6 +328,15 @@ export const getProjects = cache(async () =>
     featured: Boolean(d.featured),
     theme: ((strOrNull(d.theme) ?? "blue") as Project["theme"]),
     relatedSolutions: arr(d.relatedSolutions),
+    duration: strOrNull(d.duration),
+    featuresTitle: strOrNull(d.featuresTitle),
+    features: arr(d.features),
+    technicalTitle: strOrNull(d.technicalTitle),
+    technical: arr(d.technical),
+    stats: arr(d.stats),
+    impactTitle: strOrNull(d.impactTitle),
+    impact: strOrNull(d.impact),
+    deliveryTags: arr(d.deliveryTags),
   })),
 );
 

@@ -4,7 +4,7 @@
  * (e.g. local preview without a database).
  */
 import { slugify } from "./fields";
-import { site, companyFacts, offices, socialLinks, stats, technologies, companyValues, mission, vision, strengths, milestones, engagementModels, missionPractice, trustNote, strategicFocus, pillars, presenceStats, domains, sectors, clientMix } from "@/data/site";
+import { site, companyFacts, offices, socialLinks, stats, technologies, companyValues, mission, vision, strengths, milestones, engagementModels, missionPractice, trustNote, strategicFocus, pillars, presenceStats, domains, sectors, clientMix, outcomes } from "@/data/site";
 import { mainNav } from "@/data/navigation";
 import { slides } from "@/data/slides";
 import { sectionDefaults, homeSectionOrder } from "@/data/sections";
@@ -85,6 +85,7 @@ export function buildSeed(): Record<string, SeedItem[]> {
     values: byName(companyValues, (v) => v.title),
     pillars: byName(pillars, (v) => v.title),
     domains: byName(domains, (v) => v.title),
+    outcomes: byName(outcomes, (v) => v.label),
     sectors: byName(sectors, (v) => v.title),
     client_mix: byName(clientMix, (v) => v.label),
     presence_stats: byName(presenceStats, (v) => v.label),
