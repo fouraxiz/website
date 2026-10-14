@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+/*
+ * 4axiz design tokens.
+ * Brand blue is the primary colour; teal is reserved for AI/automation accents.
+ * If the official 4axiz brand palette differs, adjust the brand-* scale here —
+ * every component reads from these tokens.
+ */
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-manrope), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand-50: #eef3ff;
+  --color-brand-100: #dce6ff;
+  --color-brand-200: #bccdff;
+  --color-brand-300: #8eaaff;
+  --color-brand-400: #5d7ffb;
+  --color-brand-500: #3a5cf3;
+  --color-brand-600: #2643dc;
+  --color-brand-700: #1f35b2;
+  --color-brand-800: #1e2f8c;
+  --color-brand-900: #1d2b6e;
+  --color-brand-950: #131a42;
+
+  --color-accent-50: #ecfdf8;
+  --color-accent-100: #d1faee;
+  --color-accent-200: #a7f2dd;
+  --color-accent-300: #6ee4c8;
+  --color-accent-400: #34cdae;
+  --color-accent-500: #10b296;
+  --color-accent-600: #07907b;
+  --color-accent-700: #0a7364;
+
+  --color-ink-50: #f6f7fb;
+  --color-ink-100: #eceef5;
+  --color-ink-200: #dadfea;
+  --color-ink-300: #bcc3d4;
+  --color-ink-400: #8b93a9;
+  --color-ink-500: #636c84;
+  --color-ink-600: #4a5268;
+  --color-ink-700: #363d52;
+  --color-ink-800: #212738;
+  --color-ink-900: #121726;
+  --color-ink-950: #0a0e19;
+
+  --radius-card: 0.875rem;
+
+  --shadow-soft: 0 1px 2px rgb(18 23 38 / 0.04), 0 4px 16px -4px rgb(18 23 38 / 0.08);
+  --shadow-lift: 0 2px 4px rgb(18 23 38 / 0.04), 0 18px 40px -12px rgb(18 23 38 / 0.18);
+
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-pulse-soft: pulse-soft 3.2s ease-in-out infinite;
+  --animate-dash: dash 2.6s linear infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 1; }
+  }
+  @keyframes dash {
+    to { stroke-dashoffset: -24; }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white font-sans text-ink-700 antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display text-ink-900;
+    letter-spacing: -0.02em;
+  }
+  ::selection {
+    @apply bg-brand-100 text-brand-900;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-500;
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold tracking-[0.14em] text-brand-600 uppercase;
+  }
+  .prose-site p {
+    @apply mb-4 leading-relaxed text-ink-600;
+  }
+  .prose-site h2 {
+    @apply mt-10 mb-3 text-xl font-semibold;
+  }
+  .prose-site ul {
+    @apply mb-4 list-disc space-y-1.5 pl-5 text-ink-600;
+  }
+  /* Subtle engineering grid used behind hero areas. */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgb(38 67 220 / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(38 67 220 / 0.06) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .bg-grid-dark {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .mask-fade-b {
+    mask-image: linear-gradient(to bottom, black 40%, transparent);
+  }
+  .mask-radial {
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer components {
+  .prose-site a {
+    @apply font-medium text-brand-700 underline underline-offset-2 hover:text-brand-800;
+  }
+}
