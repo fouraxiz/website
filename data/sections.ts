@@ -41,6 +41,8 @@ export const sectionDefaults: Record<string, SectionCopy> = {
   "page.team": s("Our team", "The people who design, build and support your software.", null, "45 engineers, designers, QA specialists and project managers in one building — no subcontracting, no hand-offs between vendors."),
   "page.careers": s("Careers", "Build software that organisations rely on.", null, "Join a team working on ERP platforms, AI integrations and custom applications for clients across markets."),
   "page.contact": s("Contact", "Let's talk about what you're building.", null, "Tell us about your organisation, the challenge you're facing or the product you'd like to see. We'll get back to you with practical next steps."),
+  "page.approach": s("How we work", "How we design, build, test, deploy and support the systems you depend on.", null, "From the first conversation to long-term support: the features built into every platform, our architecture, a nine-phase methodology, testing, training, SLAs and the controls our clients' auditors expect."),
+  "page.technologies": s("Technologies", "Our tech stack.", null, "We choose technology on fit, not fashion — backend, frontend, mobile, data, cloud and commerce platforms our teams work in every day."),
   "page.blog": s("Blog", "Insights from the 4axiz team.", null, "Practical articles on ERP, AI, software development and running a digital business."),
 };
 

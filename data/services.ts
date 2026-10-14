@@ -10,7 +10,7 @@ export const services: Service[] = [
     slug: "erp-implementation",
     group: "lifecycle",
     title: "Enterprise Software & ERP",
-    shortTitle: "ERP Implementation",
+    shortTitle: "Enterprise Software & ERP",
     icon: "boxes",
     featured: true,
     tagline: "Integrated platforms for HR, finance, procurement, inventory and operations.",

@@ -1,5 +1,6 @@
 import { CopyTitle, SectionHeading } from "@/components/ui/Section";
 import { TechIcon } from "@/components/ui/TechIcon";
+import { ButtonLink } from "@/components/ui/Button";
 import { getSection, getTechnologies } from "@/lib/cms/content";
 import type { SectionEntry } from "@/lib/cms/content";
 
@@ -17,7 +18,7 @@ export async function TechSection({ copy: given }: { copy?: SectionEntry }) {
           description={copy.description ?? undefined}
         />
         <ul className="mx-auto mt-12 flex max-w-5xl flex-wrap justify-center gap-4">
-          {technologies.map((t) => (
+          {technologies.slice(0, 24).map((t) => (
             <li
               key={t.name}
               className="group flex w-[calc(33.333%-0.7rem)] flex-col items-center gap-3 rounded-2xl bg-ink-50 p-5 sm:w-36 ring-1 ring-ink-100 transition duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-[var(--shadow-soft)]"
@@ -27,6 +28,13 @@ export async function TechSection({ copy: given }: { copy?: SectionEntry }) {
             </li>
           ))}
         </ul>
+        {technologies.length > 24 && (
+          <div className="mt-10 text-center">
+            <ButtonLink href="/technologies" variant="secondary" arrow>
+              All {technologies.length} technologies
+            </ButtonLink>
+          </div>
+        )}
       </div>
     </section>
   );

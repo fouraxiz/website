@@ -33,14 +33,14 @@ Status: ✅ done · 🟡 partly done · ⬜ to do · ❓ needs a decision or dat
 
 | # | PDF content | Where it goes | Status |
 |---|---|---|---|
-| 3.1 | Nine features built into every platform (cloud, web & mobile, offline, GPS & evidence, RBAC, dashboards, Bangla & English, APIs, security & backup) | New page **How We Work** | ⬜ |
-| 3.2 | Engineering excellence (9 points) | How We Work | ⬜ |
-| 3.3 | Three-tier system architecture (presentation, application, data) | How We Work — diagram | ⬜ |
-| 3.4 | Nine-phase delivery methodology with activities, deliverables and typical duration (10–12 months; 6–12 weeks) | How We Work, Home | 🟡 duration and activities table to add |
-| 3.5 | Testing (6 types), training & documentation (3), proven track record | How We Work | ⬜ |
-| 3.6 | Post-deployment support framework (6) + SLA table P1–P4 | How We Work, Support service | ⬜ |
-| 3.7 | Security controls, compliance & standards, infrastructure (hosting, HA, backup & DR, data residency) | How We Work | ⬜ |
-| 3.8 | Tech stack, "also in regular use", how we choose technology (3) | New page **Technologies** | 🟡 |
+| 3.1 | Nine features built into every platform (cloud, web & mobile, offline, GPS & evidence, RBAC, dashboards, Bangla & English, APIs, security & backup) | New page **How We Work** | ✅ |
+| 3.2 | Engineering excellence (9 points) | How We Work | ✅ |
+| 3.3 | Three-tier system architecture (presentation, application, data) | How We Work — diagram | ✅ |
+| 3.4 | Nine-phase delivery methodology with activities, deliverables and typical duration (10–12 months; 6–12 weeks) | How We Work, Home | ✅ |
+| 3.5 | Testing (6 types), training & documentation (3), proven track record | How We Work | ✅ |
+| 3.6 | Post-deployment support framework (6) + SLA table P1–P4 | How We Work, Support service | ✅ |
+| 3.7 | Security controls, compliance & standards, infrastructure (hosting, HA, backup & DR, data residency) | How We Work | ✅ |
+| 3.8 | Tech stack, "also in regular use", how we choose technology (3) | New page **Technologies** | ✅ |
 
 ## Phase 4 — Ongoing Top Projects (pp. 28–42)
 

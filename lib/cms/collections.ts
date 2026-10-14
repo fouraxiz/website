@@ -1,4 +1,5 @@
 import { ICON_OPTIONS, type CollectionDef, type Field } from "./fields";
+import { deliveryGroups } from "@/data/delivery";
 
 const icon = (name = "icon", label = "Icon"): Field => ({
   name,
@@ -173,6 +174,22 @@ export const collections: CollectionDef[] = [
       { name: "name", label: "Name", type: "text", required: true },
       { name: "icon", label: "Logo key (simple-icons, e.g. siReact)", type: "text", help: "Find keys at simpleicons.org — prefix with 'si', e.g. siLaravel" },
       { name: "image", label: "Or upload a logo", type: "image" },
+      { name: "category", label: "Category", type: "select", options: ["Backend", "Frontend", "Mobile", "Database & search", "Cloud & DevOps", "CMS & commerce", "Data, AI & field tools", "Design"].map((c) => ({ value: c, label: c })) },
+    ],
+  },
+  {
+    name: "how_we_work",
+    label: "How we work (delivery)",
+    singular: "Item",
+    kind: "list",
+    titleField: "title",
+    fields: [
+      { name: "group", label: "Group", type: "select", required: true, options: deliveryGroups.map((g) => ({ value: g.value, label: g.label })) },
+      { name: "title", label: "Title", type: "text", required: true },
+      icon(),
+      { name: "description", label: "Description", type: "textarea" },
+      { name: "meta", label: "Extra line (e.g. response time, duration, layer subtitle)", type: "text" },
+      { name: "points", label: "Points", type: "strings" },
     ],
   },
   {

@@ -9,6 +9,7 @@ import { mainNav } from "@/data/navigation";
 import { slides } from "@/data/slides";
 import { sectionDefaults, homeSectionOrder } from "@/data/sections";
 import { processSteps } from "@/data/process";
+import { deliveryItems } from "@/data/delivery";
 import { solutions } from "@/data/solutions";
 import { erpModules } from "@/data/erp-modules";
 import { products, readyProducts } from "@/data/products";
@@ -79,7 +80,8 @@ export function buildSeed(): Record<string, SeedItem[]> {
     slides: byName(slides, (s) => s.eyebrow, (s) => ({ ...s })),
     sections: sectionKeys.map((k) => ({ slug: k, data: { ...sectionDefaults[k] } })),
     stats: byName(stats, (s) => s.label),
-    technologies: byName(technologies, (t) => t.name, (t) => ({ name: t.name, icon: t.icon, image: null })),
+    technologies: byName(technologies, (t) => t.name, (t) => ({ name: t.name, icon: t.icon, image: null, category: t.category })),
+    how_we_work: deliveryItems.map((it, i) => ({ slug: `${it.group}-${slugify(it.title)}-${i}`, data: { icon: null, points: [], meta: null, ...it } })),
     values: byName(companyValues, (v) => v.title),
     pillars: byName(pillars, (v) => v.title),
     domains: byName(domains, (v) => v.title),
