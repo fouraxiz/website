@@ -220,3 +220,33 @@ export const engagementModels = [
   { title: "SaaS & licensing", description: "Adopt a ready platform such as Smart Hostel or School Management by subscription, with configuration, migration and training included." },
   { title: "Support & AMC", description: "Annual maintenance contracts covering enhancements, monitoring, patching and SLA-backed response for systems already in production." },
 ];
+
+/** "Domains where we go deep" — Company Profile 2026. */
+export const domains = [
+  { title: "Health & Public Systems", icon: "stethoscope", description: "Nationwide TB monitoring, disease surveillance, health records, digital archives and facility reporting at scale." },
+  { title: "MEAL & Programme Management", icon: "bar-chart", description: "Beneficiary registries, indicator frameworks, partner reporting, accountability feedback and evidence management." },
+  { title: "EdTech & Learning", icon: "graduation-cap", description: "Gamified digital learning, assessment, teacher dashboards and institution management." },
+  { title: "Survey & Field Data", icon: "clipboard-check", description: "Offline-first collection with validation, GPS, photo evidence, sync and supervisor workflows." },
+  { title: "Fleet & Logistics", icon: "truck", description: "Vehicles, drivers, routes, maintenance and safety compliance across regions." },
+  { title: "Audit & Compliance", icon: "shield-check", description: "Audit findings and recommendation trackers, fully traceable end to end." },
+  { title: "Safety & Incident Reporting", icon: "siren", description: "Real-time safety and security incident reporting for field staff in complex environments." },
+  { title: "Commerce & Enterprise", icon: "shopping-bag", description: "ERP, POS, CRM, HR & payroll and e-commerce for multi-unit corporate groups." },
+] as const;
+
+/** "Sectors that depend on us" — Company Profile 2026. */
+export const sectors = [
+  { title: "Government & Public Sector", icon: "landmark", clients: "MOHFW, DGFP, DGHS, IPHN, CPTU, NTP, Department of Youth Development and Teletalk Bangladesh Ltd." },
+  { title: "UN & Development Partners", icon: "globe", clients: "UNDP, UNFPA, UNHCR-funded programmes, World Bank and USAID-funded initiatives." },
+  { title: "International NGOs", icon: "heart-handshake", clients: "Handicap International, Management Sciences for Health (MSH), Pathfinder and partners." },
+  { title: "Local NGOs", icon: "users", clients: "NGO Forum for Public Health, BCCP, DSK, WAVE Foundation, Light House, SKS Foundation, Room to Read, CODEC, SMC and RSC." },
+  { title: "Healthcare & Education", icon: "graduation-cap", clients: "Disease monitoring, health records, digital archives, universities, colleges, schools and madrasahs." },
+  { title: "Corporate & Enterprise", icon: "briefcase", clients: "Toyota Bangladesh, Nokia Bangladesh, RANGS Group, Karim Group (18+ business units), HCPL, MCL, UMC, Rupali Health, Serenity Builders and Green Peak Holdings." },
+] as const;
+
+/** Client mix — Company Profile 2026 ("Who we work with"). */
+export const clientMix = [
+  { value: "60+", label: "Client organisations" },
+  { value: "9", label: "UN & INGO partners" },
+  { value: "10+", label: "Government bodies" },
+  { value: "20+", label: "Corporate groups" },
+];

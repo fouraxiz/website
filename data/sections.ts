@@ -20,7 +20,7 @@ const s = (eyebrow: string, title: string, highlight: string | null, description
 
 export const sectionDefaults: Record<string, SectionCopy> = {
   "home.about": s("About 4axiz", "Who", "We Are", null),
-  "home.services": s("What we do", "Our", "Services", "One accountable team for strategy, design, engineering, quality and long-term support."),
+  "home.services": s("What we do", "Full-lifecycle", "software & digital services", "One accountable team for discovery, design, engineering, quality, deployment, training and long-term support."),
   "home.products": s("Our products", "Software that runs", "real organisations", "16 ready-to-deploy products — licensed, subscribed or fully managed as SaaS — and the engineering team to tailor them to you."),
   "home.ai": s("AI & Intelligent Automation", "AI that does real work", "inside your business", "We design and integrate AI where it measurably reduces effort — with human review, security and monitoring built in."),
   "home.why": s("Why 4axiz", "What makes us", "different", "You get a team that has already built systems like yours, for institutions that audit everything — and will still be here to support the platform in five years."),
@@ -35,9 +35,9 @@ export const sectionDefaults: Record<string, SectionCopy> = {
   "home.cta": s("", "Want to build something great together?", null, "Tell us about your goals. We'll respond with practical next steps — a product demo, a discovery workshop or a scoped proposal."),
   "page.solutions": s("Solutions", "Technology solutions for every stage of growth.", null, "Whether you need a connected ERP, practical AI or a system built around a unique process, we combine proven products with tailored engineering."),
   "page.products": s("Products", "Business software built to run real operations.", null, "From the connected 4axiz ERP platform to 16 ready-to-deploy products — configured to your process, hosted where you need them and supported under SLA."),
-  "page.services": s("Services", "Engineering services from strategy to support.", null, "A single team that can take your idea from discovery to production — and keep it running well for years after launch."),
+  "page.services": s("What we do", "Full-lifecycle software & digital services.", null, "Nine core services and twelve areas of specialist expertise — delivered by one in-house team from discovery to long-term support."),
   "page.projects": s("Portfolio", "Projects we've designed, built and delivered.", null, "Flagship programmes for UN agencies, INGOs, government and enterprise — plus platforms running in the field across health, education and commerce."),
-  "page.industries": s("Industries", "Solutions shaped around your sector.", null, "Every industry has its own regulations, workflows and pressures. We bring solutions designed for them — and the flexibility to fit your organisation."),
+  "page.industries": s("Industries & sectors", "Built for sectors that are governed, funded and audited.", null, "Government directorates, UN agencies, international and local NGOs, healthcare, education and corporate groups — each with its own regulations, workflows and reporting."),
   "page.team": s("Our team", "The people who design, build and support your software.", null, "45 engineers, designers, QA specialists and project managers in one building — no subcontracting, no hand-offs between vendors."),
   "page.careers": s("Careers", "Build software that organisations rely on.", null, "Join a team working on ERP platforms, AI integrations and custom applications for clients across markets."),
   "page.contact": s("Contact", "Let's talk about what you're building.", null, "Tell us about your organisation, the challenge you're facing or the product you'd like to see. We'll get back to you with practical next steps."),

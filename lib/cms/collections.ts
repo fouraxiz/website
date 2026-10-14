@@ -213,6 +213,44 @@ export const collections: CollectionDef[] = [
     ],
   },
   {
+    name: "domains",
+    label: "Domains",
+    singular: "Domain",
+    kind: "list",
+    titleField: "title",
+    slugField: "title",
+    fields: [
+      { name: "title", label: "Title", type: "text", required: true },
+      icon(),
+      { name: "description", label: "Description", type: "textarea" },
+    ],
+  },
+  {
+    name: "sectors",
+    label: "Sectors",
+    singular: "Sector",
+    kind: "list",
+    titleField: "title",
+    slugField: "title",
+    fields: [
+      { name: "title", label: "Title", type: "text", required: true },
+      icon(),
+      { name: "clients", label: "Clients / description", type: "textarea" },
+    ],
+  },
+  {
+    name: "client_mix",
+    label: "Client mix numbers",
+    singular: "Number",
+    kind: "list",
+    titleField: "label",
+    slugField: "label",
+    fields: [
+      { name: "value", label: "Value", type: "text", required: true },
+      { name: "label", label: "Label", type: "text", required: true },
+    ],
+  },
+  {
     name: "strengths",
     label: "Key strengths",
     singular: "Strength",
@@ -391,6 +429,7 @@ export const collections: CollectionDef[] = [
     slugField: "title",
     routable: true,
     fields: [
+      { name: "group", label: "Group", type: "select", options: [{ value: "lifecycle", label: "Full-lifecycle services" }, { value: "expertise", label: "Our expertise" }] },
       { name: "title", label: "Title", type: "text", required: true },
       { name: "shortTitle", label: "Short title", type: "text", required: true },
       icon(),

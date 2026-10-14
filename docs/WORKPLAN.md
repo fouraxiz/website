@@ -24,10 +24,10 @@ Status: ✅ done · 🟡 partly done · ⬜ to do · ❓ needs a decision or dat
 
 | # | PDF content | Where it goes | Status |
 |---|---|---|---|
-| 2.1 | Nine full-lifecycle services (Enterprise & ERP, MIS & MEAL, Custom, Mobile, AI & Data, Cloud & DevOps, System Integration, UI/UX, Support) | Services | 🟡 wording to align |
-| 2.2 | Expertise pages, each with its intro and 4 points: Mobile App Development, Web Design & Development, Cyber Security, AI Consultation, Online Marketing, Networking, Business Continuity & Recovery, Managed Hosting, Page Speed Optimization, Technical SEO & Troubleshooting, Brand Identity & Graphic Design, Content Marketing & Strategy | One service page each | 🟡 some merged; split them all into separate pages |
-| 2.3 | Eight domains (Health & Public Systems, MEAL & Programme Management, EdTech, Survey & Field Data, Fleet & Logistics, Audit & Compliance, Safety & Incident Reporting, Commerce & Enterprise) | New "Domains" section (Home + Industries) | ⬜ |
-| 2.4 | Six sectors with named clients + client mix (60+ / 9 / 8+ / 20+) | Industries pages | 🟡 |
+| 2.1 | Nine full-lifecycle services (Enterprise & ERP, MIS & MEAL, Custom, Mobile, AI & Data, Cloud & DevOps, System Integration, UI/UX, Support) | Services | ✅ |
+| 2.2 | Expertise pages, each with its intro and 4 points: Mobile App Development, Web Design & Development, Cyber Security, AI Consultation, Online Marketing, Networking, Business Continuity & Recovery, Managed Hosting, Page Speed Optimization, Technical SEO & Troubleshooting, Brand Identity & Graphic Design, Content Marketing & Strategy | One service page each | ✅ |
+| 2.3 | Eight domains (Health & Public Systems, MEAL & Programme Management, EdTech, Survey & Field Data, Fleet & Logistics, Audit & Compliance, Safety & Incident Reporting, Commerce & Enterprise) | New "Domains" section (Home + Industries) | ✅ |
+| 2.4 | Six sectors with named clients + client mix (60+ / 9 / 8+ / 20+) | Industries pages | ✅ |
 
 ## Phase 3 — Technology & Delivery: how a project runs from start to finish (pp. 19–27)
 

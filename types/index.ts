@@ -185,6 +185,8 @@ export interface Product {
 
 export interface Service {
   slug: string;
+  /** "lifecycle" = the nine full-lifecycle services; "expertise" = specialist expertise. */
+  group?: "lifecycle" | "expertise";
   title: string;
   shortTitle: string;
   icon: IconName;

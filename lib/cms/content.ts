@@ -191,6 +191,9 @@ export const getTechnologies = cache(async () =>
   list("technologies", (d) => ({ name: str(d.name), icon: str(d.icon), image: strOrNull(d.image) })),
 );
 export const getValues = cache(async () => list("values", (d) => ({ title: str(d.title), tagline: strOrNull(d.tagline), description: str(d.description) })));
+export const getDomains = cache(async () => list("domains", (d) => ({ title: str(d.title), icon: (str(d.icon) || "layers") as IconName, description: str(d.description) })));
+export const getSectors = cache(async () => list("sectors", (d) => ({ title: str(d.title), icon: (str(d.icon) || "layers") as IconName, clients: str(d.clients) })));
+export const getClientMix = cache(async () => list("client_mix", (d) => ({ value: str(d.value), label: str(d.label) })));
 export const getPillars = cache(async () => list("pillars", (d) => ({ title: str(d.title), description: str(d.description) })));
 export const getPresenceStats = cache(async () => list("presence_stats", (d) => ({ value: str(d.value), label: str(d.label) })));
 export const getStrengths = cache(async () => list("strengths", (d) => ({ title: str(d.title), description: str(d.description) })));

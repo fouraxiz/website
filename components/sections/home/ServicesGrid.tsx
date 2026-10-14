@@ -9,7 +9,7 @@ import { getServices } from "@/lib/cms/content";
 import type { SectionEntry } from "@/lib/cms/content";
 
 export async function ServicesGrid({ copy }: { copy: SectionEntry }) {
-  const list = (await getServices()).filter((s) => s.featured).slice(0, 8);
+  const list = (await getServices()).filter((s) => s.group === "lifecycle").slice(0, 9);
   return (
     <section className="relative bg-ink-50 py-20 sm:py-28" aria-labelledby="services-heading">
       <div className="container-site">
@@ -24,7 +24,7 @@ export async function ServicesGrid({ copy }: { copy: SectionEntry }) {
             All services
           </ButtonLink>
         </div>
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {list.map((s, i) => {
             const h = hues[hueAt(i)];
             return (
@@ -38,7 +38,7 @@ export async function ServicesGrid({ copy }: { copy: SectionEntry }) {
                     <Icon name={s.icon} />
                   </span>
                   <h3 className="mt-6 text-lg leading-snug font-semibold text-ink-900">{s.title}</h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-500">{s.summary}</p>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-500">{s.tagline}</p>
                   <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-ink-900 group-hover:text-brand-600">
                     Learn more <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                   </span>
