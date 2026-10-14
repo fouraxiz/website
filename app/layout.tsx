@@ -68,7 +68,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             ...(settings.foundedYear ? { foundingDate: String(settings.foundedYear) } : {}),
             address: {
               "@type": "PostalAddress",
-              streetAddress: "Level-4, House #34, Lane #6/2, Road #20/B, DUIP Plot, Block D, Mirpur-12",
+              streetAddress: "Level 4, House 34, Lane 6/2, Road 20/A, DUIP Plot, Block D, Mirpur 12",
               addressLocality: "Dhaka",
               postalCode: "1216",
               addressCountry: "BD",

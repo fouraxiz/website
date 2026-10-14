@@ -6,6 +6,7 @@ import { db, hasDatabase } from "@/lib/db";
 import { contentItems } from "@/lib/db/schema";
 import { getSession } from "@/lib/auth/session";
 import { buildSeed } from "./seed-data";
+import { ensureContentSynced, seedHash } from "./sync";
 import { site as siteConst } from "@/data/site";
 import { sectionDefaults, type SectionCopy } from "@/data/sections";
 import type { Slide } from "@/data/slides";
@@ -50,6 +51,7 @@ async function readAll(): Promise<Record<string, RawItem[]>> {
       Object.entries(seed).map(([c, items]) => [c, items.map((it, i) => ({ id: `${c}:${it.slug}`, slug: it.slug, data: it.data, status: "published" as const, sort: i * 10 }))]),
     );
   }
+  await ensureContentSynced(db);
   const rows = await db.select().from(contentItems).orderBy(asc(contentItems.collection), asc(contentItems.sort), asc(contentItems.createdAt));
   const out: Record<string, RawItem[]> = {};
   for (const r of rows) (out[r.collection] ??= []).push({ id: r.id, slug: r.slug, data: r.data, status: r.status, sort: r.sort });
@@ -63,7 +65,8 @@ const readPublished = unstable_cache(
     for (const k of Object.keys(all)) all[k] = all[k].filter((i) => i.status === "published");
     return all;
   },
-  ["cms-content-v1"],
+  // The key includes a hash of /data so a new release never serves content cached by the previous one.
+  ["cms-content", seedHash()],
   { tags: ["content"] },
 );
 
