@@ -76,3 +76,14 @@ export function SectionHeading({
 export function Hl({ children }: { children: React.ReactNode }) {
   return <span className="text-brand-500">{children}</span>;
 }
+
+/** Title with an optional highlighted part, from editable section copy. */
+export function CopyTitle({ title, highlight }: { title?: string | null; highlight?: string | null }) {
+  return (
+    <>
+      {title}
+      {title && highlight ? " " : null}
+      {highlight && <Hl>{highlight}</Hl>}
+    </>
+  );
+}

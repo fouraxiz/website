@@ -3,13 +3,15 @@ import { AiVisual } from "@/components/visuals/SlideVisuals";
 import { Icon } from "@/lib/icons";
 import { hues, hueAt } from "@/lib/palette";
 import { cn } from "@/lib/utils";
-import { getSolution } from "@/data/solutions";
+import { getSolutions } from "@/lib/cms/content";
+import type { SectionEntry } from "@/lib/cms/content";
 import type { IconName } from "@/types";
 
 const capIcons: IconName[] = ["workflow", "file-text", "message-square", "trending-up", "boxes", "sparkles"];
 
-export function AiSection() {
-  const ai = getSolution("ai")!;
+export async function AiSection({ copy }: { copy: SectionEntry }) {
+  const ai = (await getSolutions()).find((s) => s.slug === "ai");
+  if (!ai) return null;
   return (
     <section className="relative overflow-hidden bg-ink-950 py-20 sm:py-28" aria-labelledby="ai-heading">
       <div className="bg-grid-dark mask-radial pointer-events-none absolute inset-0" aria-hidden="true" />
@@ -19,14 +21,14 @@ export function AiSection() {
         <div>
           <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-white ring-1 ring-white/15">
             <span className="size-2 animate-pulse-soft rounded-full bg-accent-400" aria-hidden="true" />
-            AI &amp; Intelligent Automation
+            {copy.eyebrow}
           </p>
           <h2 id="ai-heading" className="mt-6 text-3xl leading-tight font-bold tracking-tight text-white sm:text-[2.6rem]">
-            AI that does real work{" "}
-            <span className="bg-gradient-to-r from-accent-300 via-sky-300 to-emerald-300 bg-clip-text text-transparent">inside your business</span>
+            {copy.title}{" "}
+            <span className="bg-gradient-to-r from-accent-300 via-sky-300 to-emerald-300 bg-clip-text text-transparent">{copy.highlight}</span>
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-ink-300">
-            We design and integrate AI where it measurably reduces effort — with human review, security and monitoring built in.
+            {copy.description}
           </p>
           <ul className="mt-10 grid gap-4 sm:grid-cols-2">
             {ai.capabilities.map((c, i) => {

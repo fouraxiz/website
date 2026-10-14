@@ -6,10 +6,8 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { pageMetadata } from "@/lib/metadata";
 import { hues, hueAt } from "@/lib/palette";
-import { interestGroups } from "@/lib/contact-options";
-import { offices, site } from "@/data/site";
-import { publishedErpModules } from "@/data/erp-modules";
-import { products } from "@/data/products";
+import { getInterestGroups } from "@/lib/contact-options";
+import { getErpModules, getOffices, getProducts, getSection, getSettings } from "@/lib/cms/content";
 
 export const metadata = pageMetadata({
   title: "Contact Us",
@@ -24,7 +22,15 @@ const expectations = [
   { icon: Clock, title: "Clear next steps", text: "We'll suggest a practical next step: a call, a discovery workshop or a scoped proposal." },
 ];
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const [offices, site, publishedErpModules, products, copy, interestGroups] = await Promise.all([
+    getOffices(),
+    getSettings(),
+    getErpModules(),
+    getProducts(),
+    getSection("page.contact"),
+    getInterestGroups(),
+  ]);
   const contextLabels = {
     module: Object.fromEntries(publishedErpModules.map((m) => [m.slug, m.title])),
     product: Object.fromEntries(products.map((p) => [p.slug, p.name])),
@@ -35,9 +41,9 @@ export default function ContactPage() {
       <PageHero
         decor={{ icons: ["message-square", "headset", "globe", "file-text", "sparkles"], center: "message-square" }}
         crumbs={[{ label: "Company", href: "/about" }, { label: "Contact Us" }]}
-        eyebrow="Contact"
-        title="Let's talk about what you're building."
-        description="Tell us about your organisation, the challenge you're facing or the product you'd like to see. We'll get back to you with practical next steps."
+        eyebrow={copy.eyebrow}
+        title={copy.title}
+        description={copy.description}
       />
 
       <Section>
@@ -79,8 +85,8 @@ export default function ContactPage() {
         <SectionHeading
           eyebrow="Our offices"
           id="offices-heading"
-          title="Bangladesh, New Zealand and Kosovo."
-          description="Each office has its own contact details. Addresses and phone numbers will be listed here as they are confirmed."
+          title={offices.map((o) => o.country).join(", ").replace(/, ([^,]*)$/, " and $1") + "."}
+          description="Each office has its own contact details."
         />
         <div className="mt-12">
           <OfficeCards offices={offices} />

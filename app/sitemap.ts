@@ -1,13 +1,17 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/data/site";
-import { solutions } from "@/data/solutions";
-import { publishedErpModules } from "@/data/erp-modules";
-import { products } from "@/data/products";
-import { services } from "@/data/services";
-import { projects } from "@/data/projects";
-import { industries } from "@/data/industries";
+import { getErpModules, getIndustries, getPosts, getProducts, getProjects, getServices, getSolutions } from "@/lib/cms/content";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const [solutions, publishedErpModules, products, services, projects, industries, posts] = await Promise.all([
+    getSolutions(),
+    getErpModules(),
+    getProducts(),
+    getServices(),
+    getProjects(),
+    getIndustries(),
+    getPosts(),
+  ]);
   const staticPaths: [string, number][] = [
     ["/", 1],
     ["/solutions", 0.9],
@@ -20,6 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/team", 0.6],
     ["/careers", 0.5],
     ["/contact", 0.8],
+    ["/blog", 0.7],
     ["/privacy-policy", 0.2],
     ["/terms-of-service", 0.2],
   ];
@@ -30,6 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...services.map((s): [string, number] => [`/services/${s.slug}`, 0.7]),
     ...projects.map((p): [string, number] => [`/projects/${p.slug}`, 0.6]),
     ...industries.map((i): [string, number] => [`/industries/${i.slug}`, 0.6]),
+    ...posts.filter((p) => p._status === "published").map((p): [string, number] => [`/blog/${p.slug}`, 0.6]),
   ];
   return [...staticPaths, ...dynamicPaths].map(([path, priority]) => ({
     url: new URL(path, site.url).toString(),

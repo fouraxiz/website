@@ -1,12 +1,13 @@
 import { Camera } from "lucide-react";
-import { offices } from "@/data/site";
+import { getOffices } from "@/lib/cms/content";
 
 /**
  * Stand-in for team photography until approved photos are supplied.
  * Clearly labelled as a placeholder; replace by adding members with photos
  * in data/team.ts (the homepage switches to real portraits automatically).
  */
-export function TeamPhotoPlaceholder() {
+export async function TeamPhotoPlaceholder() {
+  const offices = await getOffices();
   return (
     <figure className="relative">
       <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-ink-800 via-ink-900 to-ink-950">

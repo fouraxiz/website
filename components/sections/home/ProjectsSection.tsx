@@ -1,22 +1,20 @@
 import { HomeProjects } from "./HomeProjects";
 import { ButtonLink } from "@/components/ui/Button";
-import { Hl, SectionHeading } from "@/components/ui/Section";
-import { projects } from "@/data/projects";
+import { CopyTitle, SectionHeading } from "@/components/ui/Section";
+import { getProjects } from "@/lib/cms/content";
+import type { SectionEntry } from "@/lib/cms/content";
 
-export function ProjectsSection() {
+export async function ProjectsSection({ copy }: { copy: SectionEntry }) {
+  const projects = await getProjects();
   return (
     <section className="bg-ink-50 py-20 sm:py-28" aria-labelledby="projects-heading">
       <div className="container-site">
         <SectionHeading
           align="center"
-          eyebrow="Portfolio"
+          eyebrow={copy.eyebrow ?? undefined}
           id="projects-heading"
-          title={
-            <>
-              Featured <Hl>Projects</Hl>
-            </>
-          }
-          description="Products, platforms and custom systems we've designed and delivered."
+          title={<CopyTitle title={copy.title} highlight={copy.highlight} />}
+          description={copy.description ?? undefined}
         />
         <div className="mt-10">
           <HomeProjects projects={projects} />

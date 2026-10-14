@@ -11,8 +11,8 @@ import { AppMockup } from "@/components/visuals/AppMockup";
 import { IconTile } from "@/components/ui/IconTile";
 import { hueAt } from "@/lib/palette";
 import { pageMetadata } from "@/lib/metadata";
-import { erpStatusLabel, publishedErpModules } from "@/data/erp-modules";
-import { getProduct } from "@/data/products";
+import { erpStatusLabel } from "@/data/erp-modules";
+import { bySlug, getErpModules, getProducts } from "@/lib/cms/content";
 import type { ErpModule } from "@/types";
 
 export const metadata = pageMetadata({
@@ -31,8 +31,9 @@ const principles = [
   { title: "Extended when needed", text: "Industry-specific modules and integrations are built on the same foundation." },
 ];
 
-export default function ErpPage() {
-  const erp = getProduct("4axiz-erp")!;
+export default async function ErpPage() {
+  const [publishedErpModules, products] = await Promise.all([getErpModules(), getProducts()]);
+  const erp = bySlug(products, "4axiz-erp") ?? products[0];
   const grouped = groupOrder
     .map((g) => ({ group: g, modules: publishedErpModules.filter((m) => m.group === g) }))
     .filter((g) => g.modules.length > 0);

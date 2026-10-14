@@ -2,6 +2,7 @@ import Link from "next/link";
 import { LegalPage } from "@/components/templates/LegalPage";
 import { pageMetadata } from "@/lib/metadata";
 import { site } from "@/data/site";
+import { getSettings } from "@/lib/cms/content";
 
 export const metadata = pageMetadata({
   title: "Privacy Policy",
@@ -9,12 +10,13 @@ export const metadata = pageMetadata({
   path: "/privacy-policy",
 });
 
-export default function PrivacyPolicyPage() {
+export default async function PrivacyPolicyPage() {
+  const settings = await getSettings();
   return (
-    <LegalPage title="Privacy Policy" intro={`How ${site.legalName} handles personal information collected through this website.`}>
+    <LegalPage title="Privacy Policy" intro={`How ${settings.legalName} handles personal information collected through this website.`}>
       <h2>1. Who we are</h2>
       <p>
-        This website is operated by {site.legalName} (&ldquo;4axiz&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;). We are responsible for the personal
+        This website is operated by {settings.legalName} (&ldquo;4axiz&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;). We are responsible for the personal
         information described in this policy.
       </p>
       <h2>2. Information we collect</h2>

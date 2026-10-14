@@ -10,8 +10,7 @@ import { buttonClasses } from "@/components/ui/Button";
 import { Icon } from "@/lib/icons";
 import { hues, hueAt } from "@/lib/palette";
 import { cn } from "@/lib/utils";
-import { erpNavLinks, mainNav, type MenuKind } from "@/data/navigation";
-import { site } from "@/data/site";
+import type { MenuKind } from "@/data/navigation";
 import type { NavItem, NavLink } from "@/types";
 
 type Item = NavItem & { menu?: MenuKind };
@@ -21,7 +20,9 @@ function isActive(pathname: string, item: Item) {
   return pathname === item.href || pathname.startsWith(`${item.href}/`);
 }
 
-export function Header() {
+export function Header({ nav, erpLinks, phone }: { nav: Item[]; erpLinks: NavLink[]; phone: string | null }) {
+  const mainNav = nav;
+  const site = { phone };
   const pathname = usePathname();
   const [open, setOpen] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -93,6 +94,8 @@ export function Header() {
                   <DesktopMenu
                     key={item.label}
                     item={item}
+                    erpLinks={erpLinks}
+                    phone={phone}
                     active={isActive(pathname, item)}
                     open={open === item.label}
                     setOpen={(v) => setOpen(v ? item.label : null)}
@@ -141,7 +144,7 @@ export function Header() {
         </div>
       </header>
       {/* Outside <header>: its backdrop-filter would otherwise become the containing block for this fixed panel. */}
-      <MobileNav open={mobileOpen} pathname={pathname} top={panelTop} />
+      <MobileNav open={mobileOpen} pathname={pathname} top={panelTop} nav={nav} phone={phone} />
     </>
   );
 }
@@ -149,7 +152,21 @@ export function Header() {
 const navLinkClass =
   "relative inline-flex h-20 items-center gap-1 px-3.5 text-[0.92rem] font-semibold transition-colors after:absolute after:inset-x-3.5 after:bottom-0 after:h-[3px] after:origin-left after:scale-x-0 after:rounded-t-full after:bg-brand-500 after:transition-transform hover:after:scale-x-100";
 
-function DesktopMenu({ item, active, open, setOpen }: { item: Item; active: boolean; open: boolean; setOpen: (v: boolean) => void }) {
+function DesktopMenu({
+  item,
+  active,
+  open,
+  setOpen,
+  erpLinks,
+  phone,
+}: {
+  item: Item;
+  active: boolean;
+  open: boolean;
+  setOpen: (v: boolean) => void;
+  erpLinks: NavLink[];
+  phone: string | null;
+}) {
   const id = useId();
   const reduce = useReducedMotion();
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -194,9 +211,11 @@ function DesktopMenu({ item, active, open, setOpen }: { item: Item; active: bool
           >
             <div className="overflow-hidden rounded-b-2xl border border-t-0 border-ink-200 bg-white shadow-[0_30px_60px_-20px_rgb(18_21_23/0.3)]">
               <div className="h-[3px] bg-gradient-to-r from-brand-500 via-accent-500 to-sky-500" aria-hidden="true" />
-              {item.menu === "solutions" && <SolutionsMenu links={item.children!} />}
+              {item.menu === "solutions" && <SolutionsMenu links={item.children!} erpLinks={erpLinks} />}
               {item.menu === "services" && <ServicesMenu links={item.children!} />}
-              {(item.menu === "products" || item.menu === "company") && <SimpleMenu links={item.children!} footer={item.menu} />}
+              {(item.menu === "products" || item.menu === "company" || !item.menu) && (
+                <SimpleMenu links={item.children!} footer={item.menu ?? "products"} phone={phone} />
+              )}
             </div>
           </motion.div>
         )}
@@ -229,7 +248,7 @@ function MenuLink({ link, index, compact = false }: { link: NavLink; index: numb
   );
 }
 
-function SolutionsMenu({ links }: { links: NavLink[] }) {
+function SolutionsMenu({ links, erpLinks }: { links: NavLink[]; erpLinks: NavLink[] }) {
   return (
     <div className="grid grid-cols-[1.3fr_1.2fr_0.9fr]">
       <div className="p-5">
@@ -245,7 +264,7 @@ function SolutionsMenu({ links }: { links: NavLink[] }) {
       <div className="border-x border-ink-100 bg-ink-50/60 p-5">
         <p className="px-3 text-xs font-semibold tracking-[0.14em] text-ink-400 uppercase">ERP modules</p>
         <ul className="mt-2 grid grid-cols-2 gap-0.5">
-          {erpNavLinks.map((m, i) => (
+          {erpLinks.map((m, i) => (
             <li key={m.href}>
               <Link href={m.href} className="group flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-ink-700 hover:bg-white hover:text-brand-600">
                 {m.icon && <Icon name={m.icon} className={cn("size-4", hues[hueAt(i + 2)].text)} />}
@@ -301,7 +320,8 @@ function ServicesMenu({ links }: { links: NavLink[] }) {
   );
 }
 
-function SimpleMenu({ links, footer }: { links: NavLink[]; footer: MenuKind }) {
+function SimpleMenu({ links, footer, phone }: { links: NavLink[]; footer: MenuKind; phone: string | null }) {
+  const site = { phone };
   return (
     <>
       <ul className="grid gap-0.5 p-3">
@@ -334,7 +354,21 @@ function SimpleMenu({ links, footer }: { links: NavLink[]; footer: MenuKind }) {
   );
 }
 
-function MobileNav({ open, pathname, top }: { open: boolean; pathname: string; top: number }) {
+function MobileNav({
+  open,
+  pathname,
+  top,
+  nav,
+  phone,
+}: {
+  open: boolean;
+  pathname: string;
+  top: number;
+  nav: Item[];
+  phone: string | null;
+}) {
+  const mainNav = nav;
+  const site = { phone };
   const [expanded, setExpanded] = useState<string | null>(null);
   const reduce = useReducedMotion();
 

@@ -1,11 +1,14 @@
 import { Camera, Check, Phone } from "lucide-react";
 import { AboutTabs } from "./AboutTabs";
 import { ButtonLink } from "@/components/ui/Button";
-import { Hl } from "@/components/ui/Section";
-import { TechLogo } from "@/components/ui/TechLogo";
-import { companyValues, mission, site, technologies, vision } from "@/data/site";
+import { CopyTitle } from "@/components/ui/Section";
+import { getSettings, getTechnologies, getValues } from "@/lib/cms/content";
+import type { SectionEntry } from "@/lib/cms/content";
+import { TechIcon } from "@/components/ui/TechIcon";
 
-export function AboutSection() {
+export async function AboutSection({ copy }: { copy: SectionEntry }) {
+  const [site, technologies, companyValues] = await Promise.all([getSettings(), getTechnologies(), getValues()]);
+  const { mission, vision } = site;
   const years = site.foundedYear ? new Date().getFullYear() - site.foundedYear : null;
   return (
     <section className="bg-white pt-24 pb-20 sm:pt-28 sm:pb-28" aria-labelledby="about-heading">
@@ -38,7 +41,7 @@ export function AboutSection() {
               <ul className="mt-3 grid grid-cols-4 gap-2.5">
                 {technologies.slice(0, 8).map((t) => (
                   <li key={t.name} title={t.name} className="flex aspect-square items-center justify-center rounded-xl bg-white shadow-sm">
-                    <TechLogo icon={t.icon} className="size-5" />
+                    <TechIcon tech={t} className="size-5" />
                     <span className="sr-only">{t.name}</span>
                   </li>
                 ))}
@@ -60,10 +63,10 @@ export function AboutSection() {
         <div>
           <p className="eyebrow">
             <span className="h-px w-6 bg-current" aria-hidden="true" />
-            About 4axiz
+            {copy.eyebrow}
           </p>
           <h2 id="about-heading" className="mt-4 text-3xl leading-tight font-bold tracking-tight sm:text-[2.6rem]">
-            Who <Hl>We Are</Hl>
+            <CopyTitle title={copy.title} highlight={copy.highlight} />
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-ink-600">
             {site.legalName} delivers cost-effective, creative and high-quality software for local and global markets

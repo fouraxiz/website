@@ -1,27 +1,24 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
-import { Hl, SectionHeading } from "@/components/ui/Section";
+import { CopyTitle, SectionHeading } from "@/components/ui/Section";
 import { Icon } from "@/lib/icons";
 import { hues, hueAt } from "@/lib/palette";
 import { cn } from "@/lib/utils";
-import { services } from "@/data/services";
+import { getServices } from "@/lib/cms/content";
+import type { SectionEntry } from "@/lib/cms/content";
 
-export function ServicesGrid() {
-  const list = services.filter((s) => s.featured).slice(0, 8);
+export async function ServicesGrid({ copy }: { copy: SectionEntry }) {
+  const list = (await getServices()).filter((s) => s.featured).slice(0, 8);
   return (
     <section className="relative bg-ink-50 py-20 sm:py-28" aria-labelledby="services-heading">
       <div className="container-site">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
-            eyebrow="What we do"
+            eyebrow={copy.eyebrow ?? undefined}
             id="services-heading"
-            title={
-              <>
-                Our <Hl>Services</Hl>
-              </>
-            }
-            description="One accountable team for strategy, design, engineering, quality and long-term support."
+            title={<CopyTitle title={copy.title} highlight={copy.highlight} />}
+            description={copy.description ?? undefined}
           />
           <ButtonLink href="/services" variant="secondary" arrow>
             All services

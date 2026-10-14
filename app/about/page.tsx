@@ -9,9 +9,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { TeamPortrait } from "@/components/team/TeamPortrait";
 import { Icon } from "@/lib/icons";
 import { pageMetadata } from "@/lib/metadata";
-import { companyValues, mission, offices, site, vision } from "@/data/site";
-import { solutions } from "@/data/solutions";
-import { leadership } from "@/data/team";
+import { getOffices, getSettings, getSolutions, getTeam, getValues } from "@/lib/cms/content";
 
 export const metadata = pageMetadata({
   title: "About Us",
@@ -27,7 +25,10 @@ const reasons = [
   { title: "International reach, close collaboration", text: "Teams across three countries give us range, while every engagement keeps a single accountable lead." },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const [site, offices, solutions, team, companyValues] = await Promise.all([getSettings(), getOffices(), getSolutions(), getTeam(), getValues()]);
+  const { mission, vision } = site;
+  const leadership = team.filter((m) => m.leadership);
   return (
     <>
       <PageHero

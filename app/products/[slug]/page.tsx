@@ -13,32 +13,26 @@ import { PlaceholderNote } from "@/components/ui/PlaceholderNote";
 import { AppMockup } from "@/components/visuals/AppMockup";
 import { ProductCard } from "@/components/products/ProductCard";
 import { pageMetadata } from "@/lib/metadata";
-import { getProduct, productKindLabel, products } from "@/data/products";
-import { getErpModule } from "@/data/erp-modules";
-import { getProject } from "@/data/projects";
+import { productKindLabel } from "@/data/products";
+import { bySlug, getErpModules, getProducts, getProjects } from "@/lib/cms/content";
 
 type Params = { slug: string };
 
-export const dynamicParams = false;
-
-export function generateStaticParams(): Params[] {
-  return products.map((p) => ({ slug: p.slug }));
-}
-
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug } = await params;
-  const p = getProduct(slug);
+  const p = bySlug(await getProducts(), slug);
   if (!p) return {};
   return pageMetadata({ title: p.name, description: `${p.tagline} ${p.summary}`, path: `/products/${p.slug}` });
 }
 
 export default async function ProductPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
-  const p = getProduct(slug);
+  const [products, erpModules, projects] = await Promise.all([getProducts(), getErpModules(), getProjects()]);
+  const p = bySlug(products, slug);
   if (!p) notFound();
 
-  const erpModule = p.erpModule ? getErpModule(p.erpModule) : undefined;
-  const project = p.relatedProject ? getProject(p.relatedProject) : undefined;
+  const erpModule = p.erpModule ? bySlug(erpModules, p.erpModule) : undefined;
+  const project = p.relatedProject ? bySlug(projects, p.relatedProject) : undefined;
   const others = products.filter((o) => o.slug !== p.slug && (o.kind === p.kind || o.category === p.category)).slice(0, 3);
 
   return (

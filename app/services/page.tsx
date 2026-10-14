@@ -8,8 +8,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { IconTile } from "@/components/ui/IconTile";
 import { pageMetadata } from "@/lib/metadata";
 import { hueAt } from "@/lib/palette";
-import { services } from "@/data/services";
-import { processSteps } from "@/data/process";
+import { getProcess, getSection, getServices } from "@/lib/cms/content";
 
 export const metadata = pageMetadata({
   title: "Services",
@@ -18,16 +17,17 @@ export const metadata = pageMetadata({
   path: "/services",
 });
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const [services, processSteps, copy] = await Promise.all([getServices(), getProcess(), getSection("page.services")]);
   const [lead, ...rest] = services;
   return (
     <>
       <PageHero
         decor={{ icons: ["code", "smartphone", "cloud", "palette", "plug"], center: "layers" }}
         crumbs={[{ label: "Services" }]}
-        eyebrow="Services"
-        title="Engineering services from strategy to support."
-        description="A single team that can take your idea from discovery to production — and keep it running well for years after launch."
+        eyebrow={copy.eyebrow}
+        title={copy.title}
+        description={copy.description}
         actions={
           <ButtonLink href="/contact" arrow>
             Start a project

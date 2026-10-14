@@ -11,30 +11,23 @@ import { IconTile } from "@/components/ui/IconTile";
 import { Icon } from "@/lib/icons";
 import { pageMetadata } from "@/lib/metadata";
 import { hueAt } from "@/lib/palette";
-import { pickBySlug } from "@/lib/utils";
-import { getIndustry, industries } from "@/data/industries";
-import { projects } from "@/data/projects";
+import { bySlug, getIndustries, getProjects, pickSlugs } from "@/lib/cms/content";
 
 type Params = { slug: string };
 
-export const dynamicParams = false;
-
-export function generateStaticParams(): Params[] {
-  return industries.map((i) => ({ slug: i.slug }));
-}
-
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug } = await params;
-  const i = getIndustry(slug);
+  const i = bySlug(await getIndustries(), slug);
   if (!i) return {};
   return pageMetadata({ title: `Software for ${i.title}`, description: `${i.summary} Solutions from 4axiz IT Limited.`, path: `/industries/${i.slug}` });
 }
 
 export default async function IndustryPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
-  const i = getIndustry(slug);
+  const [industries, projects] = await Promise.all([getIndustries(), getProjects()]);
+  const i = bySlug(industries, slug);
   if (!i) notFound();
-  const relatedProjects = pickBySlug(projects, i.relatedProjects);
+  const relatedProjects = pickSlugs(projects, i.relatedProjects);
   const others = industries.filter((o) => o.slug !== i.slug);
 
   return (

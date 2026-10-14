@@ -1,16 +1,18 @@
-import { SectionHeading } from "@/components/ui/Section";
+import { CopyTitle, SectionHeading } from "@/components/ui/Section";
 import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
-import { processSteps } from "@/data/process";
+import { getProcess } from "@/lib/cms/content";
+import type { SectionEntry } from "@/lib/cms/content";
 
-export function ProcessSection() {
+export async function ProcessSection({ copy }: { copy: SectionEntry }) {
+  const processSteps = await getProcess();
   return (
     <section className="bg-ink-50 py-20 sm:py-28" aria-labelledby="process-heading">
       <div className="container-site">
         <SectionHeading
-          eyebrow="How we work"
+          eyebrow={copy.eyebrow ?? undefined}
           id="process-heading"
-          title="A clear process from first conversation to long-term support."
-          description="Six stages, each with tangible outputs you can review — so you always know where your project stands."
+          title={<CopyTitle title={copy.title} highlight={copy.highlight} />}
+          description={copy.description ?? undefined}
         />
         <div className="mt-14">
           <ProcessTimeline steps={processSteps} />

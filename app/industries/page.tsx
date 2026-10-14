@@ -6,7 +6,7 @@ import { Section } from "@/components/ui/Section";
 import { IconTile } from "@/components/ui/IconTile";
 import { pageMetadata } from "@/lib/metadata";
 import { hueAt } from "@/lib/palette";
-import { industries } from "@/data/industries";
+import { getIndustries, getSection } from "@/lib/cms/content";
 
 export const metadata = pageMetadata({
   title: "Industries",
@@ -15,15 +15,16 @@ export const metadata = pageMetadata({
   path: "/industries",
 });
 
-export default function IndustriesPage() {
+export default async function IndustriesPage() {
+  const [industries, copy] = await Promise.all([getIndustries(), getSection("page.industries")]);
   return (
     <>
       <PageHero
         decor={{ icons: ["stethoscope", "graduation-cap", "shopping-cart", "factory", "truck"], center: "briefcase" }}
         crumbs={[{ label: "Industries" }]}
-        eyebrow="Industries"
-        title="Solutions shaped around your sector."
-        description="Every industry has its own regulations, workflows and pressures. We bring solutions designed for them — and the flexibility to fit your organisation."
+        eyebrow={copy.eyebrow}
+        title={copy.title}
+        description={copy.description}
       />
       <Section>
         <ul className="grid gap-5 md:grid-cols-2">

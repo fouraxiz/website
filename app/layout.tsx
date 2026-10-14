@@ -5,7 +5,8 @@ import { Header } from "@/components/layout/Header";
 import { TopBar } from "@/components/layout/TopBar";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/ui/JsonLd";
-import { site, socialLinks } from "@/data/site";
+import { site } from "@/data/site";
+import { getErpModules, getNav, getSettings } from "@/lib/cms/content";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const poppins = Poppins({ subsets: ["latin"], variable: "--font-poppins", display: "swap", weight: ["500", "600", "700", "800"] });
@@ -35,14 +36,19 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+/** Content is edited live from the site, so pages render per request (data itself is cached). */
+export const dynamic = "force-dynamic";
+
 export const viewport: Viewport = {
   themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1,
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const sameAs = socialLinks.map((s) => s.url).filter(Boolean);
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const [settings, nav, erp] = await Promise.all([getSettings(), getNav(), getErpModules()]);
+  const sameAs = settings.socials.map((s) => s.url).filter(Boolean);
+  const erpLinks = erp.map((m) => ({ label: m.shortTitle, href: `/solutions/erp/${m.slug}`, icon: m.icon }));
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body>
@@ -54,9 +60,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             alternateName: site.name,
             url: site.url,
             ...(sameAs.length ? { sameAs } : {}),
-            ...(site.email ? { email: site.email } : {}),
-            ...(site.phone ? { telephone: site.phone } : {}),
-            ...(site.foundedYear ? { foundingDate: String(site.foundedYear) } : {}),
+            ...(settings.email ? { email: settings.email } : {}),
+            ...(settings.phone ? { telephone: settings.phone } : {}),
+            ...(settings.foundedYear ? { foundingDate: String(settings.foundedYear) } : {}),
             address: {
               "@type": "PostalAddress",
               streetAddress: "Level-4, House #34, Lane #6/2, Road #20/B, DUIP Plot, Block D, Mirpur-12",
@@ -67,7 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
         <TopBar />
-        <Header />
+        <Header nav={nav} erpLinks={erpLinks} phone={settings.phone} />
         <main id="main">{children}</main>
         <Footer />
       </body>

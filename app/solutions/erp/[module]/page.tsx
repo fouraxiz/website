@@ -12,20 +12,14 @@ import { FeatureGrid } from "@/components/ui/FeatureGrid";
 import { AppMockup } from "@/components/visuals/AppMockup";
 import { Icon } from "@/lib/icons";
 import { pageMetadata } from "@/lib/metadata";
-import { pickBySlug } from "@/lib/utils";
-import { erpStatusLabel, getErpModule, publishedErpModules } from "@/data/erp-modules";
+import { erpStatusLabel } from "@/data/erp-modules";
+import { bySlug, getErpModules, pickSlugs } from "@/lib/cms/content";
 
 type Params = { module: string };
 
-export const dynamicParams = false;
-
-export function generateStaticParams(): Params[] {
-  return publishedErpModules.map((m) => ({ module: m.slug }));
-}
-
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { module } = await params;
-  const m = getErpModule(module);
+  const m = bySlug(await getErpModules(), module);
   if (!m) return {};
   return pageMetadata({
     title: `${m.title} — ERP Module`,
@@ -37,9 +31,10 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 /** Shared ERP module template — every module page is generated from data/erp-modules.ts. */
 export default async function ErpModulePage({ params }: { params: Promise<Params> }) {
   const { module } = await params;
-  const m = getErpModule(module);
+  const publishedErpModules = await getErpModules();
+  const m = bySlug(publishedErpModules, module);
   if (!m) notFound();
-  const related = pickBySlug(publishedErpModules, m.related);
+  const related = pickSlugs(publishedErpModules, m.related);
 
   return (
     <>

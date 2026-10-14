@@ -10,22 +10,14 @@ import { CheckList } from "@/components/ui/CheckList";
 import { FeatureGrid } from "@/components/ui/FeatureGrid";
 import { Icon } from "@/lib/icons";
 import { pageMetadata } from "@/lib/metadata";
-import { pickBySlug } from "@/lib/utils";
-import { getService, services } from "@/data/services";
-import { projects } from "@/data/projects";
+import { bySlug, getProjects, getServices, pickSlugs } from "@/lib/cms/content";
 import type { Service } from "@/types";
 
 type Params = { slug: string };
 
-export const dynamicParams = false;
-
-export function generateStaticParams(): Params[] {
-  return services.map((s) => ({ slug: s.slug }));
-}
-
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug } = await params;
-  const s = getService(slug);
+  const s = bySlug(await getServices(), slug);
   if (!s) return {};
   return pageMetadata({ title: s.title, description: s.seoDescription, path: `/services/${s.slug}` });
 }
@@ -68,9 +60,10 @@ function ServiceVisual({ service }: { service: Service }) {
 
 export default async function ServicePage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
-  const s = getService(slug);
+  const [services, projects] = await Promise.all([getServices(), getProjects()]);
+  const s = bySlug(services, slug);
   if (!s) notFound();
-  const relatedProjects = pickBySlug(projects, s.relatedProjects);
+  const relatedProjects = pickSlugs(projects, s.relatedProjects);
   const otherServices = services.filter((o) => o.slug !== s.slug).slice(0, 6);
 
   return (

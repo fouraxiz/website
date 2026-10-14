@@ -4,7 +4,8 @@ import { Section } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
 import { ProductsExplorer } from "@/components/products/ProductsExplorer";
 import { pageMetadata } from "@/lib/metadata";
-import { productKindDescription, productKindLabel, products } from "@/data/products";
+import { productKindDescription, productKindLabel } from "@/data/products";
+import { getProducts, getSection } from "@/lib/cms/content";
 import type { ProductKind } from "@/types";
 
 export const metadata = pageMetadata({
@@ -16,15 +17,16 @@ export const metadata = pageMetadata({
 
 const kinds: ProductKind[] = ["platform", "standalone", "erp-module", "custom"];
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  const [products, copy] = await Promise.all([getProducts(), getSection("page.products")]);
   return (
     <>
       <PageHero
         decor={{ icons: ["calculator", "users", "scan-barcode", "package", "graduation-cap"], center: "boxes" }}
         crumbs={[{ label: "Products" }]}
-        eyebrow="Products"
-        title="Business software built to run real operations."
-        description="From the connected 4axiz ERP platform to focused products for retail and education — plus custom solutions when your process needs something of its own."
+        eyebrow={copy.eyebrow}
+        title={copy.title}
+        description={copy.description}
         actions={
           <>
             <ButtonLink href="/contact?interest=demo" arrow>

@@ -11,35 +11,26 @@ import { FeatureGrid } from "@/components/ui/FeatureGrid";
 import { IconTile } from "@/components/ui/IconTile";
 import { Icon } from "@/lib/icons";
 import { pageMetadata } from "@/lib/metadata";
-import { pickBySlug } from "@/lib/utils";
-import { getSolution, solutions } from "@/data/solutions";
-import { services } from "@/data/services";
-import { projects } from "@/data/projects";
-import { industries } from "@/data/industries";
+import { bySlug, getIndustries, getProjects, getServices, getSolutions, pickSlugs } from "@/lib/cms/content";
 
 type Params = { slug: string };
 
-export const dynamicParams = false;
-
-export function generateStaticParams(): Params[] {
-  return solutions.map((s) => ({ slug: s.slug }));
-}
-
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug } = await params;
-  const s = getSolution(slug);
+  const s = bySlug(await getSolutions(), slug);
   if (!s) return {};
   return pageMetadata({ title: s.title, description: s.seoDescription, path: s.href });
 }
 
 export default async function SolutionPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
-  const s = getSolution(slug);
+  const s = bySlug(await getSolutions(), slug);
   if (!s) notFound();
+  const [services, projects, industries] = await Promise.all([getServices(), getProjects(), getIndustries()]);
 
-  const relatedServices = pickBySlug(services, s.relatedServices);
-  const relatedProjects = pickBySlug(projects, s.relatedProjects);
-  const relatedIndustries = pickBySlug(industries, s.relatedIndustries);
+  const relatedServices = pickSlugs(services, s.relatedServices);
+  const relatedProjects = pickSlugs(projects, s.relatedProjects);
+  const relatedIndustries = pickSlugs(industries, s.relatedIndustries);
   const isAi = s.slug === "ai";
 
   return (

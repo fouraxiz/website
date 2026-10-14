@@ -12,35 +12,28 @@ import { CheckList } from "@/components/ui/CheckList";
 import { PlaceholderNote, Tbc } from "@/components/ui/PlaceholderNote";
 import { ProjectCover } from "@/components/projects/ProjectCover";
 import { pageMetadata } from "@/lib/metadata";
-import { pickBySlug } from "@/lib/utils";
-import { getProject, projects } from "@/data/projects";
-import { solutions } from "@/data/solutions";
+import { bySlug, getProjects, getSolutions, pickSlugs } from "@/lib/cms/content";
 
 type Params = { slug: string };
 
-export const dynamicParams = false;
-
-export function generateStaticParams(): Params[] {
-  return projects.map((p) => ({ slug: p.slug }));
-}
-
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug } = await params;
-  const p = getProject(slug);
+  const p = bySlug(await getProjects(), slug);
   if (!p) return {};
   return pageMetadata({ title: `${p.name} — Project`, description: `${p.summary} A ${p.industry.toLowerCase()} project by 4axiz IT Limited.`, path: `/projects/${p.slug}` });
 }
 
 export default async function ProjectPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
-  const p = getProject(slug);
+  const [projects, solutions] = await Promise.all([getProjects(), getSolutions()]);
+  const p = bySlug(projects, slug);
   if (!p) notFound();
 
   const related = projects
     .filter((o) => o.slug !== p.slug)
     .sort((a, b) => b.categories.filter((c) => p.categories.includes(c)).length - a.categories.filter((c) => p.categories.includes(c)).length)
     .slice(0, 3);
-  const relatedSolutions = pickBySlug(solutions, p.relatedSolutions);
+  const relatedSolutions = pickSlugs(solutions, p.relatedSolutions);
   const caseStudyPending = !p.challenge || !p.solution;
 
   return (

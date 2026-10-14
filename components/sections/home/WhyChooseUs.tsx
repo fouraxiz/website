@@ -1,8 +1,10 @@
 import { Code2, Globe2, Headphones, Layers, RefreshCw, ShieldCheck } from "lucide-react";
-import { Hl } from "@/components/ui/Section";
-import { site } from "@/data/site";
+import { CopyTitle } from "@/components/ui/Section";
+import { getSettings } from "@/lib/cms/content";
+import type { SectionEntry } from "@/lib/cms/content";
 
-export function WhyChooseUs() {
+export async function WhyChooseUs({ copy }: { copy: SectionEntry }) {
+  const site = await getSettings();
   const years = site.foundedYear ? new Date().getFullYear() - site.foundedYear : null;
   return (
     <section className="bg-ink-50 py-20 sm:py-28" aria-labelledby="why-heading">
@@ -11,15 +13,14 @@ export function WhyChooseUs() {
           <div>
             <p className="eyebrow">
               <span className="h-px w-6 bg-current" aria-hidden="true" />
-              Why 4axiz
+              {copy.eyebrow}
             </p>
             <h2 id="why-heading" className="mt-4 text-3xl leading-tight font-bold tracking-tight sm:text-[2.6rem]">
-              What makes us <Hl>different</Hl>
+              <CopyTitle title={copy.title} highlight={copy.highlight} />
             </h2>
           </div>
           <p className="text-lg leading-relaxed text-ink-600">
-            We combine our own proven products with custom engineering — so you get software that fits, delivered by a team that stays with
-            you long after launch.
+            {copy.description}
           </p>
         </div>
 

@@ -1,39 +1,34 @@
 import Link from "next/link";
 import { ArrowUpRight, Check } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
-import { Hl, SectionHeading } from "@/components/ui/Section";
+import { CopyTitle, SectionHeading } from "@/components/ui/Section";
 import { AppMockup } from "@/components/visuals/AppMockup";
 import { Icon } from "@/lib/icons";
 import { hues, type Hue } from "@/lib/palette";
 import { cn } from "@/lib/utils";
-import { getProduct, productKindLabel } from "@/data/products";
+import { productKindLabel } from "@/data/products";
+import { getProducts } from "@/lib/cms/content";
+import type { SectionEntry } from "@/lib/cms/content";
 
-const showcase: { slug: string; hue: Hue }[] = [
-  { slug: "4axiz-erp", hue: "sky" },
-  { slug: "pos", hue: "amber" },
-  { slug: "school-management", hue: "violet" },
-  { slug: "custom-business-solutions", hue: "emerald" },
-];
+const showcaseHues: Hue[] = ["sky", "amber", "violet", "emerald", "rose", "indigo"];
 
-export function ProductShowcase() {
+export async function ProductShowcase({ copy }: { copy: SectionEntry }) {
+  const showcase = (await getProducts())
+    .filter((p) => p.kind !== "erp-module")
+    .slice(0, 4)
+    .map((p, i) => ({ p, hue: showcaseHues[i % showcaseHues.length] }));
   return (
     <section className="bg-white py-20 sm:py-28" aria-labelledby="products-heading">
       <div className="container-site">
         <SectionHeading
           align="center"
-          eyebrow="Our products"
+          eyebrow={copy.eyebrow ?? undefined}
           id="products-heading"
-          title={
-            <>
-              Software that runs <Hl>real businesses</Hl>
-            </>
-          }
-          description="Ready-to-deploy business software — and the engineering team to tailor it to you."
+          title={<CopyTitle title={copy.title} highlight={copy.highlight} />}
+          description={copy.description ?? undefined}
         />
         <ul className="mt-14 space-y-6">
-          {showcase.map(({ slug, hue }, i) => {
-            const p = getProduct(slug);
-            if (!p) return null;
+          {showcase.map(({ p, hue }, i) => {
             const h = hues[hue];
             return (
               <li key={p.slug}>

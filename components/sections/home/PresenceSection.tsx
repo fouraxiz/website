@@ -1,8 +1,10 @@
 import { OfficeCards } from "@/components/sections/OfficeCards";
-import { Hl, SectionHeading } from "@/components/ui/Section";
-import { offices } from "@/data/site";
+import { CopyTitle, SectionHeading } from "@/components/ui/Section";
+import { getOffices } from "@/lib/cms/content";
+import type { SectionEntry } from "@/lib/cms/content";
 
-export function PresenceSection() {
+export async function PresenceSection({ copy }: { copy: SectionEntry }) {
+  const offices = await getOffices();
   return (
     <section className="relative overflow-hidden bg-ink-50 py-20 sm:py-28" aria-labelledby="presence-heading">
       <svg className="mask-radial pointer-events-none absolute inset-0 size-full text-ink-300/60" aria-hidden="true">
@@ -16,14 +18,10 @@ export function PresenceSection() {
       <div className="container-site relative">
         <SectionHeading
           align="center"
-          eyebrow="Global presence"
+          eyebrow={copy.eyebrow ?? undefined}
           id="presence-heading"
-          title={
-            <>
-              Three countries. <Hl>One team.</Hl>
-            </>
-          }
-          description="Offices in Bangladesh, New Zealand and Kosovo let us work closely with clients across regions and time zones."
+          title={<CopyTitle title={copy.title} highlight={copy.highlight} />}
+          description={copy.description ?? undefined}
         />
         <div className="mt-12">
           <OfficeCards offices={offices} />

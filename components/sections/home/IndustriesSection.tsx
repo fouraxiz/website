@@ -1,24 +1,22 @@
 import Link from "next/link";
-import { Hl, SectionHeading } from "@/components/ui/Section";
+import { CopyTitle, SectionHeading } from "@/components/ui/Section";
 import { Icon } from "@/lib/icons";
 import { hues, hueAt } from "@/lib/palette";
 import { cn } from "@/lib/utils";
-import { industries } from "@/data/industries";
+import { getIndustries } from "@/lib/cms/content";
+import type { SectionEntry } from "@/lib/cms/content";
 
-export function IndustriesSection() {
+export async function IndustriesSection({ copy }: { copy: SectionEntry }) {
+  const industries = await getIndustries();
   return (
     <section className="bg-white py-20 sm:py-28" aria-labelledby="industries-heading">
       <div className="container-site">
         <SectionHeading
           align="center"
-          eyebrow="Industries"
+          eyebrow={copy.eyebrow ?? undefined}
           id="industries-heading"
-          title={
-            <>
-              Industries <Hl>we serve</Hl>
-            </>
-          }
-          description="Solutions shaped around the pressures of your sector."
+          title={<CopyTitle title={copy.title} highlight={copy.highlight} />}
+          description={copy.description ?? undefined}
         />
         <ul className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-4">
           {industries.map((ind, i) => {

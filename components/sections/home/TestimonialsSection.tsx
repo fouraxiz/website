@@ -1,14 +1,16 @@
 import { Quote } from "lucide-react";
-import { SectionHeading } from "@/components/ui/Section";
-import { approvedTestimonials } from "@/data/testimonials";
+import { CopyTitle, SectionHeading } from "@/components/ui/Section";
+import { getTestimonials } from "@/lib/cms/content";
+import type { SectionEntry } from "@/lib/cms/content";
 
 /** Renders only when approved testimonials exist (see data/testimonials.ts). */
-export function TestimonialsSection() {
+export async function TestimonialsSection({ copy }: { copy: SectionEntry }) {
+  const approvedTestimonials = await getTestimonials();
   if (approvedTestimonials.length === 0) return null;
   return (
     <section className="bg-ink-50 py-20 sm:py-28" aria-labelledby="testimonials-heading">
       <div className="container-site">
-        <SectionHeading eyebrow="Client voices" id="testimonials-heading" title="What our clients say." align="center" />
+        <SectionHeading eyebrow={copy.eyebrow ?? undefined} id="testimonials-heading" title={<CopyTitle title={copy.title} highlight={copy.highlight} />} align="center" />
         <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {approvedTestimonials.map((t) => (
             <li key={t.id}>

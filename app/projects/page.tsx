@@ -3,7 +3,7 @@ import { CtaBand } from "@/components/sections/CtaBand";
 import { Section } from "@/components/ui/Section";
 import { ProjectsExplorer } from "@/components/projects/ProjectsExplorer";
 import { pageMetadata } from "@/lib/metadata";
-import { projectCategories, projects } from "@/data/projects";
+import { getProjects, getSection } from "@/lib/cms/content";
 
 export const metadata = pageMetadata({
   title: "Projects & Portfolio",
@@ -12,15 +12,17 @@ export const metadata = pageMetadata({
   path: "/projects",
 });
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const [projects, copy] = await Promise.all([getProjects(), getSection("page.projects")]);
+  const projectCategories = Array.from(new Set(projects.flatMap((p) => p.categories))).sort();
   return (
     <>
       <PageHero
         decor={{ icons: ["globe", "smartphone", "shopping-cart", "graduation-cap", "landmark"], center: "rocket" }}
         crumbs={[{ label: "Projects" }]}
-        eyebrow="Portfolio"
-        title="Projects we've designed, built and delivered."
-        description="Products, platforms and custom systems across education, retail, financial services and the public sector."
+        eyebrow={copy.eyebrow}
+        title={copy.title}
+        description={copy.description}
       />
       <Section>
         <ProjectsExplorer projects={projects} categories={projectCategories} />

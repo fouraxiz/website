@@ -1,6 +1,10 @@
 import * as icons from "simple-icons";
 import type { SimpleIcon } from "simple-icons";
 
+export function hasTechLogo(icon: string) {
+  return Boolean((icons as unknown as Record<string, SimpleIcon>)[icon]);
+}
+
 /** Renders a technology brand mark from simple-icons (server-only, inline SVG). */
 export function TechLogo({ icon, className }: { icon: string; className?: string }) {
   const data = (icons as unknown as Record<string, SimpleIcon>)[icon];

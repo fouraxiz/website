@@ -1,11 +1,13 @@
 import { CalendarCheck, Globe2, Headphones, Layers } from "lucide-react";
-import { stats } from "@/data/site";
+import { getStats } from "@/lib/cms/content";
 import { hues, hueAt } from "@/lib/palette";
 import { cn } from "@/lib/utils";
 
 const icons = [CalendarCheck, Globe2, Layers, Headphones];
 
-export function StatsStrip() {
+export async function StatsStrip() {
+  const stats = await getStats();
+  if (stats.length === 0) return null;
   return (
     <section aria-label="4axiz at a glance" className="relative z-10 -mt-16 sm:-mt-20">
       <div className="container-site">

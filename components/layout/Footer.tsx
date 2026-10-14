@@ -2,12 +2,16 @@ import Link from "next/link";
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 import { Logo } from "./Logo";
 import { SocialIcons } from "./SocialIcons";
-import { offices, site, socialLinks } from "@/data/site";
-import { solutionLinks } from "@/data/navigation";
-import { products } from "@/data/products";
-import { services } from "@/data/services";
+import { getNav, getOffices, getProducts, getServices, getSettings } from "@/lib/cms/content";
 
-const columns = [
+export async function Footer() {
+  const [site, offices, products, services, nav] = await Promise.all([getSettings(), getOffices(), getProducts(), getServices(), getNav()]);
+  const socialLinks = site.socials;
+  const year = new Date().getFullYear();
+  const hq = offices[0];
+  const productNames = products.filter((p) => p.kind !== "erp-module").map((p) => p.name);
+  const solutionLinks = nav.find((n) => n.menu === "solutions")?.children ?? [];
+  const columns = [
   { title: "Solutions", links: solutionLinks.map((l) => ({ label: l.label, href: l.href })) },
   {
     title: "Services",
@@ -27,10 +31,7 @@ const columns = [
   },
 ];
 
-export function Footer() {
-  const year = new Date().getFullYear();
-  const hq = offices[0];
-  const productNames = products.filter((p) => p.kind !== "erp-module").map((p) => p.name);
+
   return (
     <footer className="relative overflow-hidden bg-ink-950 text-ink-400" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
@@ -78,7 +79,7 @@ export function Footer() {
             <span>
               <span className="block text-xs text-ink-400">Visit us</span>
               <span className="block font-semibold text-white group-hover:text-brand-300">
-                {hq.city ? `Mirpur-12, ${hq.city}` : hq.country}
+                {site.topbarLocation ?? hq?.city ?? hq?.country}
               </span>
             </span>
           </Link>

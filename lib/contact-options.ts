@@ -1,11 +1,12 @@
-import { publishedErpModules } from "@/data/erp-modules";
-import { industries } from "@/data/industries";
-import { products } from "@/data/products";
-import { services } from "@/data/services";
-import { solutions } from "@/data/solutions";
+import "server-only";
+import { getIndustries, getServices, getSolutions } from "@/lib/cms/content";
 
 /** Inquiry options built from site data. Imported by server code only (page + API route). */
-export const interestGroups: { label: string; options: { value: string; label: string }[] }[] = [
+export type InterestGroup = { label: string; options: { value: string; label: string }[] };
+
+export async function getInterestGroups(): Promise<InterestGroup[]> {
+  const [solutions, services, industries] = await Promise.all([getSolutions(), getServices(), getIndustries()]);
+  return [
   {
     label: "Solutions",
     options: [{ value: "erp", label: "ERP Solutions" }, ...solutions.map((s) => ({ value: s.slug, label: s.title }))],
@@ -31,18 +32,8 @@ export const interestGroups: { label: string; options: { value: string; label: s
     ],
   },
 ];
+}
 
-export const interestValues = new Set(interestGroups.flatMap((g) => g.options.map((o) => o.value)));
-
-/** Human-readable context for `?module=` / `?product=` query params. */
-export function contextLabel(params: { module?: string | null; product?: string | null }) {
-  if (params.module) {
-    const m = publishedErpModules.find((x) => x.slug === params.module);
-    if (m) return `ERP module: ${m.title}`;
-  }
-  if (params.product) {
-    const p = products.find((x) => x.slug === params.product);
-    if (p) return `Product: ${p.name}`;
-  }
-  return null;
+export async function getInterestValues() {
+  return new Set((await getInterestGroups()).flatMap((g) => g.options.map((o) => o.value)));
 }

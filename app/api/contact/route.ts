@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { validateContact, type ContactPayload } from "@/lib/contact";
-import { interestValues } from "@/lib/contact-options";
+import { getInterestValues } from "@/lib/contact-options";
 
 /**
  * Contact form endpoint.
@@ -37,7 +37,7 @@ export async function POST(request: Request) {
   // Honeypot filled: accept silently without forwarding.
   if (payload.website) return NextResponse.json({ ok: true });
 
-  const fields = validateContact(payload, interestValues);
+  const fields = validateContact(payload, await getInterestValues());
   if (Object.keys(fields).length > 0) {
     return NextResponse.json({ error: "validation", fields }, { status: 422 });
   }

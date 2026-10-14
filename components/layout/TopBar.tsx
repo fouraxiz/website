@@ -1,8 +1,8 @@
 import { Mail, MapPin, Phone } from "lucide-react";
-import { offices, site } from "@/data/site";
+import { getOffices, getSettings } from "@/lib/cms/content";
 
-export function TopBar() {
-  const hq = offices[0];
+export async function TopBar() {
+  const [site, offices] = await Promise.all([getSettings(), getOffices()]);
   return (
     <div className="hidden bg-ink-950 text-[0.8rem] text-ink-300 md:block">
       <div className="container-site flex h-10 items-center justify-between gap-6">
@@ -21,10 +21,10 @@ export function TopBar() {
           )}
         </div>
         <div className="flex items-center gap-6">
-          {hq.city && (
+          {site.topbarLocation && (
             <span className="hidden items-center gap-2 lg:inline-flex">
               <MapPin className="size-3.5 text-brand-400" aria-hidden="true" />
-              Mirpur-12, {hq.city}, {hq.country}
+              {site.topbarLocation}
             </span>
           )}
           <span className="text-ink-400">{offices.map((o) => o.country).join(" · ")}</span>

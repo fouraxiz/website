@@ -1,8 +1,8 @@
 import { Phone } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
-import { site } from "@/data/site";
+import { getSettings } from "@/lib/cms/content";
 
-export function CtaBand({
+export async function CtaBand({
   title = "Want to build something great together?",
   description = "Tell us about your goals. We'll respond with practical next steps — a product demo, a discovery workshop or a scoped proposal.",
   primary = { label: "Request a Quote", href: "/contact" },
@@ -13,6 +13,7 @@ export function CtaBand({
   primary?: { label: string; href: string };
   secondary?: { label: string; href: string } | null;
 }) {
+  const site = await getSettings();
   return (
     <section className="bg-white py-20 sm:py-24" aria-labelledby="cta-heading">
       <div className="container-site">

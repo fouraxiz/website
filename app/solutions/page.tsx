@@ -8,8 +8,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Icon } from "@/lib/icons";
 import { pageMetadata } from "@/lib/metadata";
 import { hueAt } from "@/lib/palette";
-import { solutions } from "@/data/solutions";
-import { publishedErpModules } from "@/data/erp-modules";
+import { getErpModules, getSection, getSolutions } from "@/lib/cms/content";
 
 export const metadata = pageMetadata({
   title: "Solutions",
@@ -18,15 +17,16 @@ export const metadata = pageMetadata({
   path: "/solutions",
 });
 
-export default function SolutionsPage() {
+export default async function SolutionsPage() {
+  const [solutions, publishedErpModules, copy] = await Promise.all([getSolutions(), getErpModules(), getSection("page.solutions")]);
   return (
     <>
       <PageHero
         decor={{ icons: ["boxes", "brain", "globe", "smartphone", "workflow"], center: "sparkles" }}
         crumbs={[{ label: "Solutions" }]}
-        eyebrow="Solutions"
-        title="Technology solutions for every stage of growth."
-        description="Whether you need a connected ERP, practical AI or a system built around a unique process, we combine proven products with tailored engineering."
+        eyebrow={copy.eyebrow}
+        title={copy.title}
+        description={copy.description}
         actions={
           <>
             <ButtonLink href="/contact" arrow>

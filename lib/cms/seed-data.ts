@@ -1,0 +1,102 @@
+/**
+ * Initial content for every collection, built from the files in /data.
+ * Used by `npm run db:seed` and as a read fallback when no DATABASE_URL is set
+ * (e.g. local preview without a database).
+ */
+import { slugify } from "./fields";
+import { site, offices, socialLinks, stats, technologies, companyValues, mission, vision } from "@/data/site";
+import { mainNav } from "@/data/navigation";
+import { slides } from "@/data/slides";
+import { sectionDefaults, homeSectionOrder } from "@/data/sections";
+import { processSteps } from "@/data/process";
+import { solutions } from "@/data/solutions";
+import { erpModules } from "@/data/erp-modules";
+import { products } from "@/data/products";
+import { services } from "@/data/services";
+import { projects } from "@/data/projects";
+import { industries } from "@/data/industries";
+import { team } from "@/data/team";
+import { clients } from "@/data/clients";
+import { testimonials } from "@/data/testimonials";
+import { jobOpenings } from "@/data/careers";
+
+export interface SeedItem {
+  slug: string;
+  data: Record<string, unknown>;
+}
+
+const bySlug = <T extends { slug: string }>(items: T[], map: (i: T) => Record<string, unknown> = (i) => ({ ...i })) =>
+  items.map((i) => {
+    const data = map(i);
+    delete data.slug;
+    return { slug: i.slug, data };
+  });
+
+const byName = <T,>(items: readonly T[], name: (i: T) => string, map: (i: T) => Record<string, unknown> = (i) => ({ ...(i as object) })) =>
+  items.map((i) => ({ slug: slugify(name(i)), data: map(i) }));
+
+export function buildSeed(): Record<string, SeedItem[]> {
+  const sectionKeys = [...homeSectionOrder, ...Object.keys(sectionDefaults).filter((k) => !homeSectionOrder.includes(k))];
+  return {
+    settings: [
+      {
+        slug: "site",
+        data: {
+          legalName: site.legalName,
+          tagline: site.tagline,
+          description: site.description,
+          phone: site.phone,
+          email: site.email,
+          foundedYear: site.foundedYear,
+          topbarLocation: "Mirpur-12, Dhaka, Bangladesh",
+          mission,
+          vision,
+          socials: socialLinks.filter((s) => s.url).map((s) => ({ network: s.network, url: s.url })),
+        },
+      },
+    ],
+    nav: byName(mainNav, (n) => n.label, (n) => ({
+      label: n.label,
+      href: n.href,
+      menu: n.menu ?? "",
+      children: (n.children ?? []).map((c) => ({ label: c.label, href: c.href, description: c.description ?? null, icon: c.icon ?? "layers" })),
+    })),
+    slides: byName(slides, (s) => s.eyebrow, (s) => ({ ...s })),
+    sections: sectionKeys.map((k) => ({ slug: k, data: { ...sectionDefaults[k] } })),
+    stats: byName(stats, (s) => s.label),
+    technologies: byName(technologies, (t) => t.name, (t) => ({ name: t.name, icon: t.icon, image: null })),
+    values: byName(companyValues, (v) => v.title),
+    process: byName(processSteps, (p) => p.title),
+    solutions: bySlug(solutions, (s) => {
+      const { href: _href, ...rest } = s;
+      void _href;
+      return { ...rest };
+    }),
+    erp_modules: bySlug(erpModules, (m) => {
+      const { mockup, published: _p, ...rest } = m;
+      void _p;
+      return { ...rest, mockupMetrics: [...mockup.metricLabels], mockupRows: [...mockup.rows] };
+    }),
+    products: bySlug(products, (p) => {
+      const { mockup, ...rest } = p;
+      return { ...rest, image: null, erpModule: p.erpModule ?? null, relatedProject: p.relatedProject ?? null, mockupMetrics: [...mockup.metricLabels], mockupRows: [...mockup.rows] };
+    }),
+    services: bySlug(services),
+    projects: bySlug(projects, (p) => ({ ...p, images: p.images.map((i) => ({ src: i.src, alt: i.alt })) })),
+    industries: bySlug(industries),
+    team: byName(team, (m) => m.name, (m) => ({ ...m, photo: m.photo?.src ?? null })),
+    offices: offices.map((o) => {
+      const { id, role: _r, ...rest } = o;
+      void _r;
+      return { slug: id, data: { ...rest } };
+    }),
+    clients: byName(clients, (c) => c.name, (c) => ({ name: c.name, logo: c.logo.src, url: c.url ?? null })),
+    testimonials: byName(
+      testimonials.filter((t) => t.approved),
+      (t) => t.name,
+      (t) => ({ quote: t.quote, name: t.name, title: t.title, organisation: t.organisation, photo: null }),
+    ),
+    jobs: byName(jobOpenings, (j) => j.title, (j) => ({ ...j })),
+    posts: [],
+  };
+}

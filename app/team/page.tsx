@@ -6,7 +6,8 @@ import { ButtonLink } from "@/components/ui/Button";
 import { PlaceholderNote } from "@/components/ui/PlaceholderNote";
 import { TeamPortrait } from "@/components/team/TeamPortrait";
 import { pageMetadata } from "@/lib/metadata";
-import { departments, leadership, team } from "@/data/team";
+import { departments } from "@/data/team";
+import { getSection, getTeam } from "@/lib/cms/content";
 
 export const metadata = pageMetadata({
   title: "Our Team",
@@ -33,7 +34,9 @@ function EmptySlots({ count, label }: { count: number; label: string }) {
   );
 }
 
-export default function TeamPage() {
+export default async function TeamPage() {
+  const [team, copy] = await Promise.all([getTeam(), getSection("page.team")]);
+  const leadership = team.filter((m) => m.leadership);
   const groups = departments
     .filter((d) => d.name !== "Leadership")
     .map((d) => ({ ...d, members: team.filter((m) => m.department === d.name && !m.leadership) }));
@@ -43,9 +46,9 @@ export default function TeamPage() {
       <PageHero
         decor={{ icons: ["code", "palette", "test-tube", "headset", "compass"], center: "users" }}
         crumbs={[{ label: "Company", href: "/about" }, { label: "Our Team" }]}
-        eyebrow="Our team"
-        title="The people who design, build and support your software."
-        description="Engineers, designers, analysts and specialists working across three countries — united by a commitment to software that works well for the people who use it."
+        eyebrow={copy.eyebrow}
+        title={copy.title}
+        description={copy.description}
         actions={
           <ButtonLink href="/careers" variant="secondary" arrow>
             Join the team
@@ -71,8 +74,7 @@ export default function TeamPage() {
             ) : (
               <>
                 <PlaceholderNote className="mb-8">
-                  Leadership profiles are awaiting approval. Add members in <code className="rounded bg-white px-1 text-xs">data/team.ts</code> —
-                  placeholders below show the final layout.
+                  Leadership profiles are awaiting approval. Sign in and use edit mode to add team members — placeholders below show the final layout.
                 </PlaceholderNote>
                 <EmptySlots count={4} label="Leadership placeholders" />
               </>

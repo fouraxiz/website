@@ -7,58 +7,38 @@ import { ArrowRight, ChevronLeft, ChevronRight, Pause, Play } from "lucide-react
 import { buttonClasses } from "@/components/ui/Button";
 import { AiVisual, AppsVisual, ErpVisual } from "@/components/visuals/SlideVisuals";
 import { cn } from "@/lib/utils";
+import type { Slide } from "@/data/slides";
+import Image from "next/image";
 
-const slides = [
-  {
-    key: "erp",
-    eyebrow: "4axiz ERP",
-    title: ["Run your entire business on", "one connected platform"],
-    text: "Accounting, HRM & payroll, procurement, inventory, POS and reporting — modular ERP configured to the way your organisation works.",
-    primary: { label: "Explore ERP", href: "/solutions/erp" },
-    secondary: { label: "Book a demo", href: "/contact?interest=erp" },
-    Visual: ErpVisual,
-    glow: "from-sky-200/70 via-violet-200/50",
-  },
-  {
-    key: "ai",
-    eyebrow: "AI & Automation",
-    title: ["Put practical AI", "to work in your business"],
-    text: "AI assistants, intelligent document processing and predictive insight — integrated securely into the systems your teams already use.",
-    primary: { label: "Explore AI solutions", href: "/solutions/ai" },
-    secondary: { label: "Talk to an expert", href: "/contact?interest=ai" },
-    Visual: AiVisual,
-    glow: "from-violet-200/70 via-fuchsia-200/40",
-  },
-  {
-    key: "apps",
-    eyebrow: "Web & Mobile Development",
-    title: ["Top-notch software,", "built with modern technology"],
-    text: "Custom web applications, mobile apps and e-commerce platforms — designed, built and supported by one experienced team since 2010.",
-    primary: { label: "Our services", href: "/services" },
-    secondary: { label: "View projects", href: "/projects" },
-    Visual: AppsVisual,
-    glow: "from-emerald-200/60 via-sky-200/50",
-  },
-];
+const visuals = { erp: ErpVisual, ai: AiVisual, apps: AppsVisual } as const;
+const glows: Record<string, string> = {
+  erp: "from-sky-200/70 via-violet-200/50",
+  ai: "from-violet-200/70 via-fuchsia-200/40",
+  apps: "from-emerald-200/60 via-sky-200/50",
+  image: "from-amber-200/60 via-rose-200/40",
+};
 
 const INTERVAL = 7000;
 
-export function HeroSlider({ trust }: { trust?: React.ReactNode }) {
+export function HeroSlider({ slides: input, trust }: { slides: (Slide & { _id?: string; _status?: string })[]; trust?: React.ReactNode }) {
+  const slides = input.map((sl, i) => ({ ...sl, key: sl._id ?? String(i) }));
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [hovered, setHovered] = useState(false);
   const reduce = useReducedMotion();
 
-  const go = useCallback((i: number) => setIndex((i + slides.length) % slides.length), []);
+  const count = slides.length;
+  const go = useCallback((i: number) => setIndex(count ? (i + count) % count : 0), [count]);
 
   useEffect(() => {
-    if (paused || hovered || reduce) return;
+    if (paused || hovered || reduce || count < 2) return;
     const t = setTimeout(() => go(index + 1), INTERVAL);
     return () => clearTimeout(t);
-  }, [index, paused, hovered, reduce, go]);
+  }, [index, paused, hovered, reduce, go, count]);
 
-  const s = slides[index];
-  const Visual = s.Visual;
+  if (count === 0) return null;
+  const s = slides[Math.min(index, count - 1)];
+  const Visual = s.visual !== "image" ? visuals[s.visual] ?? ErpVisual : null;
 
   return (
     <section
@@ -75,7 +55,7 @@ export function HeroSlider({ trust }: { trust?: React.ReactNode }) {
       <div
         className={cn(
           "pointer-events-none absolute -top-40 right-[-10%] size-[42rem] rounded-full bg-gradient-to-br to-transparent blur-3xl transition-all duration-700",
-          s.glow,
+          glows[s.visual] ?? glows.erp,
         )}
         aria-hidden="true"
       />
@@ -125,20 +105,31 @@ export function HeroSlider({ trust }: { trust?: React.ReactNode }) {
                 {s.eyebrow}
               </p>
               <h2 className="mt-6 text-[2.5rem] leading-[1.08] font-bold tracking-[-0.03em] text-balance text-ink-950 sm:text-[3.4rem] lg:text-[3.6rem]">
-                {s.title[0]} <span className="bg-gradient-to-r from-brand-500 to-rose-500 bg-clip-text text-transparent">{s.title[1]}</span>
+                {s.title}{" "}
+                {s.highlight && <span className="bg-gradient-to-r from-brand-500 to-rose-500 bg-clip-text text-transparent">{s.highlight}</span>}
               </h2>
-              <p className="mt-6 text-lg leading-relaxed text-pretty text-ink-600">{s.text}</p>
+              {s.text && <p className="mt-6 text-lg leading-relaxed text-pretty text-ink-600">{s.text}</p>}
               <div className="mt-9 flex flex-wrap gap-3">
-                <Link href={s.primary.href} className={buttonClasses("primary", "lg")}>
-                  {s.primary.label} <ArrowRight className="size-4" aria-hidden="true" />
-                </Link>
-                <Link href={s.secondary.href} className={buttonClasses("secondary", "lg")}>
-                  {s.secondary.label}
-                </Link>
+                {s.primaryLabel && s.primaryHref && (
+                  <Link href={s.primaryHref} className={buttonClasses("primary", "lg")}>
+                    {s.primaryLabel} <ArrowRight className="size-4" aria-hidden="true" />
+                  </Link>
+                )}
+                {s.secondaryLabel && s.secondaryHref && (
+                  <Link href={s.secondaryHref} className={buttonClasses("secondary", "lg")}>
+                    {s.secondaryLabel}
+                  </Link>
+                )}
               </div>
             </div>
             <div className="px-4 sm:px-8 lg:px-0">
-              <Visual />
+              {Visual ? (
+                <Visual />
+              ) : s.image ? (
+                <div className="relative mx-auto aspect-[4/3] w-full max-w-[40rem] overflow-hidden rounded-2xl shadow-[0_40px_90px_-30px_rgb(18_21_23/0.35)] ring-1 ring-ink-200/70">
+                  <Image src={s.image} alt="" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" priority unoptimized />
+                </div>
+              ) : null}
             </div>
           </motion.div>
         </AnimatePresence>

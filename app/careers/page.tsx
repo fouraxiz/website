@@ -5,8 +5,8 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { pageMetadata } from "@/lib/metadata";
-import { careerBenefits, jobOpenings } from "@/data/careers";
-import { companyValues } from "@/data/site";
+import { careerBenefits } from "@/data/careers";
+import { getJobs, getSection, getValues } from "@/lib/cms/content";
 
 export const metadata = pageMetadata({
   title: "Careers",
@@ -14,15 +14,16 @@ export const metadata = pageMetadata({
   path: "/careers",
 });
 
-export default function CareersPage() {
+export default async function CareersPage() {
+  const [jobOpenings, companyValues, copy] = await Promise.all([getJobs(), getValues(), getSection("page.careers")]);
   return (
     <>
       <PageHero
         decor={{ icons: ["code", "palette", "users", "globe", "trending-up"], center: "rocket" }}
         crumbs={[{ label: "Company", href: "/about" }, { label: "Careers" }]}
-        eyebrow="Careers"
-        title="Build software that organisations rely on."
-        description="Join a team working on ERP platforms, AI integrations and custom applications for clients across markets."
+        eyebrow={copy.eyebrow}
+        title={copy.title}
+        description={copy.description}
         actions={
           <ButtonLink href="#openings" arrow>
             View open roles
