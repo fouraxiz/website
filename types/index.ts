@@ -89,6 +89,8 @@ export interface Office {
   countryCode: string;
   /** Short role of the office, e.g. "Headquarters". `null` until confirmed. */
   role: string | null;
+  /** What this office does. */
+  description: string | null;
   city: string | null;
   address: string | null;
   phone: string | null;

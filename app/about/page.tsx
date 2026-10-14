@@ -10,7 +10,10 @@ import { ButtonLink } from "@/components/ui/Button";
 import { TeamPortrait } from "@/components/team/TeamPortrait";
 import { Icon } from "@/lib/icons";
 import { pageMetadata } from "@/lib/metadata";
-import { getMilestones, getOffices, getSettings, getSolutions, getStrengths, getTeam, getValues } from "@/lib/cms/content";
+import { getMilestones, getOffices, getPillars, getPresenceStats, getSettings, getSolutions, getStrengths, getTeam, getValues } from "@/lib/cms/content";
+import { Check } from "lucide-react";
+import { hues, hueAt } from "@/lib/palette";
+import { cn } from "@/lib/utils";
 
 export const metadata = pageMetadata({
   title: "About Us",
@@ -20,7 +23,7 @@ export const metadata = pageMetadata({
 });
 
 export default async function AboutPage() {
-  const [site, offices, solutions, team, companyValues, milestones, strengths] = await Promise.all([
+  const [site, offices, solutions, team, companyValues, milestones, strengths, pillars, presenceStats] = await Promise.all([
     getSettings(),
     getOffices(),
     getSolutions(),
@@ -28,12 +31,18 @@ export default async function AboutPage() {
     getValues(),
     getMilestones(),
     getStrengths(),
+    getPillars(),
+    getPresenceStats(),
   ]);
   const facts = [
     { label: "Established", value: site.established },
     { label: "Incorporation no.", value: site.incorporationNo },
     { label: "BASIS membership", value: site.basisMembership },
     { label: "Trade licence", value: site.tradeLicence },
+    { label: "Head office", value: site.officeSetup },
+    { label: "Delivery capability", value: site.deliveryCapability },
+    { label: "Programme reach", value: site.programmeReach },
+    { label: "Connectivity", value: site.connectivity },
   ].filter((f): f is { label: string; value: string } => Boolean(f.value));
   const { mission, vision } = site;
   const leadership = team.filter((m) => m.leadership);
@@ -45,6 +54,8 @@ export default async function AboutPage() {
           { label: "Values", collection: "values" },
           { label: "Milestones", collection: "milestones" },
           { label: "Key strengths", collection: "strengths" },
+          { label: "Pillars", collection: "pillars" },
+          { label: "Presence numbers", collection: "presence_stats" },
           { label: "Team", collection: "team" },
         ]}
         decor={{ icons: ["code", "boxes", "brain", "globe", "users"], center: "layers" }}
@@ -76,6 +87,17 @@ export default async function AboutPage() {
             </p>
           </div>
         </div>
+        {pillars.length > 0 && (
+          <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {pillars.map((p, i) => (
+              <li key={p._id} className="rounded-3xl bg-ink-50 p-7 ring-1 ring-ink-100">
+                <span className={cn("block h-1.5 w-10 rounded-full", hues[hueAt(i)].solid)} aria-hidden="true" />
+                <h3 className="mt-5 text-lg font-semibold">{p.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-500">{p.description}</p>
+              </li>
+            ))}
+          </ul>
+        )}
       </Section>
 
       <Section tone="dark" labelledBy="mission">
@@ -90,8 +112,22 @@ export default async function AboutPage() {
           <div className="bg-ink-950 p-8 sm:p-12">
             <p className="eyebrow text-accent-300">Our vision</p>
             <p className="mt-5 font-display text-2xl leading-snug font-semibold text-white">{vision}</p>
+            {site.trustNote && <p className="mt-5 text-ink-300">{site.trustNote}</p>}
           </div>
         </div>
+        {site.practice.length > 0 && (
+          <div className="mt-10">
+            <h3 className="text-sm font-semibold tracking-[0.14em] text-ink-400 uppercase">What that means in practice</h3>
+            <ul className="mt-5 grid gap-4 sm:grid-cols-2">
+              {site.practice.map((t) => (
+                <li key={t} className="flex gap-3 rounded-2xl bg-white/[0.04] p-5 text-ink-200 ring-1 ring-white/10">
+                  <Check className="mt-0.5 size-5 shrink-0 text-emerald-400" strokeWidth={2.5} aria-hidden="true" />
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </Section>
 
       <Section labelledBy="values">
@@ -101,6 +137,7 @@ export default async function AboutPage() {
             <li key={v.title} className="border-t border-ink-200 pt-6">
               <span className="font-display text-sm font-semibold text-brand-600">{String(i + 1).padStart(2, "0")}</span>
               <h3 className="mt-3 text-lg font-semibold">{v.title}</h3>
+              {v.tagline && <p className="mt-1 text-sm font-medium text-ink-800">{v.tagline}</p>}
               <p className="mt-2 text-sm leading-relaxed text-ink-500">{v.description}</p>
             </li>
           ))}
@@ -144,17 +181,9 @@ export default async function AboutPage() {
               {facts.map((f) => (
                 <div key={f.label} className="bg-white p-6">
                   <dt className="text-xs font-semibold tracking-[0.12em] text-ink-400 uppercase">{f.label}</dt>
-                  <dd className="mt-2 font-display text-xl font-semibold text-ink-900">{f.value}</dd>
+                  <dd className="mt-2 font-display text-lg leading-snug font-semibold text-ink-900">{f.value}</dd>
                 </div>
               ))}
-              <div className="bg-white p-6">
-                <dt className="text-xs font-semibold tracking-[0.12em] text-ink-400 uppercase">Head office</dt>
-                <dd className="mt-2 font-display text-xl font-semibold text-ink-900">Mirpur 12, Dhaka — 2,300 sq ft</dd>
-              </div>
-              <div className="bg-white p-6">
-                <dt className="text-xs font-semibold tracking-[0.12em] text-ink-400 uppercase">Engineering team</dt>
-                <dd className="mt-2 font-display text-xl font-semibold text-ink-900">45 specialists — web, Android &amp; iOS</dd>
-              </div>
             </dl>
           </div>
         </Section>
@@ -186,8 +215,23 @@ export default async function AboutPage() {
       <TechSection />
 
       <Section tone="muted" labelledBy="presence">
-        <SectionHeading eyebrow="International presence" id="presence" title="Local roots. Worldwide impact." />
-        <div className="mt-12">
+        <SectionHeading
+          eyebrow="International presence"
+          id="presence"
+          title="Three countries. Worldwide impact."
+          description="Engineering hubs in Dhaka and Auckland, supported by a commercial presence in the United States, deliver to clients whose programmes span the globe — including Handicap International operations across more than 180 countries."
+        />
+        {presenceStats.length > 0 && (
+          <dl className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4">
+            {presenceStats.map((st, i) => (
+              <div key={st._id} className="rounded-2xl bg-white p-5 ring-1 ring-ink-200/70">
+                <dd className={cn("font-display text-3xl font-bold", hues[hueAt(i)].text)}>{st.value}</dd>
+                <dt className="mt-1 text-sm text-ink-500">{st.label}</dt>
+              </div>
+            ))}
+          </dl>
+        )}
+        <div className="mt-8">
           <OfficeCards offices={offices} />
         </div>
       </Section>
@@ -203,6 +247,12 @@ export default async function AboutPage() {
             </li>
           ))}
         </ul>
+        {site.strategicFocus && (
+          <div className="mt-8 rounded-3xl bg-ink-950 p-8 text-white sm:p-10">
+            <p className="eyebrow text-brand-300">Strategic focus</p>
+            <p className="mt-4 max-w-4xl font-display text-xl leading-snug font-semibold sm:text-2xl">{site.strategicFocus}</p>
+          </div>
+        )}
       </Section>
 
       <Section tone="muted" labelledBy="leadership">

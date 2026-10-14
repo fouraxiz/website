@@ -89,7 +89,8 @@ export async function Footer() {
         <div className="mt-14 grid gap-12 lg:grid-cols-[1.3fr_2fr]">
           <div className="max-w-sm">
             <Logo inverse />
-            <p className="mt-5 text-sm leading-relaxed">
+            {site.coverLine && <p className="mt-5 text-xs font-semibold tracking-[0.12em] text-brand-300 uppercase">{site.coverLine}</p>}
+            <p className="mt-3 text-sm leading-relaxed">
               {site.legalName} builds enterprise software, ERP, MIS &amp; MEAL platforms, mobile apps and AI for government, UN agencies, NGOs,
               INGOs and corporate enterprises{site.foundedYear ? ` — since ${site.foundedYear}` : ""}.
             </p>
@@ -131,11 +132,14 @@ export async function Footer() {
         </div>
 
         <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-8 text-sm sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            © {site.foundedYear ? `${site.foundedYear}–` : ""}
-            {year} {site.legalName}. All rights reserved.
-            {site.basisMembership && <span className="text-ink-500"> · BASIS member {site.basisMembership}</span>}
-          </p>
+          <div>
+            {site.websites && <p className="mb-1 text-ink-500">{site.websites}</p>}
+            <p>
+              © {site.foundedYear ? `${site.foundedYear}–` : ""}
+              {year} {site.legalName}. All rights reserved.
+              {site.basisMembership && <span className="text-ink-500"> · BASIS member {site.basisMembership}</span>}
+            </p>
+          </div>
           <ul className="flex gap-6">
             <li>
               <Link href="/privacy-policy" className="hover:text-white">

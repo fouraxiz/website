@@ -35,6 +35,7 @@ export function OfficeCards({ offices, inverse = false }: { offices: Office[]; i
                 {o.role}
               </p>
             )}
+            {o.description && <p className={cn("mt-4 text-sm leading-relaxed", inverse ? "text-ink-300" : "text-ink-500")}>{o.description}</p>}
             {hasDetails ? (
               <dl className={cn("mt-6 space-y-3 text-sm", inverse ? "text-ink-300" : "text-ink-600")}>
                 {o.address && (
@@ -84,7 +85,7 @@ export function OfficeCards({ offices, inverse = false }: { offices: Office[]; i
                   </div>
                 )}
               </dl>
-            ) : (
+            ) : o.description ? null : (
               <p className={cn("mt-6 text-sm leading-relaxed", inverse ? "text-ink-400" : "text-ink-500")}>
                 Serving clients in {o.country}. Contact our team through the hotline or contact form and we&apos;ll connect you.
               </p>

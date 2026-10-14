@@ -104,6 +104,16 @@ export interface Settings {
   basisMembership: string | null;
   tradeLicence: string | null;
   teamsId: string | null;
+  secondaryEmail: string | null;
+  websites: string | null;
+  coverLine: string | null;
+  officeSetup: string | null;
+  deliveryCapability: string | null;
+  programmeReach: string | null;
+  connectivity: string | null;
+  practice: string[];
+  trustNote: string | null;
+  strategicFocus: string | null;
 }
 
 export const getSettings = cache(async (): Promise<Settings & Partial<Meta>> => {
@@ -127,6 +137,16 @@ export const getSettings = cache(async (): Promise<Settings & Partial<Meta>> => 
     basisMembership: strOrNull(d.basisMembership),
     tradeLicence: strOrNull(d.tradeLicence),
     teamsId: strOrNull(d.teamsId),
+    secondaryEmail: strOrNull(d.secondaryEmail),
+    websites: strOrNull(d.websites),
+    coverLine: strOrNull(d.coverLine),
+    officeSetup: strOrNull(d.officeSetup),
+    deliveryCapability: strOrNull(d.deliveryCapability),
+    programmeReach: strOrNull(d.programmeReach),
+    connectivity: strOrNull(d.connectivity),
+    practice: arr<string>(d.practice),
+    trustNote: strOrNull(d.trustNote),
+    strategicFocus: strOrNull(d.strategicFocus),
     ...(r ? meta(r) : {}),
   };
 });
@@ -170,7 +190,9 @@ export const getStats = cache(async () => list("stats", (d) => ({ value: str(d.v
 export const getTechnologies = cache(async () =>
   list("technologies", (d) => ({ name: str(d.name), icon: str(d.icon), image: strOrNull(d.image) })),
 );
-export const getValues = cache(async () => list("values", (d) => ({ title: str(d.title), description: str(d.description) })));
+export const getValues = cache(async () => list("values", (d) => ({ title: str(d.title), tagline: strOrNull(d.tagline), description: str(d.description) })));
+export const getPillars = cache(async () => list("pillars", (d) => ({ title: str(d.title), description: str(d.description) })));
+export const getPresenceStats = cache(async () => list("presence_stats", (d) => ({ value: str(d.value), label: str(d.label) })));
 export const getStrengths = cache(async () => list("strengths", (d) => ({ title: str(d.title), description: str(d.description) })));
 export const getMilestones = cache(async () => list("milestones", (d) => ({ year: str(d.year), title: str(d.title), description: str(d.description) })));
 export const getEngagementModels = cache(async () => list("engagement", (d) => ({ title: str(d.title), description: str(d.description) })));
@@ -184,6 +206,7 @@ export const getOffices = cache(async () =>
     country: str(d.country),
     countryCode: str(d.countryCode),
     role: strOrNull(d.role),
+    description: strOrNull(d.description),
     city: strOrNull(d.city),
     address: strOrNull(d.address),
     phone: strOrNull(d.phone),

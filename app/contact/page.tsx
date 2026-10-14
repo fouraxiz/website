@@ -76,6 +76,20 @@ export default async function ContactPage() {
                 <a href={`mailto:${site.email}`} className="font-semibold text-brand-700">
                   {site.email}
                 </a>
+                {site.secondaryEmail && (
+                  <>
+                    {" · "}
+                    <a href={`mailto:${site.secondaryEmail}`} className="font-semibold text-brand-700">
+                      {site.secondaryEmail}
+                    </a>
+                  </>
+                )}
+                {site.websites && (
+                  <>
+                    <br />
+                    Websites: <span className="font-semibold text-ink-900">{site.websites}</span>
+                  </>
+                )}
                 {site.teamsId && (
                   <>
                     <br />

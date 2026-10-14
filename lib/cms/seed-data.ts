@@ -4,7 +4,7 @@
  * (e.g. local preview without a database).
  */
 import { slugify } from "./fields";
-import { site, companyFacts, offices, socialLinks, stats, technologies, companyValues, mission, vision, strengths, milestones, engagementModels } from "@/data/site";
+import { site, companyFacts, offices, socialLinks, stats, technologies, companyValues, mission, vision, strengths, milestones, engagementModels, missionPractice, trustNote, strategicFocus, pillars, presenceStats } from "@/data/site";
 import { mainNav } from "@/data/navigation";
 import { slides } from "@/data/slides";
 import { sectionDefaults, homeSectionOrder } from "@/data/sections";
@@ -54,6 +54,16 @@ export function buildSeed(): Record<string, SeedItem[]> {
           basisMembership: companyFacts.basisMembership,
           tradeLicence: companyFacts.tradeLicence,
           teamsId: companyFacts.teamsId,
+          secondaryEmail: companyFacts.secondaryEmail,
+          websites: companyFacts.websites,
+          coverLine: companyFacts.coverLine,
+          officeSetup: companyFacts.officeSetup,
+          deliveryCapability: companyFacts.deliveryCapability,
+          programmeReach: companyFacts.programmeReach,
+          connectivity: companyFacts.connectivity,
+          practice: missionPractice,
+          trustNote,
+          strategicFocus,
           mission,
           vision,
           socials: socialLinks.filter((s) => s.url).map((s) => ({ network: s.network, url: s.url })),
@@ -71,6 +81,8 @@ export function buildSeed(): Record<string, SeedItem[]> {
     stats: byName(stats, (s) => s.label),
     technologies: byName(technologies, (t) => t.name, (t) => ({ name: t.name, icon: t.icon, image: null })),
     values: byName(companyValues, (v) => v.title),
+    pillars: byName(pillars, (v) => v.title),
+    presence_stats: byName(presenceStats, (v) => v.label),
     strengths: byName(strengths, (v) => v.title),
     milestones: byName(milestones, (m) => m.title),
     engagement: byName(engagementModels, (m) => m.title),

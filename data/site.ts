@@ -28,7 +28,43 @@ export const companyFacts = {
   tradeLicence: "02-07374",
   teamsId: "fouraxiz",
   websites: "www.4axiz.com · www.fouraxiz.com · www.4axiz.co.nz",
+  coverLine: "Enterprise Software · MIS & ERP · Mobile · AI & Data",
+  secondaryEmail: "nasir@4axiz.com",
+  officeSetup: "2,300 sq ft — Mirpur 12, Dhaka",
+  deliveryCapability: "Web, Android, iOS, cloud, data & AI",
+  programmeReach: "Partner programmes across 180+ countries",
+  connectivity: "Unlimited alternate high-speed internet connectivity",
 };
+
+/** "What that means in practice" — Vision & Mission page of the Company Profile 2026. */
+export const missionPractice = [
+  "Systems designed around the real workflow of the people who use them, not the org chart.",
+  "Security, access control and audit trails specified before the first line of code.",
+  "Offline-first thinking wherever the field has no reliable connectivity.",
+  "Documentation, training and handover treated as deliverables, not afterthoughts.",
+];
+
+export const trustNote =
+  "We measure that trust in renewals, in referrals between agencies, and in platforms still running and growing years after handover.";
+
+export const strategicFocus =
+  "Centralised, secure and future-ready platforms that improve programme visibility, strengthen MEAL and reporting, enhance beneficiary and partner management, and enable evidence-based decision-making.";
+
+/** The four pillars under "A leading Bangladeshi technology company with a global delivery record". */
+export const pillars = [
+  { title: "Institutional by default", description: "Ministries, UN agencies, INGOs and corporate groups — environments where accountability, audit and uptime are non-negotiable." },
+  { title: "Global by design", description: "Delivery from Dhaka and Auckland with a US presence, serving partners whose programmes span more than 180 countries." },
+  { title: "Built for trust", description: "Donor-grade security, role-based access control, encrypted transmission and audit-ready architecture, designed in from day one." },
+  { title: "End-to-end ownership", description: "Discovery and UX through build, QA, deployment, migration, training and long-term SLA-backed support." },
+];
+
+/** "Three countries. Worldwide impact." figures. */
+export const presenceStats = [
+  { value: "2", label: "Engineering hubs" },
+  { value: "3", label: "Country presence" },
+  { value: "180+", label: "Countries reached" },
+  { value: "24/7", label: "Support coverage" },
+];
 
 /** Technologies from the "Our tech stack" page of the Company Profile 2026 and the existing fouraxiz.com. */
 export const technologies = [
@@ -79,6 +115,8 @@ export const offices: Office[] = [
     country: "Bangladesh",
     countryCode: "BD",
     role: "Head office · Primary engineering hub",
+    description:
+      "45 engineers, designers, QA and project managers across a 2,300 sq ft facility in Mirpur 12, with unlimited alternate high-speed connectivity. Core development, testing and support operate from here.",
     city: "Dhaka",
     address: "Level 4, House 34, Lane 6/2, Road 20/A, DUIP Plot, Block D, Mirpur 12, Dhaka 1216",
     phone: "+880 1718 837 689",
@@ -92,6 +130,8 @@ export const offices: Office[] = [
     country: "New Zealand",
     countryCode: "NZ",
     role: "Delivery & client hub",
+    description:
+      "Regional engagement, solution consulting and support coordination — extending our working day across Asia-Pacific time zones. www.4axiz.co.nz",
     city: "Auckland",
     address: null,
     phone: null,
@@ -105,6 +145,7 @@ export const offices: Office[] = [
     country: "United States",
     countryCode: "US",
     role: "North American presence",
+    description: "Commercial base for North American clients, partnerships and hosting relationships with US data centres.",
     city: "Cedar Falls, Iowa",
     address: "8120 Jennings Drive, Suite 128 C, Business and Community Service Bldg., Cedar Falls, IA 50613-0130",
     phone: null,
@@ -118,6 +159,7 @@ export const offices: Office[] = [
     country: "Kosovo",
     countryCode: "XK",
     role: null,
+    description: null,
     city: null,
     address: null,
     phone: null,
@@ -138,12 +180,12 @@ export const socialLinks: SocialLink[] = [
 ];
 
 export const companyValues = [
-  { title: "Excellence", description: "Quality engineering, no shortcuts. Every build passes structured functional, performance and regression testing before it reaches a user." },
-  { title: "Integrity", description: "Security and trust by default. We protect client data as if it were our own and say plainly what is and is not possible." },
-  { title: "Innovation", description: "AI-first, future-ready thinking. Predictive analytics, automation and SaaS-ready architecture are part of our default toolkit." },
-  { title: "Partnership", description: "Your goals are our mandate. We measure ourselves on your outcomes — adoption, efficiency and reporting quality — not billable hours." },
-  { title: "Accountability", description: "We own the outcome. One team is answerable from discovery through to post-launch support and enhancement." },
-  { title: "Sustainability", description: "Built to be maintained. Modular, documented codebases your team or ours can extend for years without a rewrite." },
+  { title: "Excellence", tagline: "Quality engineering, no shortcuts.", description: "Every build passes structured functional, performance and regression testing before it reaches a user." },
+  { title: "Integrity", tagline: "Security and trust by default.", description: "We protect client data as if it were our own and say plainly what is and is not possible." },
+  { title: "Innovation", tagline: "AI-first, future-ready thinking.", description: "Predictive analytics, automation and SaaS-ready architecture are part of our default toolkit." },
+  { title: "Partnership", tagline: "Your goals are our mandate.", description: "We measure ourselves on your outcomes \u2014 adoption, efficiency and reporting quality \u2014 not billable hours." },
+  { title: "Accountability", tagline: "We own the outcome.", description: "One team is answerable from discovery through to post-launch support and enhancement." },
+  { title: "Sustainability", tagline: "Built to be maintained.", description: "Modular, documented codebases your team or ours can extend for years without a rewrite." },
 ];
 
 export const mission =

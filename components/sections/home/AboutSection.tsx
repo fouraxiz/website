@@ -99,7 +99,10 @@ export async function AboutSection({ copy }: { copy: SectionEntry }) {
                       {companyValues.map((v) => (
                         <li key={v.title} className="flex gap-2.5 text-sm text-ink-700">
                           <Check className="mt-0.5 size-4 shrink-0 text-emerald-500" strokeWidth={3} aria-hidden="true" />
-                          {v.title}
+                          <span>
+                            <span className="font-semibold">{v.title}</span>
+                            {v.tagline && <span className="block text-ink-500">{v.tagline}</span>}
+                          </span>
                         </li>
                       ))}
                     </ul>
