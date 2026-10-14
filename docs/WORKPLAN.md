@@ -64,9 +64,9 @@ Status: ✅ done · 🟡 partly done · ⬜ to do · ❓ needs a decision or dat
 
 | # | PDF content | Where it goes | Status |
 |---|---|---|---|
-| 6.1 | Nine team roles (architects, engineers, mobile, BA, UI/UX, database, QA, DevOps, PM) | Team | ⬜ |
+| 6.1 | Nine team roles (architects, engineers, mobile, BA, UI/UX, database, QA, DevOps, PM) | Team | ✅ |
 | 6.2 | Key personnel (9) | Team, About | ✅ |
-| 6.3 | What sets our engineering apart (8) + "The short version" | Team, Home "Why 4axiz" | ⬜ |
+| 6.3 | What sets our engineering apart (8) + "The short version" | Team, Home "Why 4axiz" | ✅ |
 
 ## Phase 7 — Work With Us (pp. 55–56)
 
@@ -78,8 +78,8 @@ Status: ✅ done · 🟡 partly done · ⬜ to do · ❓ needs a decision or dat
 
 | # | PDF content | Where it goes | Status |
 |---|---|---|---|
-| 8.1 | Registration details (incl. VAT, TIN, office setup, connectivity) | About → Company facts / new Tender information section | 🟡 |
-| 8.2 | Banking details | ❓ Recommended: show only to signed-in editors or "on request"; publish only if 4axiz confirms | ❓ |
+| 8.1 | Registration details (incl. VAT, TIN, office setup, connectivity) | About → Company facts / new Tender information section | ✅ |
+| 8.2 | Banking details | Contact → Corporate annex (can be hidden in Site settings) | ✅ |
 | 8.3 | Get in touch: three websites, admin@ and nasir@ emails, phone/WhatsApp, Teams, three offices | Contact, footer | ✅ |
 
 ## Phase 9 — Technologies per project (needs data from 4axiz)

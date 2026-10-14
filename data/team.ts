@@ -135,3 +135,31 @@ export const departments = [
 ];
 
 export const leadership = team.filter((m) => m.leadership);
+
+/** Team composition roles — "Our People", Company Profile 2026. */
+export const teamRoles = [
+  { title: "System Architects", icon: "layers", description: "Scalable, secure platform design and technical governance." },
+  { title: "Software Engineers", icon: "code", description: "Web and enterprise application development." },
+  { title: "Mobile Developers", icon: "smartphone", description: "Android and iOS, native and hybrid." },
+  { title: "Business Analysts", icon: "search", description: "Requirement analysis, process mapping and functional specification." },
+  { title: "UI/UX Designers", icon: "pen-tool", description: "Intuitive, accessible interfaces for non-technical users." },
+  { title: "Database Specialists", icon: "database", description: "Data modelling, performance tuning and data quality." },
+  { title: "QA Specialists", icon: "test-tube", description: "Functional, performance and security testing." },
+  { title: "DevOps Engineers", icon: "cloud", description: "Cloud infrastructure, CI/CD and production monitoring." },
+  { title: "Project Managers", icon: "kanban", description: "Delivery, governance, reporting and client communication." },
+] as const;
+
+/** "What sets our engineering apart" — Company Profile 2026. */
+export const differentiators = [
+  { title: "16+ years, proven", description: "A long, unbroken record of complex deliveries for demanding institutions." },
+  { title: "Trusted by the UN & government", description: "Software relied upon daily by agencies that audit everything." },
+  { title: "End-to-end ownership", description: "Design, build, deploy, train and support — one accountable partner." },
+  { title: "Security & compliance", description: "Donor-grade controls and audit-ready systems as standard." },
+  { title: "AI-enabled, future-ready", description: "Predictive, automated and SaaS-scalable architecture by default." },
+  { title: "Multidisciplinary team", description: "Engineers, architects, analysts, designers, QA and PMs, all in-house." },
+  { title: "Domain fluency", description: "We already understand health, education, MEAL and humanitarian workflows." },
+  { title: "Value for money", description: "Global-standard engineering at a competitive delivery cost base." },
+];
+
+export const shortVersion =
+  "You get a team that has already built systems like yours, for institutions that audit everything, and will still be here to support the platform in five years. That is the whole proposition.";

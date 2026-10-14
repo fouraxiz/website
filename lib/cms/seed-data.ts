@@ -4,7 +4,7 @@
  * (e.g. local preview without a database).
  */
 import { slugify } from "./fields";
-import { site, companyFacts, offices, socialLinks, stats, technologies, companyValues, mission, vision, strengths, milestones, engagementModels, missionPractice, trustNote, strategicFocus, pillars, presenceStats, domains, sectors, clientMix, outcomes } from "@/data/site";
+import { site, companyFacts, offices, socialLinks, stats, technologies, companyValues, mission, vision, strengths, milestones, engagementModels, missionPractice, trustNote, strategicFocus, pillars, presenceStats, domains, sectors, clientMix, outcomes, bankDetails } from "@/data/site";
 import { mainNav } from "@/data/navigation";
 import { slides } from "@/data/slides";
 import { sectionDefaults, homeSectionOrder } from "@/data/sections";
@@ -16,7 +16,7 @@ import { products, readyProducts } from "@/data/products";
 import { services } from "@/data/services";
 import { projects } from "@/data/projects";
 import { industries } from "@/data/industries";
-import { team } from "@/data/team";
+import { team, teamRoles, differentiators, shortVersion } from "@/data/team";
 import { clients, engagements, clientGroups } from "@/data/clients";
 import { testimonials } from "@/data/testimonials";
 import { jobOpenings } from "@/data/careers";
@@ -65,6 +65,11 @@ export function buildSeed(): Record<string, SeedItem[]> {
           practice: missionPractice,
           trustNote,
           strategicFocus,
+          shortVersion,
+          vatNo: companyFacts.vatNo,
+          tin: companyFacts.tin,
+          showBankDetails: true,
+          ...bankDetails,
           mission,
           vision,
           socials: socialLinks.filter((s) => s.url).map((s) => ({ network: s.network, url: s.url })),
@@ -85,6 +90,8 @@ export function buildSeed(): Record<string, SeedItem[]> {
     values: byName(companyValues, (v) => v.title),
     pillars: byName(pillars, (v) => v.title),
     domains: byName(domains, (v) => v.title),
+    team_roles: byName(teamRoles, (v) => v.title),
+    differentiators: byName(differentiators, (v) => v.title),
     outcomes: byName(outcomes, (v) => v.label),
     sectors: byName(sectors, (v) => v.title),
     client_mix: byName(clientMix, (v) => v.label),

@@ -7,7 +7,10 @@ import { PlaceholderNote } from "@/components/ui/PlaceholderNote";
 import { TeamPortrait } from "@/components/team/TeamPortrait";
 import { pageMetadata } from "@/lib/metadata";
 import { departments, teamComposition } from "@/data/team";
-import { getSection, getTeam } from "@/lib/cms/content";
+import { getDifferentiators, getSection, getSettings, getTeam, getTeamRoles } from "@/lib/cms/content";
+import { Icon } from "@/lib/icons";
+import { hues, hueAt } from "@/lib/palette";
+import { cn } from "@/lib/utils";
 
 export const metadata = pageMetadata({
   title: "Our Team",
@@ -35,7 +38,7 @@ function EmptySlots({ count, label }: { count: number; label: string }) {
 }
 
 export default async function TeamPage() {
-  const [team, copy] = await Promise.all([getTeam(), getSection("page.team")]);
+  const [team, copy, roles, apart, site] = await Promise.all([getTeam(), getSection("page.team"), getTeamRoles(), getDifferentiators(), getSettings()]);
   const leadership = team.filter((m) => m.leadership);
   const groups = departments
     .filter((d) => d.name !== "Leadership")
@@ -45,7 +48,7 @@ export default async function TeamPage() {
   return (
     <>
       <PageHero
-        edit={[{ label: "Heading", collection: "sections", slug: "page.team" }, { label: "Team members", collection: "team" }, { label: "Add team member", collection: "team", create: true }]}
+        edit={[{ label: "Heading", collection: "sections", slug: "page.team" }, { label: "Team members", collection: "team" }, { label: "Add team member", collection: "team", create: true }, { label: "Team roles", collection: "team_roles" }, { label: "What sets us apart", collection: "differentiators" }]}
         decor={{ icons: ["code", "palette", "test-tube", "headset", "compass"], center: "users" }}
         crumbs={[{ label: "Company", href: "/about" }, { label: "Our Team" }]}
         eyebrow={copy.eyebrow}
@@ -115,6 +118,30 @@ export default async function TeamPage() {
         </div>
       </Section>
 
+      {roles.length > 0 && (
+        <Section labelledBy="roles">
+          <SectionHeading
+            eyebrow="Team composition"
+            id="roles"
+            title="A multidisciplinary team — every engagement staffed in-house."
+            description="We maintain a multidisciplinary team of software engineers, business analysts, UI/UX designers, database specialists, system architects and project managers."
+          />
+          <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {roles.map((r, i) => (
+              <li key={r._id} className="flex gap-4 rounded-2xl bg-ink-50 p-6 ring-1 ring-ink-100">
+                <span className={cn("inline-flex size-11 shrink-0 items-center justify-center rounded-xl text-white [&_svg]:size-5", hues[hueAt(i)].solid)}>
+                  <Icon name={r.icon} />
+                </span>
+                <div>
+                  <h3 className="font-semibold">{r.title}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-ink-500">{r.description}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      )}
+
       <Section tone="muted" labelledBy="teams">
         <SectionHeading eyebrow="Teams" id="teams" title="How we're organised." />
         <div className="mt-12 space-y-14">
@@ -139,6 +166,27 @@ export default async function TeamPage() {
           ))}
         </div>
       </Section>
+
+      {apart.length > 0 && (
+        <Section labelledBy="apart">
+          <SectionHeading eyebrow="Why 4axiz" id="apart" title="What sets our engineering apart." />
+          <ol className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {apart.map((a, i) => (
+              <li key={a._id} className="rounded-3xl bg-white p-6 ring-1 ring-ink-200/70">
+                <span className={cn("font-display text-sm font-bold", hues[hueAt(i)].text)}>{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="mt-3 font-semibold">{a.title}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-ink-500">{a.description}</p>
+              </li>
+            ))}
+          </ol>
+          {site.shortVersion && (
+            <div className="mt-8 rounded-3xl bg-ink-950 p-8 sm:p-10">
+              <p className="eyebrow text-brand-300">The short version</p>
+              <p className="mt-4 max-w-4xl font-display text-xl leading-snug font-semibold text-white sm:text-2xl">{site.shortVersion}</p>
+            </div>
+          )}
+        </Section>
+      )}
 
       <CtaBand
         title="Want to work with this team?"

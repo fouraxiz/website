@@ -114,6 +114,16 @@ export interface Settings {
   practice: string[];
   trustNote: string | null;
   strategicFocus: string | null;
+  shortVersion: string | null;
+  vatNo: string | null;
+  tin: string | null;
+  showBankDetails: boolean;
+  bankAccountName: string | null;
+  bankName: string | null;
+  bankBranch: string | null;
+  bankAccountNo: string | null;
+  bankRouting: string | null;
+  bankSwift: string | null;
 }
 
 export const getSettings = cache(async (): Promise<Settings & Partial<Meta>> => {
@@ -147,6 +157,16 @@ export const getSettings = cache(async (): Promise<Settings & Partial<Meta>> => 
     practice: arr<string>(d.practice),
     trustNote: strOrNull(d.trustNote),
     strategicFocus: strOrNull(d.strategicFocus),
+    shortVersion: strOrNull(d.shortVersion),
+    vatNo: strOrNull(d.vatNo),
+    tin: strOrNull(d.tin),
+    showBankDetails: Boolean(d.showBankDetails),
+    bankAccountName: strOrNull(d.bankAccountName),
+    bankName: strOrNull(d.bankName),
+    bankBranch: strOrNull(d.bankBranch),
+    bankAccountNo: strOrNull(d.bankAccountNo),
+    bankRouting: strOrNull(d.bankRouting),
+    bankSwift: strOrNull(d.bankSwift),
     ...(r ? meta(r) : {}),
   };
 });
@@ -209,6 +229,8 @@ export const getEngagements = cache(async () =>
   list("engagements", (d) => ({ client: str(d.client), scope: str(d.scope), years: str(d.years), href: strOrNull(d.href) })),
 );
 export const getClientGroups = cache(async () => list("client_groups", (d) => ({ title: str(d.title), names: str(d.names) })));
+export const getTeamRoles = cache(async () => list("team_roles", (d) => ({ title: str(d.title), icon: (str(d.icon) || "users") as IconName, description: str(d.description) })));
+export const getDifferentiators = cache(async () => list("differentiators", (d) => ({ title: str(d.title), description: str(d.description) })));
 export const getPillars = cache(async () => list("pillars", (d) => ({ title: str(d.title), description: str(d.description) })));
 export const getPresenceStats = cache(async () => list("presence_stats", (d) => ({ value: str(d.value), label: str(d.label) })));
 export const getStrengths = cache(async () => list("strengths", (d) => ({ title: str(d.title), description: str(d.description) })));

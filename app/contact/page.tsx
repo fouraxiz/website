@@ -45,6 +45,7 @@ export default async function ContactPage() {
           { label: "Offices", collection: "offices" },
           { label: "Contact details", collection: "settings", slug: "site" },
           { label: "Ways to engage", collection: "engagement" },
+          { label: "Registration & banking", collection: "settings", slug: "site" },
         ]}
         decor={{ icons: ["message-square", "headset", "globe", "file-text", "sparkles"], center: "message-square" }}
         crumbs={[{ label: "Company", href: "/about" }, { label: "Contact Us" }]}
@@ -128,7 +129,63 @@ export default async function ContactPage() {
         </Section>
       )}
 
-      <Section id="offices" labelledBy="offices-heading">
+      {(() => {
+        const reg = [
+          { label: "Legal name", value: site.legalName },
+          { label: "Registered address", value: offices[0]?.address ?? null },
+          { label: "Date of establishment", value: site.established },
+          { label: "Certificate of incorporation", value: site.incorporationNo },
+          { label: "Trade licence number", value: site.tradeLicence },
+          { label: "VAT registration number", value: site.vatNo },
+          { label: "TIN", value: site.tin },
+          { label: "BASIS membership number", value: site.basisMembership },
+          { label: "Office setup", value: site.officeSetup },
+          { label: "Connectivity", value: site.connectivity },
+        ].filter((r): r is { label: string; value: string } => Boolean(r.value));
+        const bank = site.showBankDetails
+          ? [
+              { label: "Account name", value: site.bankAccountName },
+              { label: "Bank", value: site.bankName },
+              { label: "Branch", value: site.bankBranch },
+              { label: "Account number", value: site.bankAccountNo },
+              { label: "Routing number", value: site.bankRouting },
+              { label: "SWIFT code", value: site.bankSwift },
+            ].filter((r): r is { label: string; value: string } => Boolean(r.value))
+          : [];
+        if (reg.length === 0 && bank.length === 0) return null;
+        return (
+          <Section labelledBy="annex">
+            <SectionHeading
+              eyebrow="Corporate annex"
+              id="annex"
+              title="Registration, tax & banking details."
+              description="Provided for procurement, tender and due-diligence purposes. Supporting certificates are available on request."
+            />
+            <div className={`mt-12 grid gap-5 ${bank.length ? "lg:grid-cols-2" : ""}`}>
+              {[
+                { title: "Registration", rows: reg },
+                { title: "Banking", rows: bank },
+              ]
+                .filter((t) => t.rows.length > 0)
+                .map((t) => (
+                  <div key={t.title} className="overflow-hidden rounded-3xl bg-white ring-1 ring-ink-200/70">
+                    <h3 className="bg-ink-950 px-6 py-4 text-xs font-semibold tracking-[0.12em] text-ink-300 uppercase">{t.title}</h3>
+                    <dl className="divide-y divide-ink-100">
+                      {t.rows.map((r) => (
+                        <div key={r.label} className="grid gap-1 px-6 py-3.5 text-sm sm:grid-cols-[12rem_1fr]">
+                          <dt className="text-ink-500">{r.label}</dt>
+                          <dd className="font-medium text-ink-900">{r.value}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </div>
+                ))}
+            </div>
+          </Section>
+        );
+      })()}
+
+      <Section tone="muted" id="offices" labelledBy="offices-heading">
         <SectionHeading
           eyebrow="Our offices"
           id="offices-heading"

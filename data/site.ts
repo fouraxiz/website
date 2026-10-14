@@ -34,6 +34,18 @@ export const companyFacts = {
   deliveryCapability: "Web, Android, iOS, cloud, data & AI",
   programmeReach: "Partner programmes across 180+ countries",
   connectivity: "Unlimited alternate high-speed internet connectivity",
+  vatNo: "17011048357",
+  tin: "789533846511",
+};
+
+/** Banking details — Corporate Annex, Company Profile 2026. Shown on the Contact page while `showBankDetails` is on in Site settings. */
+export const bankDetails = {
+  bankAccountName: "4axiz IT Ltd",
+  bankName: "The City Bank Limited",
+  bankBranch: "Pallabi Branch, Dhaka",
+  bankAccountNo: "1421820038001",
+  bankRouting: "225263585",
+  bankSwift: "CIBLBDDH",
 };
 
 /** "What that means in practice" — Vision & Mission page of the Company Profile 2026. */

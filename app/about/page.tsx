@@ -40,6 +40,8 @@ export default async function AboutPage() {
     { label: "Incorporation no.", value: site.incorporationNo },
     { label: "BASIS membership", value: site.basisMembership },
     { label: "Trade licence", value: site.tradeLicence },
+    { label: "VAT registration", value: site.vatNo },
+    { label: "TIN", value: site.tin },
     { label: "Head office", value: site.officeSetup },
     { label: "Delivery capability", value: site.deliveryCapability },
     { label: "Programme reach", value: site.programmeReach },
