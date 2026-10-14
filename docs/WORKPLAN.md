@@ -86,6 +86,6 @@ Status: ✅ done · 🟡 partly done · ⬜ to do · ❓ needs a decision or dat
 
 | # | Item | Status |
 |---|---|---|
-| 9.1 | Technology stack for each project (the PDF does not say which project used which technology) | ❓ Excel sheet to be filled by 4axiz |
-| 9.2 | Each technology links to the projects that use it | ⬜ after 9.1 |
+| 9.1 | Technology stack for each project (the PDF does not say which project used which technology) | ❓ fill `docs/project-technologies.xlsx` |
+| 9.2 | Each technology links to the projects that use it | ✅ built — fills in automatically once 9.1 data is added |
 | 9.3 | More screenshots and live links | ❓ |

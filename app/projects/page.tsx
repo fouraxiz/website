@@ -13,7 +13,8 @@ export const metadata = pageMetadata({
   path: "/projects",
 });
 
-export default async function ProjectsPage() {
+export default async function ProjectsPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
+  const { q } = await searchParams;
   const [projects, copy] = await Promise.all([getProjects(), getSection("page.projects")]);
   const projectCategories = Array.from(new Set(projects.flatMap((p) => p.categories))).sort();
   return (
@@ -27,7 +28,7 @@ export default async function ProjectsPage() {
         description={copy.description}
       />
       <Section>
-        <ProjectsExplorer projects={projects} categories={projectCategories} />
+        <ProjectsExplorer projects={projects} categories={projectCategories} initialQuery={typeof q === "string" ? q.slice(0, 80) : ""} />
       </Section>
       <OutcomesBand />
       <CtaBand title="Have a project in mind?" primary={{ label: "Start your project", href: "/contact" }} secondary={{ label: "Our services", href: "/services" }} />

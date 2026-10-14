@@ -7,7 +7,8 @@ import { hues, hueAt } from "@/lib/palette";
 import { cn } from "@/lib/utils";
 import { pageMetadata } from "@/lib/metadata";
 import { techCategories } from "@/data/site";
-import { getHowWeWork, getSection, getTechnologies } from "@/lib/cms/content";
+import Link from "next/link";
+import { getHowWeWork, getProjects, getSection, getTechnologies } from "@/lib/cms/content";
 
 export const metadata = pageMetadata({
   title: "Technologies",
@@ -17,7 +18,8 @@ export const metadata = pageMetadata({
 });
 
 export default async function TechnologiesPage() {
-  const [technologies, items, copy] = await Promise.all([getTechnologies(), getHowWeWork(), getSection("page.technologies")]);
+  const [technologies, items, copy, projects] = await Promise.all([getTechnologies(), getHowWeWork(), getSection("page.technologies"), getProjects()]);
+  const usage = (name: string) => projects.filter((p) => p.technologies.some((t) => t.toLowerCase() === name.toLowerCase())).length;
   const choice = items.filter((i) => i.group === "tech-choice");
   const known = new Set<string>(techCategories);
   const groups = [
@@ -52,12 +54,27 @@ export default async function TechnologiesPage() {
                 {g.name}
               </h3>
               <ul className="flex flex-wrap gap-3">
-                {g.list.map((t) => (
-                  <li key={t._id} className="flex items-center gap-3 rounded-2xl bg-ink-50 px-4 py-3 ring-1 ring-ink-100">
-                    <TechIcon tech={t} className="size-7" />
-                    <span className="text-sm font-semibold text-ink-800">{t.name}</span>
-                  </li>
-                ))}
+                {g.list.map((t) => {
+                  const n = usage(t.name);
+                  const inner = (
+                    <>
+                      <TechIcon tech={t} className="size-7" />
+                      <span className="text-sm font-semibold text-ink-800">{t.name}</span>
+                      {n > 0 && <span className="rounded-full bg-brand-50 px-2 py-0.5 text-xs font-semibold text-brand-700">{n} {n === 1 ? "project" : "projects"}</span>}
+                    </>
+                  );
+                  return (
+                    <li key={t._id}>
+                      {n > 0 ? (
+                        <Link href={`/projects?q=${encodeURIComponent(t.name)}`} className="flex items-center gap-3 rounded-2xl bg-ink-50 px-4 py-3 ring-1 ring-ink-100 transition hover:bg-white hover:shadow-[var(--shadow-soft)] hover:ring-brand-200">
+                          {inner}
+                        </Link>
+                      ) : (
+                        <div className="flex items-center gap-3 rounded-2xl bg-ink-50 px-4 py-3 ring-1 ring-ink-100">{inner}</div>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}

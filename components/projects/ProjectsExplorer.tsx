@@ -8,9 +8,9 @@ import type { Project } from "@/types";
 
 const PAGE_SIZE = 9;
 
-export function ProjectsExplorer({ projects, categories }: { projects: Project[]; categories: string[] }) {
+export function ProjectsExplorer({ projects, categories, initialQuery = "" }: { projects: Project[]; categories: string[]; initialQuery?: string }) {
   const [category, setCategory] = useState("All");
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(initialQuery);
   const [sort, setSort] = useState<"featured" | "az">("featured");
   const [visible, setVisible] = useState(PAGE_SIZE);
 
@@ -19,7 +19,7 @@ export function ProjectsExplorer({ projects, categories }: { projects: Project[]
     const list = projects.filter(
       (p) =>
         (category === "All" || p.categories.includes(category)) &&
-        (!q || [p.name, p.summary, p.industry, ...p.categories].join(" ").toLowerCase().includes(q)),
+        (!q || [p.name, p.summary, p.industry, p.client ?? "", ...p.categories, ...p.technologies, ...p.deliveryTags].join(" ").toLowerCase().includes(q)),
     );
     return sort === "az"
       ? [...list].sort((a, b) => a.name.localeCompare(b.name))

@@ -14,7 +14,8 @@ import { ProjectCover } from "@/components/projects/ProjectCover";
 import { hues, hueAt } from "@/lib/palette";
 import { cn } from "@/lib/utils";
 import { pageMetadata } from "@/lib/metadata";
-import { bySlug, getProjects, getSolutions, pickSlugs } from "@/lib/cms/content";
+import { bySlug, getProjects, getSolutions, getTechnologies, pickSlugs } from "@/lib/cms/content";
+import { TechIcon } from "@/components/ui/TechIcon";
 
 type Params = { slug: string };
 
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 
 export default async function ProjectPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
-  const [projects, solutions] = await Promise.all([getProjects(), getSolutions()]);
+  const [projects, solutions, techList] = await Promise.all([getProjects(), getSolutions(), getTechnologies()]);
   const p = bySlug(projects, slug);
   if (!p) notFound();
 
@@ -166,7 +167,17 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
               {p.technologies.length > 0 && (
                 <div>
                   <dt className="text-ink-500">Technology</dt>
-                  <dd className="mt-0.5 font-medium text-ink-900">{p.technologies.join(", ")}</dd>
+                  <dd className="mt-1.5 flex flex-wrap gap-1.5">
+                    {p.technologies.map((name) => {
+                      const tech = techList.find((t) => t.name.toLowerCase() === name.toLowerCase());
+                      return (
+                        <Link key={name} href={`/projects?q=${encodeURIComponent(name)}`} className="inline-flex items-center gap-1.5 rounded-md bg-white px-2 py-1 text-xs font-medium text-ink-700 ring-1 ring-ink-200 ring-inset hover:ring-brand-300">
+                          {tech && <TechIcon tech={tech} className="size-3.5" />}
+                          {name}
+                        </Link>
+                      );
+                    })}
+                  </dd>
                 </div>
               )}
               {p.deliveryTags.length > 0 && (
