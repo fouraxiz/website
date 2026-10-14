@@ -40,7 +40,7 @@ export default async function PrivacyPolicyPage() {
       </p>
       <h2>5. International transfers</h2>
       <p>
-        4axiz operates offices in Bangladesh, New Zealand and Kosovo. Your information may be accessed by our team in these locations to respond
+        4axiz operates in Bangladesh, New Zealand and the United States, and works with partners in other countries. Your information may be accessed by our team in these locations to respond
         to your inquiry. We take reasonable steps to protect it wherever it is processed.
       </p>
       <h2>6. Retention</h2>

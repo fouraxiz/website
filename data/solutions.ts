@@ -43,7 +43,7 @@ export const solutions: Solution[] = [
       "AI that is governed, monitored and explainable to stakeholders",
     ],
     relatedServices: ["ai-machine-learning", "api-integration", "custom-software-development"],
-    relatedProjects: ["dgfp-digital-archive"],
+    relatedProjects: ["smart-hostel-management", "dsk-e-loan"],
     relatedIndustries: ["healthcare", "financial-services", "professional-services"],
     seoDescription:
       "AI assistants, intelligent document processing, predictive analytics and workflow automation designed and integrated by 4axiz IT Limited.",
@@ -86,7 +86,7 @@ export const solutions: Solution[] = [
       "A foundation you can extend over time",
     ],
     relatedServices: ["custom-software-development", "ui-ux-design", "api-integration"],
-    relatedProjects: ["dsk-e-loan", "dgfp-digital-archive", "school-management"],
+    relatedProjects: ["handicap-international-mis", "ngo-forum-integrated-erp", "kmix-erp"],
     relatedIndustries: ["ngos-development", "financial-services", "education"],
     seoDescription:
       "Custom software development by 4axiz: line-of-business systems, portals, workflow automation, integrations and legacy modernisation.",
@@ -129,7 +129,7 @@ export const solutions: Solution[] = [
       "Confidence in security and data protection",
     ],
     relatedServices: ["web-development", "ui-ux-design", "cloud-devops"],
-    relatedProjects: ["bazarnao", "unikart", "school-management"],
+    relatedProjects: ["bazarnao", "unfpa-shombhabona-connect", "dghs-etoolkits"],
     relatedIndustries: ["retail-ecommerce", "education", "professional-services"],
     seoDescription:
       "Web application development by 4axiz: SaaS platforms, dashboards, marketplaces and progressive web apps built for performance and security.",
@@ -172,7 +172,7 @@ export const solutions: Solution[] = [
       "Apps that are maintainable after launch",
     ],
     relatedServices: ["mobile-app-development", "ui-ux-design", "api-integration"],
-    relatedProjects: ["unikart-app", "bazarnao"],
+    relatedProjects: ["mdr-tb-dot-monitoring", "undp-nuprp-mis", "sbcc-activity-monitoring"],
     relatedIndustries: ["retail-ecommerce", "logistics-supply-chain", "financial-services"],
     seoDescription:
       "Android, iOS and cross-platform mobile app development by 4axiz for customer commerce, field operations and self-service.",
@@ -215,7 +215,7 @@ export const solutions: Solution[] = [
       "Built-in compliance evidence",
     ],
     relatedServices: ["custom-software-development", "api-integration", "ai-machine-learning"],
-    relatedProjects: ["dsk-e-loan", "dgfp-digital-archive"],
+    relatedProjects: ["ngo-forum-integrated-erp", "kmix-erp", "dsk-e-loan"],
     relatedIndustries: ["ngos-development", "manufacturing-distribution", "professional-services"],
     seoDescription:
       "Business process automation by 4axiz: digital approvals, workflow automation, system integration and process dashboards.",

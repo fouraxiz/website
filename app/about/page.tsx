@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "@/components/sections/PageHero";
 import { TechSection } from "@/components/sections/home/TechSection";
@@ -9,56 +10,69 @@ import { ButtonLink } from "@/components/ui/Button";
 import { TeamPortrait } from "@/components/team/TeamPortrait";
 import { Icon } from "@/lib/icons";
 import { pageMetadata } from "@/lib/metadata";
-import { getOffices, getSettings, getSolutions, getTeam, getValues } from "@/lib/cms/content";
+import { getMilestones, getOffices, getSettings, getSolutions, getStrengths, getTeam, getValues } from "@/lib/cms/content";
 
 export const metadata = pageMetadata({
   title: "About Us",
   description:
-    "4axiz IT Limited is a software product and technology services company building ERP, AI and custom digital solutions, with offices in Bangladesh, New Zealand and Kosovo.",
+    "4axiz IT Limited (est. 2010, BASIS member A337) builds enterprise software, ERP, MIS & MEAL platforms, mobile apps and AI for government, UN agencies, NGOs, INGOs and corporate enterprises.",
   path: "/about",
 });
 
-const reasons = [
-  { title: "Products and services under one roof", text: "We bring ready-made platforms where they fit and custom engineering where they don't — without forcing either." },
-  { title: "Deep business-process understanding", text: "ERP work teaches you how organisations really run. We apply that understanding to every project." },
-  { title: "Long-term partnership", text: "We support, maintain and improve the systems we build, so your investment keeps paying back." },
-  { title: "International reach, close collaboration", text: "Teams across three countries give us range, while every engagement keeps a single accountable lead." },
-];
-
 export default async function AboutPage() {
-  const [site, offices, solutions, team, companyValues] = await Promise.all([getSettings(), getOffices(), getSolutions(), getTeam(), getValues()]);
+  const [site, offices, solutions, team, companyValues, milestones, strengths] = await Promise.all([
+    getSettings(),
+    getOffices(),
+    getSolutions(),
+    getTeam(),
+    getValues(),
+    getMilestones(),
+    getStrengths(),
+  ]);
+  const facts = [
+    { label: "Established", value: site.established },
+    { label: "Incorporation no.", value: site.incorporationNo },
+    { label: "BASIS membership", value: site.basisMembership },
+    { label: "Trade licence", value: site.tradeLicence },
+  ].filter((f): f is { label: string; value: string } => Boolean(f.value));
   const { mission, vision } = site;
   const leadership = team.filter((m) => m.leadership);
   return (
     <>
       <PageHero
-        edit={[{ label: "Mission, vision & contact", collection: "settings", slug: "site" }, { label: "Values", collection: "values" }, { label: "Team", collection: "team" }]}
+        edit={[
+          { label: "Mission, vision & company facts", collection: "settings", slug: "site" },
+          { label: "Values", collection: "values" },
+          { label: "Milestones", collection: "milestones" },
+          { label: "Key strengths", collection: "strengths" },
+          { label: "Team", collection: "team" },
+        ]}
         decor={{ icons: ["code", "boxes", "brain", "globe", "users"], center: "layers" }}
         crumbs={[{ label: "Company" }, { label: "About Us" }]}
         eyebrow="About 4axiz"
-        title="We build software that helps organisations work with clarity."
-        description={`${site.legalName} has served local and global clients since ${site.foundedYear ?? 2010}. We create our own business products — led by the 4axiz ERP platform — and partner with organisations to design and build the custom systems they need.`}
+        title="Sixteen years of engineering for institutions that cannot afford to fail."
+        description={`${site.legalName} is a Bangladeshi technology company with a global delivery record. Since ${site.foundedYear ?? 2010} we have delivered enterprise software, ERP platforms, MIS systems, mobile applications and digital transformation programmes for government, UN agencies, NGOs, INGOs and corporate enterprises.`}
       />
 
       <StatsStrip />
 
       <Section labelledBy="who">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
-          <SectionHeading eyebrow="Who we are" id="who" title="A product company and an engineering partner." />
+          <SectionHeading eyebrow="Who we are" id="who" title="A leading Bangladeshi technology company with a global delivery record." />
           <div className="space-y-5 text-lg leading-relaxed text-ink-600">
             <p>
-              Our work sits at the intersection of business operations and technology. We build enterprise software and ERP that connects
-              finance, people, procurement and inventory; we design web and mobile applications; and we help organisations adopt AI in ways that
-              are practical and responsible.
+              {site.legalName} designs, develops and implements innovative, secure and scalable digital solutions for government organisations,
+              international development partners, NGOs, INGOs and corporate enterprises — improving operational efficiency, automation,
+              transparency and decision-making.
             </p>
             <p>
-              We specialise in cost-effective, creative and high-quality solutions that meet your requirements, stay within budget and are
-              delivered on time. Our team works across .NET, PHP, CodeIgniter, CakePHP, Laravel, React, Vue, Flutter, WordPress, Drupal and
-              Joomla — on new builds as well as ongoing maintenance and support.
+              Our work spans beneficiary management systems, project monitoring platforms, mobile data collection applications, reporting
+              dashboards and cloud-based solutions — from a nationwide TB monitoring system in 800+ upazila health complexes to a mutualised
+              platform serving Handicap International operations in more than 180 countries.
             </p>
             <p>
-              We work with organisations across education, retail and e-commerce, financial services, healthcare, development and the public
-              sector — from our offices in {offices.map((o) => o.country).join(", ").replace(/, ([^,]*)$/, " and $1")}.
+              Our 45 engineers, designers, QA specialists and project managers work from one building in Mirpur 12, Dhaka — with offices in{" "}
+              {offices.map((o) => o.country).join(", ").replace(/, ([^,]*)$/, " and $1")}.
             </p>
           </div>
         </div>
@@ -82,7 +96,7 @@ export default async function AboutPage() {
 
       <Section labelledBy="values">
         <SectionHeading eyebrow="Core values" id="values" title="What guides our work." />
-        <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {companyValues.map((v, i) => (
             <li key={v.title} className="border-t border-ink-200 pt-6">
               <span className="font-display text-sm font-semibold text-brand-600">{String(i + 1).padStart(2, "0")}</span>
@@ -94,25 +108,57 @@ export default async function AboutPage() {
       </Section>
 
       <Section tone="muted" labelledBy="journey">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
-          <SectionHeading eyebrow="Our journey" id="journey" title="What our work has grown into." />
-          <div>
-            <ul className="grid gap-6 sm:grid-cols-2">
-              {[
-                { t: "Building business software", d: "Developing products for operations such as point of sale and school management." },
-                { t: "Delivering custom platforms", d: "Digital archives, loan management and e-commerce platforms for clients across sectors." },
-                { t: "Growing the ERP ecosystem", d: "Connecting finance, people, procurement and inventory into one modular platform." },
-                { t: "Expanding internationally", d: "Offices in Bangladesh, New Zealand and Kosovo." },
-              ].map((m) => (
-                <li key={m.t} className="border-l-2 border-brand-600 pl-4">
-                  <h3 className="font-semibold">{m.t}</h3>
-                  <p className="mt-1 text-sm text-ink-500">{m.d}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <SectionHeading eyebrow="Our journey" id="journey" title="Sixteen years in four steps." />
+        <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {milestones.map((m, i) => (
+            <li key={m._id} className="relative rounded-3xl bg-white p-6 shadow-[var(--shadow-soft)] ring-1 ring-ink-100">
+              <span className={`font-display text-4xl font-bold ${["text-brand-500", "text-accent-500", "text-sky-500", "text-emerald-500"][i % 4]}`}>{m.year}</span>
+              <h3 className="mt-3 font-semibold">{m.title}</h3>
+              {m.description && <p className="mt-2 text-sm leading-relaxed text-ink-500">{m.description}</p>}
+            </li>
+          ))}
+        </ol>
       </Section>
+
+      {facts.length > 0 && (
+        <Section labelledBy="facts">
+          <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.4fr]">
+            <div>
+              <SectionHeading eyebrow="Company facts" id="facts" title="Registered, accredited and accountable." />
+              <p className="mt-4 text-ink-500">
+                Certificates of incorporation, trade licence, work orders and completion certificates are available on request for tender and
+                due-diligence purposes.
+              </p>
+              {site.basisMembership && (
+                <div className="mt-8 inline-flex items-center gap-4 rounded-2xl bg-white p-4 ring-1 ring-ink-200">
+                  <Image src="/images/brand/basis.webp" alt="BASIS — Bangladesh Association of Software and Information Services" width={240} height={80} className="h-12 w-auto" unoptimized />
+                  <span className="text-sm text-ink-600">
+                    Member
+                    <br />
+                    <span className="font-semibold text-ink-900">{site.basisMembership}</span>
+                  </span>
+                </div>
+              )}
+            </div>
+            <dl className="grid gap-px overflow-hidden rounded-2xl bg-ink-200 ring-1 ring-ink-200 sm:grid-cols-2">
+              {facts.map((f) => (
+                <div key={f.label} className="bg-white p-6">
+                  <dt className="text-xs font-semibold tracking-[0.12em] text-ink-400 uppercase">{f.label}</dt>
+                  <dd className="mt-2 font-display text-xl font-semibold text-ink-900">{f.value}</dd>
+                </div>
+              ))}
+              <div className="bg-white p-6">
+                <dt className="text-xs font-semibold tracking-[0.12em] text-ink-400 uppercase">Head office</dt>
+                <dd className="mt-2 font-display text-xl font-semibold text-ink-900">Mirpur 12, Dhaka — 2,300 sq ft</dd>
+              </div>
+              <div className="bg-white p-6">
+                <dt className="text-xs font-semibold tracking-[0.12em] text-ink-400 uppercase">Engineering team</dt>
+                <dd className="mt-2 font-display text-xl font-semibold text-ink-900">45 specialists — web, Android &amp; iOS</dd>
+              </div>
+            </dl>
+          </div>
+        </Section>
+      )}
 
       <Section labelledBy="expertise">
         <SectionHeading eyebrow="Expertise" id="expertise" title="Capabilities across the software lifecycle." />
@@ -140,35 +186,34 @@ export default async function AboutPage() {
       <TechSection />
 
       <Section tone="muted" labelledBy="presence">
-        <SectionHeading eyebrow="International presence" id="presence" title="Offices in three countries." />
+        <SectionHeading eyebrow="International presence" id="presence" title="Local roots. Worldwide impact." />
         <div className="mt-12">
           <OfficeCards offices={offices} />
         </div>
       </Section>
 
       <Section labelledBy="why">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
-          <SectionHeading eyebrow="Why 4axiz" id="why" title="Why organisations choose us." />
-          <ul className="grid gap-8 sm:grid-cols-2">
-            {reasons.map((r) => (
-              <li key={r.title}>
-                <h3 className="font-semibold">{r.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-500">{r.text}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <SectionHeading eyebrow="Key strengths" id="why" title="What clients consistently buy from 4axiz." />
+        <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {strengths.map((r, i) => (
+            <li key={r._id} className="rounded-3xl bg-ink-50 p-7 ring-1 ring-ink-100">
+              <span className="font-display text-sm font-semibold text-brand-600">{String(i + 1).padStart(2, "0")}</span>
+              <h3 className="mt-3 text-lg font-semibold">{r.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-500">{r.description}</p>
+            </li>
+          ))}
+        </ul>
       </Section>
 
       <Section tone="muted" labelledBy="leadership">
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <SectionHeading eyebrow="Leadership & team" id="leadership" title="The people behind 4axiz." />
+          <SectionHeading eyebrow="Key personnel" id="leadership" title="The people behind 4axiz." />
           <ButtonLink href="/team" variant="secondary" arrow>
             Meet the team
           </ButtonLink>
         </div>
         {leadership.length > 0 ? (
-          <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {leadership.map((m) => (
               <li key={m.id}>
                 <TeamPortrait member={m} showBio />
@@ -177,8 +222,7 @@ export default async function AboutPage() {
           </ul>
         ) : (
           <p className="mt-6 max-w-2xl text-ink-600">
-            Engineers, designers, analysts and support specialists across Bangladesh, New Zealand and Kosovo — meet the people who build and
-            support your software.
+            Engineers, designers, analysts and support specialists — meet the people who build and support your software.
           </p>
         )}
       </Section>

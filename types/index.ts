@@ -49,7 +49,26 @@ export type IconName =
   | "compass"
   | "pen-tool"
   | "rocket"
-  | "layers";
+  | "layers"
+  | "server"
+  | "network"
+  | "megaphone"
+  | "activity"
+  | "archive"
+  | "building"
+  | "hospital"
+  | "utensils"
+  | "shirt"
+  | "house"
+  | "pill"
+  | "clipboard-check"
+  | "clock"
+  | "bed"
+  | "fingerprint"
+  | "gauge"
+  | "database"
+  | "siren"
+  | "map-pin";
 
 export interface NavLink {
   label: string;

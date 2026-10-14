@@ -1,4 +1,4 @@
-import type { Product, ProductKind } from "@/types";
+import type { IconName, Product, ProductKind } from "@/types";
 
 /**
  * Product catalogue.
@@ -56,7 +56,6 @@ export const products: Product[] = [
     benefits: ["Less paperwork for administrators", "Information available when needed", "A single system of record"],
     integrations: [],
     audience: ["Schools", "Educational institutions"],
-    relatedProject: "school-management",
     mockup: { metricLabels: ["Classes", "Records updated", "Notices"], rows: ["Records · Updated", "Class schedule", "Notice published", "Report generated"] },
   },
   {
@@ -79,7 +78,6 @@ export const products: Product[] = [
     integrations: [],
     audience: ["Retail shops", "Outlets and branches"],
     erpModule: "pos",
-    relatedProject: "pos",
     mockup: { metricLabels: ["Today's sales", "Transactions", "Top product"], rows: ["Sale · Counter 1", "Sale · Counter 2", "Return processed", "Day close"] },
   },
   {
@@ -213,6 +211,30 @@ export const products: Product[] = [
     audience: ["Organisations with specialised processes", "Public and development sector", "Financial services"],
     mockup: { metricLabels: ["Requests", "In review", "Completed"], rows: ["Application received", "Review · Stage 2", "Approved", "Archived"] },
   },
+];
+
+/**
+ * "Products you can adopt today" — the 16 ready-to-deploy products listed in the
+ * Company Profile 2026. Licensed as a one-off licence, annual subscription or
+ * fully managed SaaS, with configuration, data migration and training included.
+ */
+export const readyProducts: { name: string; icon: IconName; summary: string | null; href: string | null }[] = [
+  { name: "Restaurant Management", icon: "utensils", summary: null, href: null },
+  { name: "HR & Payroll Management", icon: "users", summary: null, href: "/products/hrm-payroll" },
+  { name: "Garments ERP", icon: "shirt", summary: null, href: null },
+  { name: "Multi-purpose Management", icon: "layers", summary: null, href: null },
+  { name: "Courier & Product Tracking", icon: "truck", summary: null, href: null },
+  { name: "Point of Sale (POS)", icon: "scan-barcode", summary: null, href: "/products/pos" },
+  { name: "Real Estate (CRM)", icon: "house", summary: null, href: null },
+  { name: "Document Management", icon: "file-text", summary: null, href: null },
+  { name: "Prescription Management", icon: "clipboard-check", summary: null, href: null },
+  { name: "Manufacturing Software", icon: "factory", summary: null, href: null },
+  { name: "Digital Archiving (Web)", icon: "archive", summary: null, href: "/projects/dgfp-digital-archive" },
+  { name: "Medicine Shop Management", icon: "pill", summary: null, href: null },
+  { name: "Attendance Management", icon: "fingerprint", summary: null, href: null },
+  { name: "School / College Management", icon: "graduation-cap", summary: null, href: "/products/school-management" },
+  { name: "Hospital Management", icon: "hospital", summary: null, href: null },
+  { name: "Smart Hostel Management", icon: "bed", summary: "Admission, rooms, billing, meals and maintenance with AI-assisted forecasting.", href: "/projects/smart-hostel-management" },
 ];
 
 export function getProduct(slug: string) {

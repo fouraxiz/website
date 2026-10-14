@@ -1,13 +1,14 @@
-import { Camera, Check, Phone } from "lucide-react";
+import Image from "next/image";
+import { Check, Phone } from "lucide-react";
 import { AboutTabs } from "./AboutTabs";
 import { ButtonLink } from "@/components/ui/Button";
 import { CopyTitle } from "@/components/ui/Section";
-import { getSettings, getTechnologies, getValues } from "@/lib/cms/content";
+import { getOffices, getSettings, getStats, getTechnologies, getValues } from "@/lib/cms/content";
 import type { SectionEntry } from "@/lib/cms/content";
 import { TechIcon } from "@/components/ui/TechIcon";
 
 export async function AboutSection({ copy }: { copy: SectionEntry }) {
-  const [site, technologies, companyValues] = await Promise.all([getSettings(), getTechnologies(), getValues()]);
+  const [site, technologies, companyValues, offices, stats] = await Promise.all([getSettings(), getTechnologies(), getValues(), getOffices(), getStats()]);
   const { mission, vision } = site;
   const years = site.foundedYear ? new Date().getFullYear() - site.foundedYear : null;
   return (
@@ -19,12 +20,25 @@ export async function AboutSection({ copy }: { copy: SectionEntry }) {
             <div className="relative row-span-2 overflow-hidden rounded-3xl bg-gradient-to-br from-ink-800 to-ink-950">
               <div className="bg-grid-dark absolute inset-0" aria-hidden="true" />
               <div className="absolute -top-10 -left-10 size-48 rounded-full bg-accent-500/40 blur-3xl" aria-hidden="true" />
-              <div className="relative flex aspect-[3/4] flex-col items-center justify-center p-6 text-center">
-                <span className="inline-flex size-12 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/20">
-                  <Camera className="size-5" aria-hidden="true" />
-                </span>
-                <p className="mt-3 text-sm font-semibold text-white">Team photo</p>
-                <p className="mt-1 text-xs text-ink-400">Placeholder — replace with an approved office photo</p>
+              <div className="relative flex aspect-[3/4] flex-col justify-between gap-5 p-6 pb-12">
+                {site.basisMembership && (
+                  <div className="flex items-center gap-3 self-start rounded-2xl bg-white p-3">
+                    <Image src="/images/brand/basis.webp" alt="BASIS" width={96} height={32} className="h-5 w-auto sm:h-7" unoptimized />
+                    <span className="text-[0.62rem] leading-tight font-medium text-ink-600 sm:text-[0.68rem]">
+                      Member
+                      <br />
+                      {site.basisMembership}
+                    </span>
+                  </div>
+                )}
+                <ul className="space-y-5">
+                  {stats.slice(1, 4).map((st, i) => (
+                    <li key={st._id} className={i === 2 ? "hidden sm:block" : undefined}>
+                      <p className="font-display text-3xl font-bold text-white">{st.value}</p>
+                      <p className="mt-0.5 text-xs leading-snug text-ink-300">{st.label}</p>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
             <div className="flex flex-col justify-center rounded-3xl bg-brand-50 p-6 ring-1 ring-brand-100">
@@ -54,7 +68,7 @@ export async function AboutSection({ copy }: { copy: SectionEntry }) {
             </span>
             <span className="text-sm leading-tight">
               <span className="block font-semibold text-ink-900">Local &amp; global clients</span>
-              <span className="text-ink-500">Bangladesh · New Zealand · Kosovo</span>
+              <span className="text-ink-500">{offices.map((o) => o.country).join(" · ")}</span>
             </span>
           </div>
         </div>
@@ -69,9 +83,9 @@ export async function AboutSection({ copy }: { copy: SectionEntry }) {
             <CopyTitle title={copy.title} highlight={copy.highlight} />
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-ink-600">
-            {site.legalName} delivers cost-effective, creative and high-quality software for local and global markets
-            {site.foundedYear ? ` — since ${site.foundedYear}` : ""}. From ERP and AI to custom web and mobile applications, we build solutions
-            that fit your requirements, your budget and your timeline.
+            {site.legalName} designs, develops and implements secure, scalable digital solutions for government organisations, international
+            development partners, NGOs, INGOs and corporate enterprises{site.foundedYear ? ` — since ${site.foundedYear}` : ""}. Enterprise
+            software, ERP, MIS and mobile platforms that improve efficiency, transparency and decision-making.
           </p>
           <div className="mt-8">
             <AboutTabs

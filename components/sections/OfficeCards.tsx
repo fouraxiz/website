@@ -7,7 +7,7 @@ const flags: Record<string, string> = { BD: "🇧🇩", NZ: "🇳🇿", XK: "�
 /** Office cards — each office shows only its own verified details. */
 export function OfficeCards({ offices, inverse = false }: { offices: Office[]; inverse?: boolean }) {
   return (
-    <ul className="grid gap-5 md:grid-cols-3">
+    <ul className={cn("grid gap-5", offices.length === 4 ? "md:grid-cols-2 xl:grid-cols-4" : "md:grid-cols-3")}>
       {offices.map((o) => {
         const hasDetails = Boolean(o.address || o.phone || o.email);
         return (
@@ -30,6 +30,11 @@ export function OfficeCards({ offices, inverse = false }: { offices: Office[]; i
                 </p>
               </div>
             </div>
+            {o.role && (
+              <p className={cn("mt-4 inline-flex self-start rounded-full px-2.5 py-1 text-xs font-semibold", inverse ? "bg-white/10 text-brand-200" : "bg-brand-50 text-brand-700")}>
+                {o.role}
+              </p>
+            )}
             {hasDetails ? (
               <dl className={cn("mt-6 space-y-3 text-sm", inverse ? "text-ink-300" : "text-ink-600")}>
                 {o.address && (

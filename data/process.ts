@@ -1,40 +1,59 @@
 import type { ProcessStep } from "@/types";
 
+/** Nine-phase delivery methodology — Company Profile 2026. Smaller engagements compress it into fewer phases. */
 export const processSteps: ProcessStep[] = [
   {
-    title: "Discovery & Business Analysis",
-    description: "We study your goals, users and current processes to understand what success looks like.",
-    outputs: ["Stakeholder workshops", "Process maps", "Requirement backlog"],
+    title: "Initiation & requirement analysis",
+    description: "Kick-off, stakeholder consultation, process review, workflow analysis and requirement validation.",
+    outputs: ["Inception report", "Work plan", "Requirement validation report"],
     icon: "search",
   },
   {
-    title: "Strategy & Solution Design",
-    description: "We define scope, architecture and a delivery roadmap with clear priorities.",
-    outputs: ["Solution architecture", "Delivery roadmap", "Estimates"],
+    title: "System design & architecture",
+    description: "Functional design, data model, security model and integration design.",
+    outputs: ["System design document", "Data dictionary"],
     icon: "compass",
   },
   {
-    title: "UI/UX & Prototyping",
-    description: "We design interfaces and test clickable prototypes before development begins.",
-    outputs: ["User flows", "Interactive prototype", "Design system"],
+    title: "UI/UX design & prototyping",
+    description: "Wireframes, interface design, navigation and usability review.",
+    outputs: ["Approved UI/UX prototype"],
     icon: "pen-tool",
   },
   {
-    title: "Development & Integration",
-    description: "We build in short sprints, integrating with your systems and demoing progress regularly.",
-    outputs: ["Sprint demos", "Reviewed code", "Integrations"],
+    title: "Core development",
+    description: "Module-wise development of the core platform and business logic.",
+    outputs: ["Working core modules"],
     icon: "code",
   },
   {
-    title: "Testing & Quality Assurance",
-    description: "We verify functionality, performance and security before anything reaches users.",
-    outputs: ["Test plans", "Regression suites", "UAT sign-off"],
+    title: "Mobile & field modules",
+    description: "Offline data collection, GPS, evidence capture and synchronisation.",
+    outputs: ["Mobile application build"],
+    icon: "smartphone",
+  },
+  {
+    title: "Integration & dashboards",
+    description: "Third-party integration, indicator engine, dashboards and reporting.",
+    outputs: ["Reporting and dashboard suite"],
+    icon: "bar-chart",
+  },
+  {
+    title: "Testing & UAT",
+    description: "Functional, performance, security and user acceptance testing.",
+    outputs: ["Test reports", "UAT sign-off"],
     icon: "test-tube",
   },
   {
-    title: "Deployment & Ongoing Support",
-    description: "We launch carefully, train your teams and stay on to support and improve.",
-    outputs: ["Go-live plan", "User training", "Support & SLAs"],
+    title: "Deployment & go-live",
+    description: "Production setup, migration, backup configuration and access setup.",
+    outputs: ["Production system", "Go-live report"],
     icon: "rocket",
+  },
+  {
+    title: "Post-deployment support",
+    description: "Stabilisation, troubleshooting, refinement, training, documentation and handover.",
+    outputs: ["Final documentation", "Handover report"],
+    icon: "life-buoy",
   },
 ];

@@ -4,14 +4,14 @@
  * (e.g. local preview without a database).
  */
 import { slugify } from "./fields";
-import { site, offices, socialLinks, stats, technologies, companyValues, mission, vision } from "@/data/site";
+import { site, companyFacts, offices, socialLinks, stats, technologies, companyValues, mission, vision, strengths, milestones, engagementModels } from "@/data/site";
 import { mainNav } from "@/data/navigation";
 import { slides } from "@/data/slides";
 import { sectionDefaults, homeSectionOrder } from "@/data/sections";
 import { processSteps } from "@/data/process";
 import { solutions } from "@/data/solutions";
 import { erpModules } from "@/data/erp-modules";
-import { products } from "@/data/products";
+import { products, readyProducts } from "@/data/products";
 import { services } from "@/data/services";
 import { projects } from "@/data/projects";
 import { industries } from "@/data/industries";
@@ -48,7 +48,12 @@ export function buildSeed(): Record<string, SeedItem[]> {
           phone: site.phone,
           email: site.email,
           foundedYear: site.foundedYear,
-          topbarLocation: "Mirpur-12, Dhaka, Bangladesh",
+          topbarLocation: "Mirpur 12, Dhaka, Bangladesh",
+          established: companyFacts.established,
+          incorporationNo: companyFacts.incorporationNo,
+          basisMembership: companyFacts.basisMembership,
+          tradeLicence: companyFacts.tradeLicence,
+          teamsId: companyFacts.teamsId,
           mission,
           vision,
           socials: socialLinks.filter((s) => s.url).map((s) => ({ network: s.network, url: s.url })),
@@ -66,6 +71,10 @@ export function buildSeed(): Record<string, SeedItem[]> {
     stats: byName(stats, (s) => s.label),
     technologies: byName(technologies, (t) => t.name, (t) => ({ name: t.name, icon: t.icon, image: null })),
     values: byName(companyValues, (v) => v.title),
+    strengths: byName(strengths, (v) => v.title),
+    milestones: byName(milestones, (m) => m.title),
+    engagement: byName(engagementModels, (m) => m.title),
+    ready_products: byName(readyProducts, (p) => p.name, (p) => ({ name: p.name, icon: p.icon, summary: p.summary, href: p.href })),
     process: byName(processSteps, (p) => p.title),
     solutions: bySlug(solutions, (s) => {
       const { href: _href, ...rest } = s;
@@ -86,8 +95,7 @@ export function buildSeed(): Record<string, SeedItem[]> {
     industries: bySlug(industries),
     team: byName(team, (m) => m.name, (m) => ({ ...m, photo: m.photo?.src ?? null })),
     offices: offices.map((o) => {
-      const { id, role: _r, ...rest } = o;
-      void _r;
+      const { id, ...rest } = o;
       return { slug: id, data: { ...rest } };
     }),
     clients: byName(clients, (c) => c.name, (c) => ({ name: c.name, logo: c.logo.src, url: c.url ?? null })),

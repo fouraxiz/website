@@ -75,29 +75,46 @@ Design tokens (brand palette, fonts, radii, shadows) are in `app/globals.css` un
 
 ## Verified content in use
 
-Taken from screenshots of the existing fouraxiz.com: the hotline `+880 1718 837 689`, the email `admin@4axiz.com`, the Bangladesh office address (Mirpur-12, Dhaka), "serving local and global markets since 2010", and the technology list (.NET, PHP, Laravel, CodeIgniter, CakePHP, React, Vue, Flutter, WordPress, Drupal, Joomla). Headline numbers live in `stats` in `data/site.ts`.
+Content comes from the **4axiz Company Profile 2026** and from screenshots of the existing fouraxiz.com:
+
+- **Company facts:** established 30 June 2010, incorporation C-112349/13, BASIS member A337, trade licence 02-07374, 45 engineers, 2,300 sq ft head office in Mirpur 12, Dhaka. Bank, VAT and TIN details are deliberately **not** published.
+- **Contact:** `+880 1718 837 689` (phone / WhatsApp), `admin@4axiz.com`, Microsoft Teams `fouraxiz`.
+- **Offices:**
+  - Dhaka (head office): Level 4, House 34, Lane 6/2, Road 20/A, Mirpur 12.
+  - Auckland: delivery and client hub.
+  - Cedar Falls, Iowa: 8120 Jennings Drive.
+- **Headline numbers:** 16+ years, 45 engineers, 60+ clients, 180+ countries reached through partner programmes.
+- **Company profile:** vision, mission, six core values, six key strengths, four dated milestones, the nine-phase delivery methodology, team composition and five engagement models.
+- **Projects:** 20 projects with real client names and scope, including:
+  - Handicap International, NGO Forum (UNHCR), UNDP NUPRP, UNFPA Shombhabona Connect;
+  - NTP Aspect, MDR TB DOT, SAMCS;
+  - KMIX ERP, BazarNao, Smart Hostel, CPD ERP and NITER.
+  - Screenshots from the profile are in `public/images/projects/`.
+- **Clients:** 31 client and partner logos from the profile, in `public/images/clients/`.
+- **Team:** 9 key personnel with roles and bios (no photos yet; cards show initials).
+- **Products and services:**
+  - 16 ready-to-deploy products, editable as "Ready software".
+  - New services: MIS & MEAL, Cyber Security, Digital Marketing & SEO, Managed Hosting & Networking, Business Continuity, Brand Identity.
+- **Technology stack:** taken from the "Our tech stack" page of the profile.
 
 ## Content still needed from 4axiz
 
-Everything below can now be added from the website itself in edit mode, with no code changes.
+Everything below can be added from the website itself in edit mode, with no code changes.
 
-- [x] **Logo and brand colours:** taken from the official logo. A higher-resolution or SVG version of the logo would look sharper on large screens. Replace the files in `public/brand/`.
-- [ ] **Offices:** address, phone, email and hours for New Zealand and Kosovo, plus business hours for Bangladesh.
+- [ ] **Kosovo office:** the 2026 profile lists Bangladesh, New Zealand and the USA only. Confirm whether Kosovo stays, and add its details or delete it under **Offices**.
+- [ ] **New Zealand office:** street address, phone and email.
+- [ ] **Team portraits** and any further team members.
 - [ ] **Social profile URLs** (Site settings).
-- [ ] **Projects:** approved client names, challenge and solution text, technology stack, screenshots and live URLs.
-- [ ] **Products:** the confirmed feature list and integrations for each product.
-- [ ] **ERP modules:** which modules are available, and their status.
-- [ ] **Team:** names, roles, approved portraits and bios.
-- [ ] **About:** founding year and dated milestones (the journey section is currently undated).
-- [ ] **Testimonials and client logos:** only genuine, approved material.
+- [ ] **Ready software:** a one-line description for each product.
+- [ ] **Testimonials:** only genuine, approved material.
 - [ ] **Privacy Policy and Terms of Service:** these are draft templates and need legal review before publication.
 - [ ] **Careers:** open roles.
-- [ ] **Team and office photos, client logos, headline numbers, project screenshots.**
+- [ ] **Office and team photos.**
 
 ## Quality checks performed
 
 - `npm run lint`, `npm run typecheck` and `npm run build` pass.
-- Every internal link was crawled with no broken links, and unknown routes return the custom 404 page.
+- Every internal link (89 pages) was crawled with no broken links, and unknown routes return the custom 404 page.
 - Editing was tested end to end in headless Chromium, against both the local server and the production Docker stack:
   - sign in, including a wrong password and the retry;
   - edit and publish a slide, and confirm the public site updates;

@@ -2,10 +2,30 @@ import type { Industry } from "@/types";
 
 export const industries: Industry[] = [
   {
+    slug: "government-public-sector",
+    title: "Government & Public Sector",
+    icon: "landmark",
+    summary: "Digital archives, disease surveillance and nationwide monitoring systems for ministries and directorates.",
+    intro:
+      "Our public-sector clients — including MOHFW, DGFP, DGHS, IPHN, CPTU, NTP and the Department of Youth Development — answer to ministries and international donors. We build nationwide systems with the access control, audit trails and training they need.",
+    challenges: [
+      { title: "Nationwide scale", description: "Systems used across hundreds of facilities and field offices." },
+      { title: "Connectivity", description: "Field staff working where the network is unreliable." },
+      { title: "Records and archives", description: "Paper records that are hard to store, find and share." },
+      { title: "Capacity", description: "Users who need training in their own language." },
+    ],
+    solutions: [
+      { title: "MIS & MEAL platforms", description: "Monitoring, indicators and dashboards.", href: "/services/mis-meal-platforms" },
+      { title: "Mobile apps", description: "Offline field data collection.", href: "/solutions/mobile-apps" },
+      { title: "Custom software", description: "Digital archives and registries.", href: "/solutions/custom-software" },
+    ],
+    relatedProjects: ["ntp-aspect-monitoring", "dgfp-digital-archive", "dghs-etoolkits", "youth-organization-bangladesh"],
+  },
+  {
     slug: "healthcare",
     title: "Healthcare",
     icon: "stethoscope",
-    summary: "Operational, equipment and reporting systems for healthcare providers and programmes.",
+    summary: "TB monitoring, health records, pharmacy and facility reporting systems used nationwide.",
     intro:
       "Healthcare organisations carry heavy operational loads behind the scenes — equipment uptime, supplies, staffing and reporting to stakeholders. Software that removes this friction frees teams to focus on care.",
     challenges: [
@@ -19,7 +39,7 @@ export const industries: Industry[] = [
       { title: "Asset management", description: "Registry and maintenance for medical equipment.", href: "/solutions/erp/asset-management" },
       { title: "Reporting & analytics", description: "Dashboards across facilities.", href: "/solutions/erp/reporting-analytics" },
     ],
-    relatedProjects: [],
+    relatedProjects: ["ntp-aspect-monitoring", "mdr-tb-dot-monitoring", "sbcc-activity-monitoring", "dgda-model-pharmacy"],
   },
   {
     slug: "education",
@@ -36,10 +56,11 @@ export const industries: Industry[] = [
     ],
     solutions: [
       { title: "4axiz School Management", description: "A product for school administration.", href: "/products/school-management" },
+      { title: "Smart Hostel Management", description: "Admission, billing, meals and maintenance.", href: "/projects/smart-hostel-management" },
       { title: "Web applications", description: "Portals for students, parents and staff.", href: "/solutions/web-applications" },
       { title: "HRM & Payroll", description: "Staff, leave and payroll for institutions.", href: "/solutions/erp/hrm-payroll" },
     ],
-    relatedProjects: ["school-management"],
+    relatedProjects: ["unfpa-shombhabona-connect", "somvabona", "niter-student-management", "smart-hostel-management"],
   },
   {
     slug: "retail-ecommerce",
@@ -59,15 +80,15 @@ export const industries: Industry[] = [
       { title: "E-commerce solutions", description: "Stores, marketplaces and shopping apps.", href: "/solutions/ecommerce" },
       { title: "Inventory management", description: "Multi-location stock control.", href: "/solutions/erp/inventory" },
     ],
-    relatedProjects: ["pos", "bazarnao", "unikart", "unikart-app"],
+    relatedProjects: ["bazarnao", "unikart", "unikart-app"],
   },
   {
     slug: "ngos-development",
-    title: "NGOs & Development Organisations",
+    title: "UN, INGOs & Development",
     icon: "heart-handshake",
-    summary: "Transparent operations, programme management and donor-ready reporting.",
+    summary: "MIS, MEAL, ERP and field data systems for UN agencies, international NGOs and local NGOs.",
     intro:
-      "Development organisations must demonstrate accountability to donors, regulators and communities while operating across many locations. Digital systems bring that transparency within reach.",
+      "Development organisations must demonstrate accountability to donors, regulators and communities while operating across many locations. We have built systems for UNDP, UNFPA, UNHCR-funded programmes, Handicap International, Management Sciences for Health, Pathfinder and local NGOs — designed for donor-grade security and audit.",
     challenges: [
       { title: "Accountability", description: "Proving how funds and resources were used." },
       { title: "Distributed operations", description: "Field offices with limited connectivity and shared tools." },
@@ -75,11 +96,12 @@ export const industries: Industry[] = [
       { title: "Programme data", description: "Beneficiary and activity data collected inconsistently." },
     ],
     solutions: [
+      { title: "MIS & MEAL platforms", description: "Beneficiaries, indicators, partners and dashboards.", href: "/services/mis-meal-platforms" },
       { title: "Procurement & vendor management", description: "Compliant, auditable purchasing.", href: "/solutions/erp/procurement" },
-      { title: "Custom software", description: "Programme, loan and case management systems.", href: "/solutions/custom-software" },
+      { title: "Custom software", description: "Programme, fleet, audit and incident systems.", href: "/solutions/custom-software" },
       { title: "Process automation", description: "Digital approvals and audit trails.", href: "/solutions/business-process-automation" },
     ],
-    relatedProjects: ["dsk-e-loan"],
+    relatedProjects: ["handicap-international-mis", "ngo-forum-integrated-erp", "undp-nuprp-mis", "cpd-erp"],
   },
   {
     slug: "financial-services",
@@ -119,7 +141,7 @@ export const industries: Industry[] = [
       { title: "Warranty management", description: "Claims, repairs and replacements.", href: "/solutions/erp/warranty-management" },
       { title: "Procurement", description: "Controlled material purchasing.", href: "/solutions/erp/procurement" },
     ],
-    relatedProjects: [],
+    relatedProjects: ["kmix-erp"],
   },
   {
     slug: "logistics-supply-chain",
@@ -139,7 +161,7 @@ export const industries: Industry[] = [
       { title: "Mobile apps", description: "Driver and field team apps.", href: "/solutions/mobile-apps" },
       { title: "Inventory management", description: "Warehouse stock control.", href: "/solutions/erp/inventory" },
     ],
-    relatedProjects: [],
+    relatedProjects: ["handicap-international-mis"],
   },
   {
     slug: "professional-services",

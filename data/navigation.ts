@@ -20,7 +20,7 @@ export const companyLinks: NavLink[] = [
   { label: "Contact Us", href: "/contact", description: "Offices and project inquiries", icon: "message-square" },
 ];
 
-export const serviceLinks: NavLink[] = services.map((s) => ({
+export const serviceLinks: NavLink[] = services.filter((s) => s.featured).map((s) => ({
   label: s.shortTitle,
   href: `/services/${s.slug}`,
   description: s.summary,

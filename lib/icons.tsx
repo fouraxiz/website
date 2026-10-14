@@ -3,7 +3,7 @@ import {
   Globe, GraduationCap, HeartHandshake, Headset, IdCard, KanbanSquare, Landmark, Layers, LifeBuoy, Lock,
   MessageSquare, MonitorCog, Package, Palette, PenTool, Plug, Rocket, ScanBarcode, Search, ShieldCheck,
   ShoppingBag, ShoppingCart, Smartphone, Sparkles, Stethoscope, TestTube2, TrendingUp, Truck, Users,
-  Wallet, Workflow, type LucideIcon,
+  Wallet, Workflow, Activity, Archive, BedDouble, Building2, ClipboardCheck, Clock, Database, Fingerprint, Gauge, Hospital, House, MapPin, Megaphone, Network, Pill, Server, Shirt, Siren, UtensilsCrossed, type LucideIcon,
 } from "lucide-react";
 import type { IconName } from "@/types";
 
@@ -50,6 +50,25 @@ const icons: Record<IconName, LucideIcon> = {
   "pen-tool": PenTool,
   rocket: Rocket,
   layers: Layers,
+  server: Server,
+  network: Network,
+  megaphone: Megaphone,
+  activity: Activity,
+  archive: Archive,
+  building: Building2,
+  hospital: Hospital,
+  utensils: UtensilsCrossed,
+  shirt: Shirt,
+  house: House,
+  pill: Pill,
+  "clipboard-check": ClipboardCheck,
+  clock: Clock,
+  bed: BedDouble,
+  fingerprint: Fingerprint,
+  gauge: Gauge,
+  database: Database,
+  siren: Siren,
+  "map-pin": MapPin,
 };
 
 export function Icon({ name, className, strokeWidth = 1.75 }: { name: IconName; className?: string; strokeWidth?: number }) {

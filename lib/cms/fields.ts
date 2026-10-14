@@ -36,7 +36,7 @@ export const ICON_OPTIONS = [
   "scan-barcode", "package", "truck", "monitor-cog", "shopping-bag", "badge-check", "id-card", "shield-check", "stethoscope",
   "bar-chart", "palette", "plug", "cloud", "test-tube", "life-buoy", "graduation-cap", "heart-handshake", "landmark", "factory",
   "briefcase", "file-text", "message-square", "trending-up", "sparkles", "lock", "headset", "search", "compass", "pen-tool",
-  "rocket", "layers",
+  "rocket", "layers", "server", "network", "megaphone", "activity", "archive", "building", "hospital", "utensils", "shirt", "house", "pill", "clipboard-check", "clock", "bed", "fingerprint", "gauge", "database", "siren", "map-pin",
 ] as const;
 
 export function slugify(input: string) {

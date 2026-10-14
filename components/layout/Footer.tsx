@@ -57,7 +57,7 @@ export async function Footer() {
                 <Phone className="size-5" aria-hidden="true" />
               </span>
               <span>
-                <span className="block text-xs text-ink-400">Hotline 24/7</span>
+                <span className="block text-xs text-ink-400">Phone / WhatsApp</span>
                 <span className="block font-semibold text-white group-hover:text-brand-300">{site.phone}</span>
               </span>
             </a>
@@ -90,8 +90,8 @@ export async function Footer() {
           <div className="max-w-sm">
             <Logo inverse />
             <p className="mt-5 text-sm leading-relaxed">
-              {site.legalName} builds ERP platforms, AI-driven automation, custom software, web and mobile applications for local and global
-              clients{site.foundedYear ? ` — since ${site.foundedYear}` : ""}.
+              {site.legalName} builds enterprise software, ERP, MIS &amp; MEAL platforms, mobile apps and AI for government, UN agencies, NGOs,
+              INGOs and corporate enterprises{site.foundedYear ? ` — since ${site.foundedYear}` : ""}.
             </p>
             <p className="mt-5 text-xs font-semibold tracking-[0.14em] text-ink-500 uppercase">Our products</p>
             <p className="mt-2 text-sm text-ink-300">{productNames.join(" · ")}</p>
@@ -134,6 +134,7 @@ export async function Footer() {
           <p>
             © {site.foundedYear ? `${site.foundedYear}–` : ""}
             {year} {site.legalName}. All rights reserved.
+            {site.basisMembership && <span className="text-ink-500"> · BASIS member {site.basisMembership}</span>}
           </p>
           <ul className="flex gap-6">
             <li>

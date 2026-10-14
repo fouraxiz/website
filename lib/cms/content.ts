@@ -99,6 +99,11 @@ export interface Settings {
   mission: string;
   vision: string;
   socials: SocialLink[];
+  established: string | null;
+  incorporationNo: string | null;
+  basisMembership: string | null;
+  tradeLicence: string | null;
+  teamsId: string | null;
 }
 
 export const getSettings = cache(async (): Promise<Settings & Partial<Meta>> => {
@@ -117,6 +122,11 @@ export const getSettings = cache(async (): Promise<Settings & Partial<Meta>> => 
     mission: str(d.mission),
     vision: str(d.vision),
     socials: arr<SocialLink>(d.socials).filter((s) => s.url),
+    established: strOrNull(d.established),
+    incorporationNo: strOrNull(d.incorporationNo),
+    basisMembership: strOrNull(d.basisMembership),
+    tradeLicence: strOrNull(d.tradeLicence),
+    teamsId: strOrNull(d.teamsId),
     ...(r ? meta(r) : {}),
   };
 });
@@ -161,13 +171,19 @@ export const getTechnologies = cache(async () =>
   list("technologies", (d) => ({ name: str(d.name), icon: str(d.icon), image: strOrNull(d.image) })),
 );
 export const getValues = cache(async () => list("values", (d) => ({ title: str(d.title), description: str(d.description) })));
+export const getStrengths = cache(async () => list("strengths", (d) => ({ title: str(d.title), description: str(d.description) })));
+export const getMilestones = cache(async () => list("milestones", (d) => ({ year: str(d.year), title: str(d.title), description: str(d.description) })));
+export const getEngagementModels = cache(async () => list("engagement", (d) => ({ title: str(d.title), description: str(d.description) })));
+export const getReadyProducts = cache(async () =>
+  list("ready_products", (d) => ({ name: str(d.name), icon: (str(d.icon) || "layers") as IconName, summary: strOrNull(d.summary), href: strOrNull(d.href) })),
+);
 export const getProcess = cache(async () => list<ProcessStep>("process", (d) => ({ ...(d as unknown as ProcessStep), outputs: arr(d.outputs) })));
 export const getOffices = cache(async () =>
   list<Office>("offices", (d, r) => ({
     id: r.slug,
     country: str(d.country),
     countryCode: str(d.countryCode),
-    role: null,
+    role: strOrNull(d.role),
     city: strOrNull(d.city),
     address: strOrNull(d.address),
     phone: strOrNull(d.phone),

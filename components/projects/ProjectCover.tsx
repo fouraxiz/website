@@ -2,13 +2,13 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import type { Project } from "@/types";
 
-const themes: Record<Project["theme"], { bg: string; accent: string; soft: string }> = {
-  blue: { bg: "from-sky-400 to-blue-600", accent: "bg-sky-500", soft: "bg-sky-100" },
-  indigo: { bg: "from-violet-500 to-indigo-600", accent: "bg-violet-500", soft: "bg-violet-100" },
-  teal: { bg: "from-emerald-400 to-teal-600", accent: "bg-emerald-500", soft: "bg-emerald-100" },
-  slate: { bg: "from-ink-700 to-ink-950", accent: "bg-ink-700", soft: "bg-ink-100" },
-  amber: { bg: "from-amber-400 to-orange-500", accent: "bg-amber-500", soft: "bg-amber-100" },
-  rose: { bg: "from-rose-400 to-pink-600", accent: "bg-rose-500", soft: "bg-rose-100" },
+const themes: Record<Project["theme"], { bg: string; accent: string; soft: string; to: string }> = {
+  blue: { bg: "from-sky-400 to-blue-600", accent: "bg-sky-500", soft: "bg-sky-100", to: "to-sky-100" },
+  indigo: { bg: "from-violet-500 to-indigo-600", accent: "bg-violet-500", soft: "bg-violet-100", to: "to-violet-100" },
+  teal: { bg: "from-emerald-400 to-teal-600", accent: "bg-emerald-500", soft: "bg-emerald-100", to: "to-emerald-100" },
+  slate: { bg: "from-ink-700 to-ink-950", accent: "bg-ink-700", soft: "bg-ink-100", to: "to-ink-100" },
+  amber: { bg: "from-amber-400 to-orange-500", accent: "bg-amber-500", soft: "bg-amber-100", to: "to-amber-100" },
+  rose: { bg: "from-rose-400 to-pink-600", accent: "bg-rose-500", soft: "bg-rose-100", to: "to-rose-100" },
 };
 
 /**
@@ -18,15 +18,16 @@ const themes: Record<Project["theme"], { bg: string; accent: string; soft: strin
 export function ProjectCover({ project, className, priority = false }: { project: Project; className?: string; priority?: boolean }) {
   const image = project.images[0];
   if (image) {
+    const t = themes[project.theme] ?? themes.slate;
     return (
-      <div className={cn("relative aspect-[16/10] overflow-hidden bg-ink-100", className)}>
+      <div className={cn("relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-white", t.to, className)}>
         <Image unoptimized
           src={image.src}
           alt={image.alt}
           fill
           priority={priority}
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          className="object-cover"
+          className="object-contain p-3 drop-shadow-sm"
         />
       </div>
     );

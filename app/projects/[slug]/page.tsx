@@ -34,7 +34,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
     .sort((a, b) => b.categories.filter((c) => p.categories.includes(c)).length - a.categories.filter((c) => p.categories.includes(c)).length)
     .slice(0, 3);
   const relatedSolutions = pickSlugs(solutions, p.relatedSolutions);
-  const caseStudyPending = !p.challenge || !p.solution;
+  const caseStudyPending = !p.challenge && !p.solution;
 
   return (
     <>
@@ -43,7 +43,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
         crumbs={[{ label: "Projects", href: "/projects" }, { label: p.name }]}
         eyebrow={p.industry}
         title={p.name}
-        description={p.overview}
+        description={p.summary}
         aside={<ProjectCover project={p} priority className="rounded-2xl border border-ink-200 shadow-[var(--shadow-lift)]" />}
       >
         <div className="mt-6 flex flex-wrap gap-1.5">
@@ -61,17 +61,25 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
             <div className="prose-site">
             {caseStudyPending && (
               <PlaceholderNote className="mb-8">
-                Full case study in preparation. Challenge, solution details and screenshots will be published once approved.
+                A detailed case study, work orders and completion certificates are available on request.
               </PlaceholderNote>
             )}
             <h2>Project overview</h2>
             <p>{p.overview}</p>
 
-            <h2>Business challenge</h2>
-            {p.challenge ? <p>{p.challenge}</p> : <p><Tbc label="To be supplied with the approved case study." /></p>}
+            {p.challenge && (
+              <>
+                <h2>Business challenge</h2>
+                <p>{p.challenge}</p>
+              </>
+            )}
 
-            <h2>Solution delivered</h2>
-            {p.solution ? <p>{p.solution}</p> : <p><Tbc label="To be supplied with the approved case study." /></p>}
+            {p.solution && (
+              <>
+                <h2>Solution delivered</h2>
+                <p className="whitespace-pre-line">{p.solution}</p>
+              </>
+            )}
 
               <h2>Highlights</h2>
             </div>
@@ -93,10 +101,12 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
                 <dt className="text-ink-500">Platform</dt>
                 <dd className="mt-0.5 font-medium text-ink-900">{p.platform.join(", ")}</dd>
               </div>
-              <div>
-                <dt className="text-ink-500">Technology</dt>
-                <dd className="mt-0.5 font-medium text-ink-900">{p.technologies.length ? p.technologies.join(", ") : <Tbc />}</dd>
-              </div>
+              {p.technologies.length > 0 && (
+                <div>
+                  <dt className="text-ink-500">Technology</dt>
+                  <dd className="mt-0.5 font-medium text-ink-900">{p.technologies.join(", ")}</dd>
+                </div>
+              )}
               {relatedSolutions.length > 0 && (
                 <div>
                   <dt className="text-ink-500">Related solutions</dt>

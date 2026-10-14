@@ -6,7 +6,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { PlaceholderNote } from "@/components/ui/PlaceholderNote";
 import { TeamPortrait } from "@/components/team/TeamPortrait";
 import { pageMetadata } from "@/lib/metadata";
-import { departments } from "@/data/team";
+import { departments, teamComposition } from "@/data/team";
 import { getSection, getTeam } from "@/lib/cms/content";
 
 export const metadata = pageMetadata({
@@ -39,7 +39,8 @@ export default async function TeamPage() {
   const leadership = team.filter((m) => m.leadership);
   const groups = departments
     .filter((d) => d.name !== "Leadership")
-    .map((d) => ({ ...d, members: team.filter((m) => m.department === d.name && !m.leadership) }));
+    .map((d) => ({ ...d, members: team.filter((m) => m.department === d.name && !m.leadership) }))
+    .filter((d) => d.members.length > 0);
 
   return (
     <>
@@ -60,12 +61,12 @@ export default async function TeamPage() {
       <Section labelledBy="leadership">
         <div className="grid gap-12 lg:grid-cols-[1fr_2.4fr]">
           <div>
-            <SectionHeading eyebrow="Leadership" id="leadership" title="Leading 4axiz." />
+            <SectionHeading eyebrow="Key personnel" id="leadership" title="The core team on our programmes." />
             <p className="mt-4 text-ink-500">{departments[0].description}</p>
           </div>
           <div>
             {leadership.length > 0 ? (
-              <ul className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+              <ul className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
                 {leadership.map((m) => (
                   <li key={m.id}>
                     <TeamPortrait member={m} showBio />
@@ -84,6 +85,36 @@ export default async function TeamPage() {
         </div>
       </Section>
 
+      <Section tone="dark" labelledBy="composition">
+        <SectionHeading
+          eyebrow="Team composition"
+          id="composition"
+          title="45 specialists in one building."
+          description="Every engagement is staffed from one in-house team — no subcontracting, no hand-offs between vendors. Almost nine in ten of our engineers are mid-level or senior."
+          inverse
+        />
+        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+          {teamComposition.map((g) => (
+            <div key={g.title} className="rounded-3xl bg-white/[0.04] p-7 ring-1 ring-white/10">
+              <h3 className="text-sm font-semibold tracking-[0.12em] text-ink-300 uppercase">{g.title}</h3>
+              <ul className="mt-6 space-y-5">
+                {g.items.map((it, i) => (
+                  <li key={it.label}>
+                    <div className="flex items-baseline justify-between gap-4">
+                      <span className="text-sm text-ink-200">{it.label}</span>
+                      <span className="font-display text-xl font-bold text-white">{it.value}%</span>
+                    </div>
+                    <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/10">
+                      <div className={`h-full rounded-full ${["bg-brand-500", "bg-accent-500", "bg-sky-400"][i % 3]}`} style={{ width: `${it.value}%` }} />
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </Section>
+
       <Section tone="muted" labelledBy="teams">
         <SectionHeading eyebrow="Teams" id="teams" title="How we're organised." />
         <div className="mt-12 space-y-14">
@@ -94,10 +125,10 @@ export default async function TeamPage() {
                 <p className="mt-2 text-sm leading-relaxed text-ink-500">{g.description}</p>
               </div>
               {g.members.length > 0 ? (
-                <ul className="grid grid-cols-2 gap-6 lg:grid-cols-4">
+                <ul className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
                   {g.members.map((m) => (
                     <li key={m.id}>
-                      <TeamPortrait member={m} />
+                      <TeamPortrait member={m} showBio />
                     </li>
                   ))}
                 </ul>

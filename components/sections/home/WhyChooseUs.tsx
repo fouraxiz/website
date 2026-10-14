@@ -1,4 +1,4 @@
-import { Code2, Globe2, Headphones, Layers, RefreshCw, ShieldCheck } from "lucide-react";
+import { Code2, Globe2, Headphones, Landmark, Layers, ShieldCheck } from "lucide-react";
 import { CopyTitle } from "@/components/ui/Section";
 import { getSettings } from "@/lib/cms/content";
 import type { SectionEntry } from "@/lib/cms/content";
@@ -32,8 +32,8 @@ export async function WhyChooseUs({ copy }: { copy: SectionEntry }) {
               {years !== null ? `${years}+ years of engineering` : "Proven engineering"}
             </h3>
             <p className="relative mt-3 leading-relaxed text-ink-300">
-              Building software for local and global clients{site.foundedYear ? ` since ${site.foundedYear}` : ""} — across .NET, PHP, Laravel,
-              React, Vue, Flutter and WordPress.
+              A long, unbroken record of complex deliveries for demanding institutions{site.foundedYear ? ` since ${site.foundedYear}` : ""} — across
+              Java, .NET, PHP, Laravel, React, Flutter and Python.
             </p>
             <pre className="relative mt-8 overflow-hidden rounded-2xl bg-white/[0.05] p-4 font-mono text-[0.72rem] leading-relaxed text-ink-400 ring-1 ring-white/10" aria-hidden="true">
               <span className="text-accent-300">const</span> partner = {"{"}
@@ -46,9 +46,10 @@ export async function WhyChooseUs({ copy }: { copy: SectionEntry }) {
 
           <article className="rounded-3xl bg-gradient-to-br from-sky-400 to-indigo-500 p-8 text-white md:col-span-2">
             <Layers className="size-7" aria-hidden="true" />
-            <h3 className="mt-6 text-2xl font-semibold">Products + custom engineering</h3>
+            <h3 className="mt-6 text-2xl font-semibold">16 ready products + custom engineering</h3>
             <p className="mt-3 max-w-lg leading-relaxed text-sky-50">
-              Start from 4axiz ERP, POS or School Management and tailor them — or build something entirely new on proven foundations.
+              Start from ready software — ERP, HR &amp; payroll, POS, school, hospital or smart hostel management — or build something entirely new on
+              proven foundations.
             </p>
           </article>
 
@@ -56,8 +57,8 @@ export async function WhyChooseUs({ copy }: { copy: SectionEntry }) {
             <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600">
               <Headphones className="size-6" aria-hidden="true" />
             </span>
-            <h3 className="mt-6 text-lg font-semibold">24/7 hotline support</h3>
-            <p className="mt-2 text-sm leading-relaxed text-ink-500">A real person to call when your business software needs attention.</p>
+            <h3 className="mt-6 text-lg font-semibold">24/7 support coverage</h3>
+            <p className="mt-2 text-sm leading-relaxed text-ink-500">SLA-backed support — critical issues answered within one hour.</p>
           </article>
 
           <article className="rounded-3xl bg-white p-8 ring-1 ring-ink-200/70">
@@ -65,15 +66,15 @@ export async function WhyChooseUs({ copy }: { copy: SectionEntry }) {
               <Globe2 className="size-6" aria-hidden="true" />
             </span>
             <h3 className="mt-6 text-lg font-semibold">Local &amp; global presence</h3>
-            <p className="mt-2 text-sm leading-relaxed text-ink-500">Teams in Bangladesh, New Zealand and Kosovo, working across time zones.</p>
+            <p className="mt-2 text-sm leading-relaxed text-ink-500">Engineering hubs in Dhaka and Auckland and a US presence, serving programmes in 180+ countries.</p>
           </article>
 
           <article className="rounded-3xl bg-white p-8 ring-1 ring-ink-200/70">
             <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-violet-50 text-violet-600">
-              <RefreshCw className="size-6" aria-hidden="true" />
+              <Landmark className="size-6" aria-hidden="true" />
             </span>
-            <h3 className="mt-6 text-lg font-semibold">Maintenance &amp; updates</h3>
-            <p className="mt-2 text-sm leading-relaxed text-ink-500">We keep systems secure, patched and improving after launch.</p>
+            <h3 className="mt-6 text-lg font-semibold">Trusted by the UN &amp; government</h3>
+            <p className="mt-2 text-sm leading-relaxed text-ink-500">Software relied on daily by agencies that audit everything.</p>
           </article>
 
           <article className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-violet-600 to-fuchsia-500 p-8 text-white md:col-span-2">
@@ -81,7 +82,7 @@ export async function WhyChooseUs({ copy }: { copy: SectionEntry }) {
             <ShieldCheck className="relative size-7" aria-hidden="true" />
             <h3 className="relative mt-6 text-2xl font-semibold">Built to be secure and reliable</h3>
             <p className="relative mt-3 max-w-lg leading-relaxed text-violet-50">
-              Role-based access, audit trails, tested releases and monitored deployments — quality is part of every sprint.
+              Donor-grade security, role-based access, encrypted transmission and audit-ready architecture — designed in from day one.
             </p>
           </article>
         </div>
