@@ -20,6 +20,7 @@ export default function ProductsPage() {
   return (
     <>
       <PageHero
+        decor={{ icons: ["calculator", "users", "scan-barcode", "package", "graduation-cap"], center: "boxes" }}
         crumbs={[{ label: "Products" }]}
         eyebrow="Products"
         title="Business software built to run real operations."

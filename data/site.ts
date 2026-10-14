@@ -12,13 +12,39 @@ export const site = {
   tagline: "Intelligent software for a smarter business future.",
   description:
     "4axiz IT Limited builds enterprise software, ERP platforms, AI-driven automation and custom web and mobile applications that help organisations run with clarity.",
-  /** General inbox. `null` until confirmed — the contact page hides mailto links while null. */
-  email: null as string | null,
-  /** Main phone line. `null` until confirmed. */
-  phone: null as string | null,
-  /** Year the company was founded. `null` until confirmed; never displayed while null. */
-  foundedYear: null as number | null,
+  /** General inbox (from the existing fouraxiz.com footer). */
+  email: "admin@4axiz.com" as string | null,
+  /** 24/7 hotline (from the existing fouraxiz.com header). */
+  phone: "+880 1718 837 689" as string | null,
+  /** "Serving local and global markets since 2010" — existing fouraxiz.com About page. */
+  foundedYear: 2010 as number | null,
 };
+
+/** Technologies listed on the existing fouraxiz.com About page. */
+export const technologies = [
+  { name: ".NET / ASP.NET", icon: "siDotnet" },
+  { name: "PHP", icon: "siPhp" },
+  { name: "Laravel", icon: "siLaravel" },
+  { name: "CodeIgniter", icon: "siCodeigniter" },
+  { name: "CakePHP", icon: "siCakephp" },
+  { name: "React.js", icon: "siReact" },
+  { name: "Vue.js", icon: "siVuedotjs" },
+  { name: "Flutter", icon: "siFlutter" },
+  { name: "WordPress", icon: "siWordpress" },
+  { name: "Drupal", icon: "siDrupal" },
+  { name: "Joomla", icon: "siJoomla" },
+] as const;
+
+/**
+ * Headline numbers. Only verifiable values are shown. Add confirmed figures
+ * (e.g. projects delivered, clients served) here — each renders automatically.
+ */
+export const stats: { value: string; label: string }[] = [
+  { value: "2010", label: "Serving clients since" },
+  { value: "3", label: "Countries with offices" },
+  { value: "11+", label: "Technologies we work in" },
+  { value: "24/7", label: "Hotline support" },
+];
 
 export const offices: Office[] = [
   {
@@ -26,13 +52,13 @@ export const offices: Office[] = [
     country: "Bangladesh",
     countryCode: "BD",
     role: null,
-    city: null,
-    address: null,
-    phone: null,
-    email: null,
+    city: "Dhaka",
+    address: "Level-4, House #34, Lane #6/2, Road #20/B, DUIP Plot, Block D, Mirpur-12, Dhaka 1216",
+    phone: "+880 1718 837 689",
+    email: "admin@4axiz.com",
     hours: null,
     timezone: "GMT+6",
-    mapUrl: null,
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=DUIP+Plot+Block+D+Mirpur-12+Dhaka+1216",
   },
   {
     id: "new-zealand",

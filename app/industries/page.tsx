@@ -5,6 +5,7 @@ import { CtaBand } from "@/components/sections/CtaBand";
 import { Section } from "@/components/ui/Section";
 import { IconTile } from "@/components/ui/IconTile";
 import { pageMetadata } from "@/lib/metadata";
+import { hueAt } from "@/lib/palette";
 import { industries } from "@/data/industries";
 
 export const metadata = pageMetadata({
@@ -18,6 +19,7 @@ export default function IndustriesPage() {
   return (
     <>
       <PageHero
+        decor={{ icons: ["stethoscope", "graduation-cap", "shopping-cart", "factory", "truck"], center: "briefcase" }}
         crumbs={[{ label: "Industries" }]}
         eyebrow="Industries"
         title="Solutions shaped around your sector."
@@ -25,10 +27,10 @@ export default function IndustriesPage() {
       />
       <Section>
         <ul className="grid gap-5 md:grid-cols-2">
-          {industries.map((i) => (
+          {industries.map((i, idx) => (
             <li key={i.slug}>
               <article className="group relative flex h-full gap-5 rounded-[var(--radius-card)] border border-ink-200 bg-white p-7 transition-[border-color,box-shadow] hover:border-brand-200 hover:shadow-[var(--shadow-soft)]">
-                <IconTile name={i.icon} size="lg" />
+                <IconTile name={i.icon} size="lg" hue={hueAt(idx + 2)} />
                 <div className="flex flex-1 flex-col">
                   <h2 className="text-xl font-semibold">
                     <Link href={`/industries/${i.slug}`} className="after:absolute after:inset-0">

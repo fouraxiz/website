@@ -1,3 +1,4 @@
+import { hues, hueAt } from "@/lib/palette";
 import { cn } from "@/lib/utils";
 import type { FeatureItem } from "@/types";
 
@@ -12,8 +13,8 @@ export function FeatureGrid({ items, columns = 3, className }: { items: FeatureI
       )}
     >
       {items.map((item, i) => (
-        <div key={item.title} className="bg-white p-6 sm:p-7">
-          <span className="font-display text-xs font-semibold text-brand-500 tabular-nums">{String(i + 1).padStart(2, "0")}</span>
+        <div key={item.title} className="bg-white p-6 transition-colors hover:bg-ink-50/60 sm:p-7">
+          <span className={cn("inline-flex size-9 items-center justify-center rounded-xl font-display text-sm font-bold tabular-nums", hues[hueAt(i)].soft, hues[hueAt(i)].text)}>{String(i + 1).padStart(2, "0")}</span>
           <dt className="mt-3 font-display text-base font-semibold text-ink-900">{item.title}</dt>
           <dd className="mt-2 text-sm leading-relaxed text-ink-500">{item.description}</dd>
         </div>

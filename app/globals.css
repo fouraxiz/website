@@ -3,11 +3,12 @@
 /*
  * 4axiz design tokens, taken from the official logo:
  *   orange-red #e4603a · charcoal #40464b · grey #98a1a9
+ * Orange is an accent (buttons, highlights, icons) — never a full-section background.
  * Every component reads from these tokens.
  */
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: var(--font-manrope), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-poppins), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
   /* Brand: 4axiz orange-red (#e4603a, the "x" in the logo). */
   --color-brand-50: #fef4f0;
@@ -22,15 +23,15 @@
   --color-brand-900: #6f2d1e;
   --color-brand-950: #3c140c;
 
-  /* Secondary accent shares the brand hue so the palette stays to the logo colours. */
-  --color-accent-50: var(--color-brand-50);
-  --color-accent-100: var(--color-brand-100);
-  --color-accent-200: var(--color-brand-200);
-  --color-accent-300: var(--color-brand-300);
-  --color-accent-400: var(--color-brand-400);
-  --color-accent-500: var(--color-brand-500);
-  --color-accent-600: var(--color-brand-600);
-  --color-accent-700: var(--color-brand-700);
+  /* Secondary accent: violet, used for AI and "colourful" highlights next to the brand orange. */
+  --color-accent-50: #f3f1ff;
+  --color-accent-100: #e9e5ff;
+  --color-accent-200: #d5ceff;
+  --color-accent-300: #b6a7ff;
+  --color-accent-400: #9478fd;
+  --color-accent-500: #7c4ff8;
+  --color-accent-600: #6c33ec;
+  --color-accent-700: #5b25d1;
 
   /* Neutrals: built from the logo charcoal (#40464b = ink-700) and grey (#98a1a9 = ink-400). */
   --color-ink-50: #f6f7f8;

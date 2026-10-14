@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { PageHero } from "@/components/sections/PageHero";
+import { TechSection } from "@/components/sections/home/TechSection";
+import { StatsStrip } from "@/components/sections/home/StatsStrip";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { OfficeCards } from "@/components/sections/OfficeCards";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
-import { PlaceholderNote } from "@/components/ui/PlaceholderNote";
 import { TeamPortrait } from "@/components/team/TeamPortrait";
 import { Icon } from "@/lib/icons";
 import { pageMetadata } from "@/lib/metadata";
@@ -30,11 +31,14 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
+        decor={{ icons: ["code", "boxes", "brain", "globe", "users"], center: "layers" }}
         crumbs={[{ label: "Company" }, { label: "About Us" }]}
         eyebrow="About 4axiz"
         title="We build software that helps organisations work with clarity."
-        description={`${site.legalName} is a software development and technology solutions company. We create our own business products — led by the 4axiz ERP platform — and partner with organisations to design and build the custom systems they need.`}
+        description={`${site.legalName} has served local and global clients since ${site.foundedYear ?? 2010}. We create our own business products — led by the 4axiz ERP platform — and partner with organisations to design and build the custom systems they need.`}
       />
+
+      <StatsStrip />
 
       <Section labelledBy="who">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
@@ -44,6 +48,11 @@ export default function AboutPage() {
               Our work sits at the intersection of business operations and technology. We build enterprise software and ERP that connects
               finance, people, procurement and inventory; we design web and mobile applications; and we help organisations adopt AI in ways that
               are practical and responsible.
+            </p>
+            <p>
+              We specialise in cost-effective, creative and high-quality solutions that meet your requirements, stay within budget and are
+              delivered on time. Our team works across .NET, PHP, CodeIgniter, CakePHP, Laravel, React, Vue, Flutter, WordPress, Drupal and
+              Joomla — on new builds as well as ongoing maintenance and support.
             </p>
             <p>
               We work with organisations across education, retail and e-commerce, financial services, healthcare, development and the public
@@ -86,12 +95,7 @@ export default function AboutPage() {
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
           <SectionHeading eyebrow="Our journey" id="journey" title="What our work has grown into." />
           <div>
-            <PlaceholderNote>
-              Company milestones (founding year, key launches and office openings) will be published here once confirmed by 4axiz. Add them in
-              <code className="mx-1 rounded bg-white px-1 text-xs">app/about/page.tsx</code>
-              or move them into a data file.
-            </PlaceholderNote>
-            <ul className="mt-8 grid gap-6 sm:grid-cols-2">
+            <ul className="grid gap-6 sm:grid-cols-2">
               {[
                 { t: "Building business software", d: "Developing products for operations such as point of sale and school management." },
                 { t: "Delivering custom platforms", d: "Digital archives, loan management and e-commerce platforms for clients across sectors." },
@@ -131,6 +135,8 @@ export default function AboutPage() {
         </ul>
       </Section>
 
+      <TechSection />
+
       <Section tone="muted" labelledBy="presence">
         <SectionHeading eyebrow="International presence" id="presence" title="Offices in three countries." />
         <div className="mt-12">
@@ -168,7 +174,10 @@ export default function AboutPage() {
             ))}
           </ul>
         ) : (
-          <PlaceholderNote className="mt-10">Leadership profiles will appear here once names, roles and portraits are approved for publication.</PlaceholderNote>
+          <p className="mt-6 max-w-2xl text-ink-600">
+            Engineers, designers, analysts and support specialists across Bangladesh, New Zealand and Kosovo — meet the people who build and
+            support your software.
+          </p>
         )}
       </Section>
 

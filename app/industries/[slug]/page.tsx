@@ -10,6 +10,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { IconTile } from "@/components/ui/IconTile";
 import { Icon } from "@/lib/icons";
 import { pageMetadata } from "@/lib/metadata";
+import { hueAt } from "@/lib/palette";
 import { pickBySlug } from "@/lib/utils";
 import { getIndustry, industries } from "@/data/industries";
 import { projects } from "@/data/projects";
@@ -39,6 +40,7 @@ export default async function IndustryPage({ params }: { params: Promise<Params>
   return (
     <>
       <PageHero
+        decor={{ icons: i.solutions.length ? ["boxes", "brain", "workflow", "bar-chart", "globe"] : [], center: i.icon }}
         crumbs={[{ label: "Industries", href: "/industries" }, { label: i.title }]}
         eyebrow={
           <>
@@ -91,10 +93,10 @@ export default async function IndustryPage({ params }: { params: Promise<Params>
           Other industries
         </h2>
         <ul className="mt-5 flex flex-wrap gap-2.5">
-          {others.map((o) => (
+          {others.map((o, idx) => (
             <li key={o.slug}>
               <Link href={`/industries/${o.slug}`} className="inline-flex items-center gap-2 rounded-lg border border-ink-200 bg-white px-3.5 py-2 text-sm font-medium text-ink-700 hover:border-brand-300 hover:text-brand-700">
-                <IconTile name={o.icon} size="sm" className="size-6 ring-0 [&_svg]:size-3.5" />
+                <IconTile name={o.icon} size="sm" hue={hueAt(idx)} className="size-6 ring-0 [&_svg]:size-3.5" />
                 {o.title}
               </Link>
             </li>

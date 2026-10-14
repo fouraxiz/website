@@ -16,6 +16,7 @@ export default function ProjectsPage() {
   return (
     <>
       <PageHero
+        decor={{ icons: ["globe", "smartphone", "shopping-cart", "graduation-cap", "landmark"], center: "rocket" }}
         crumbs={[{ label: "Projects" }]}
         eyebrow="Portfolio"
         title="Projects we've designed, built and delivered."

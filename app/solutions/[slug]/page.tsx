@@ -61,7 +61,7 @@ export default async function SolutionPage({ params }: { params: Promise<Params>
         }
         aside={
           <div className="rounded-2xl border border-ink-200 bg-white p-7 shadow-[var(--shadow-soft)]">
-            <IconTile name={s.icon} tone={isAi ? "accent" : "brand"} size="lg" />
+            <IconTile name={s.icon} hue={isAi ? "violet" : "sky"} size="lg" />
             <h2 className="mt-6 text-lg font-semibold">Challenges we solve</h2>
             <ul className="mt-4 space-y-3">
               {s.problems.map((p) => (

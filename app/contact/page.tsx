@@ -5,6 +5,7 @@ import { OfficeCards } from "@/components/sections/OfficeCards";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { pageMetadata } from "@/lib/metadata";
+import { hues, hueAt } from "@/lib/palette";
 import { interestGroups } from "@/lib/contact-options";
 import { offices, site } from "@/data/site";
 import { publishedErpModules } from "@/data/erp-modules";
@@ -32,6 +33,7 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
+        decor={{ icons: ["message-square", "headset", "globe", "file-text", "sparkles"], center: "message-square" }}
         crumbs={[{ label: "Company", href: "/about" }, { label: "Contact Us" }]}
         eyebrow="Contact"
         title="Let's talk about what you're building."
@@ -43,9 +45,9 @@ export default function ContactPage() {
           <div>
             <h2 className="text-2xl font-bold tracking-tight">What to expect</h2>
             <ul className="mt-8 space-y-7">
-              {expectations.map(({ icon: I, title, text }) => (
+              {expectations.map(({ icon: I, title, text }, idx) => (
                 <li key={title} className="flex gap-4">
-                  <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600 ring-1 ring-brand-100 ring-inset">
+                  <span className={`inline-flex size-12 shrink-0 items-center justify-center rounded-xl text-white ${hues[hueAt(idx + 1)].solid}`}>
                     <I className="size-5" aria-hidden="true" />
                   </span>
                   <div>

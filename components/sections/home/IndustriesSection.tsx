@@ -1,36 +1,43 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { SectionHeading } from "@/components/ui/Section";
-import { TextLink } from "@/components/ui/Button";
+import { Hl, SectionHeading } from "@/components/ui/Section";
 import { Icon } from "@/lib/icons";
+import { hues, hueAt } from "@/lib/palette";
+import { cn } from "@/lib/utils";
 import { industries } from "@/data/industries";
 
 export function IndustriesSection() {
   return (
-    <section className="border-t border-ink-100 bg-white py-20 sm:py-28" aria-labelledby="industries-heading">
+    <section className="bg-white py-20 sm:py-28" aria-labelledby="industries-heading">
       <div className="container-site">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <SectionHeading
-            eyebrow="Industries"
-            id="industries-heading"
-            title="Built for the way your sector works."
-            description="Each industry has its own pressures. We bring solutions shaped around them."
-          />
-          <TextLink href="/industries">All industries</TextLink>
-        </div>
-        <ul className="mt-12 grid gap-px overflow-hidden rounded-[var(--radius-card)] border border-ink-200 bg-ink-200 sm:grid-cols-2 lg:grid-cols-4">
-          {industries.map((i) => (
-            <li key={i.slug} className="bg-white">
-              <Link href={`/industries/${i.slug}`} className="group flex h-full flex-col p-6 transition-colors hover:bg-ink-50">
-                <div className="flex items-center justify-between">
-                  <Icon name={i.icon} className="size-5 text-brand-600" />
-                  <ArrowUpRight className="size-4 text-ink-300 transition group-hover:text-brand-600" aria-hidden="true" />
-                </div>
-                <h3 className="mt-8 text-base font-semibold">{i.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-ink-500">{i.summary}</p>
-              </Link>
-            </li>
-          ))}
+        <SectionHeading
+          align="center"
+          eyebrow="Industries"
+          id="industries-heading"
+          title={
+            <>
+              Industries <Hl>we serve</Hl>
+            </>
+          }
+          description="Solutions shaped around the pressures of your sector."
+        />
+        <ul className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-4">
+          {industries.map((ind, i) => {
+            const h = hues[hueAt(i + 2)];
+            return (
+              <li key={ind.slug}>
+                <Link
+                  href={`/industries/${ind.slug}`}
+                  className="group flex h-full flex-col items-center rounded-2xl bg-white p-6 text-center ring-1 ring-ink-200/80 transition duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-lift)] hover:ring-transparent sm:p-8"
+                >
+                  <span className={cn("inline-flex size-16 items-center justify-center rounded-full transition-colors duration-300 [&_svg]:size-7", h.soft, h.text, "group-hover:text-white", h.hover)}>
+                    <Icon name={ind.icon} />
+                  </span>
+                  <h3 className="mt-5 text-[0.95rem] leading-snug font-semibold text-ink-900">{ind.title}</h3>
+                  <p className="mt-2 hidden text-xs leading-relaxed text-ink-500 sm:block">{ind.summary}</p>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </section>

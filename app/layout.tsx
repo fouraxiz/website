@@ -1,13 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Manrope } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
+import { TopBar } from "@/components/layout/TopBar";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { site, socialLinks } from "@/data/site";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
-const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope", display: "swap", weight: ["500", "600", "700", "800"] });
+const poppins = Poppins({ subsets: ["latin"], variable: "--font-poppins", display: "swap", weight: ["500", "600", "700", "800"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -43,7 +44,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const sameAs = socialLinks.map((s) => s.url).filter(Boolean);
   return (
-    <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
+    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body>
         <JsonLd
           data={{
@@ -54,8 +55,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             url: site.url,
             ...(sameAs.length ? { sameAs } : {}),
             ...(site.email ? { email: site.email } : {}),
+            ...(site.phone ? { telephone: site.phone } : {}),
+            ...(site.foundedYear ? { foundingDate: String(site.foundedYear) } : {}),
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "Level-4, House #34, Lane #6/2, Road #20/B, DUIP Plot, Block D, Mirpur-12",
+              addressLocality: "Dhaka",
+              postalCode: "1216",
+              addressCountry: "BD",
+            },
           }}
         />
+        <TopBar />
         <Header />
         <main id="main">{children}</main>
         <Footer />

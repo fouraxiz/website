@@ -50,11 +50,16 @@ export function SectionHeading({
 }) {
   return (
     <div className={cn("max-w-2xl", align === "center" && "mx-auto text-center", className)}>
-      {eyebrow && <p className={cn("eyebrow mb-4", inverse && "text-brand-300")}>{eyebrow}</p>}
+      {eyebrow && (
+        <p className={cn("eyebrow mb-4", align === "center" && "justify-center", inverse && "text-brand-300")}>
+          <span className="h-px w-6 bg-current" aria-hidden="true" />
+          {eyebrow}
+        </p>
+      )}
       <Tag
         id={id}
         className={cn(
-          "text-3xl leading-[1.15] font-bold tracking-tight text-balance sm:text-[2.5rem]",
+          "text-3xl leading-[1.18] font-bold tracking-tight text-balance sm:text-[2.6rem]",
           inverse ? "text-white" : "text-ink-900",
         )}
       >
@@ -65,4 +70,9 @@ export function SectionHeading({
       )}
     </div>
   );
+}
+
+/** Highlighted word in a heading, e.g. "Who <Hl>We Are</Hl>". */
+export function Hl({ children }: { children: React.ReactNode }) {
+  return <span className="text-brand-500">{children}</span>;
 }

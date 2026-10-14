@@ -8,7 +8,8 @@ import { Badge } from "@/components/ui/Badge";
 import { CheckList } from "@/components/ui/CheckList";
 import { ErpEcosystem } from "@/components/visuals/ErpEcosystem";
 import { AppMockup } from "@/components/visuals/AppMockup";
-import { Icon } from "@/lib/icons";
+import { IconTile } from "@/components/ui/IconTile";
+import { hueAt } from "@/lib/palette";
 import { pageMetadata } from "@/lib/metadata";
 import { erpStatusLabel, publishedErpModules } from "@/data/erp-modules";
 import { getProduct } from "@/data/products";
@@ -100,13 +101,11 @@ export default function ErpPage() {
             <div key={group}>
               <h3 className="text-sm font-semibold tracking-[0.12em] text-ink-400 uppercase">{group}</h3>
               <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {modules.map((m) => (
+                {modules.map((m, idx) => (
                   <li key={m.slug}>
                     <article className="group relative flex h-full flex-col rounded-[var(--radius-card)] border border-ink-200 bg-white p-6 transition-[border-color,box-shadow] hover:border-brand-200 hover:shadow-[var(--shadow-soft)]">
                       <div className="flex items-start justify-between gap-3">
-                        <span className="inline-flex size-10 items-center justify-center rounded-lg bg-brand-50 text-brand-600 ring-1 ring-brand-100 ring-inset [&_svg]:size-5">
-                          <Icon name={m.icon} />
-                        </span>
+                        <IconTile name={m.icon} hue={hueAt(idx + m.group.length)} />
                         <Badge>{erpStatusLabel[m.status]}</Badge>
                       </div>
                       <h4 className="mt-5 font-display text-lg font-semibold text-ink-900">

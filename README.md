@@ -57,7 +57,7 @@ lib/                     metadata helper, icon map, contact validation, utils
 types/                   Content models
 ```
 
-Design tokens (brand palette, fonts, radii, shadows) are in `app/globals.css` under `@theme`. The palette is taken from the official logo: orange-red `#e4603a` (`brand-500`), charcoal `#40464b` (`ink-700`) and grey `#98a1a9` (`ink-400`). The logo files are in `public/brand/` (`4axiz-logo.png`, plus `4axiz-logo-white.png` for dark backgrounds).
+Design tokens (brand palette, fonts, radii, shadows) are in `app/globals.css` under `@theme`. The palette is taken from the official logo: orange-red `#e4603a` (`brand-500`), charcoal `#40464b` (`ink-700`) and grey `#98a1a9` (`ink-400`), plus a violet accent. Orange is used as an accent only (buttons, highlights, icons), never as a full-section background. Supporting colours for icons and cards come from `lib/palette.ts`. Headings use Poppins and body text uses Inter. The logo files are in `public/brand/` (`4axiz-logo.png`, plus `4axiz-logo-white.png` for dark backgrounds).
 
 ## Editing content
 
@@ -69,6 +69,10 @@ All repeatable content lives in `/data` and is typed by `types/index.ts`. To add
 - **Testimonials** (`data/testimonials.ts`): a testimonial appears only when `approved: true`. The homepage section stays hidden while the list is empty.
 - **Client logos** (`data/clients.ts`): the logo strip appears only when the list has entries.
 - **Social links** (`data/site.ts`): a link appears only once its `url` is set.
+
+## Verified content in use
+
+Taken from screenshots of the existing fouraxiz.com: the hotline `+880 1718 837 689`, the email `admin@4axiz.com`, the Bangladesh office address (Mirpur-12, Dhaka), "serving local and global markets since 2010", and the technology list (.NET, PHP, Laravel, CodeIgniter, CakePHP, React, Vue, Flutter, WordPress, Drupal, Joomla). Headline numbers live in `stats` in `data/site.ts`.
 
 ## Content still needed from 4axiz
 

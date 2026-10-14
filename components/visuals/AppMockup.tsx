@@ -1,4 +1,5 @@
 import { Icon } from "@/lib/icons";
+import { hues, type Hue } from "@/lib/palette";
 import { cn } from "@/lib/utils";
 import type { IconName } from "@/types";
 
@@ -14,6 +15,7 @@ export function AppMockup({
   metricLabels,
   rows,
   tone = "brand",
+  hue,
   className,
   caption = true,
 }: {
@@ -22,19 +24,21 @@ export function AppMockup({
   metricLabels: [string, string, string];
   rows: string[];
   tone?: "brand" | "accent";
+  /** Colourful variant — overrides `tone`. */
+  hue?: Hue;
   className?: string;
   caption?: boolean;
 }) {
-  const accent = tone === "accent" ? "bg-accent-500" : "bg-brand-500";
-  const accentSoft = tone === "accent" ? "bg-accent-100" : "bg-brand-100";
+  const accent = hue ? hues[hue].solid : tone === "accent" ? "bg-accent-500" : hues.sky.solid;
+  const accentSoft = hue ? hues[hue].soft : tone === "accent" ? "bg-accent-100" : hues.sky.soft;
   return (
     <figure className={cn("relative", className)}>
       <div className="overflow-hidden rounded-xl border border-ink-200 bg-white shadow-[var(--shadow-lift)]">
         <div className="flex items-center gap-2 border-b border-ink-100 bg-ink-50/80 px-4 py-2.5">
           <span className="flex gap-1.5" aria-hidden="true">
-            <span className="size-2.5 rounded-full bg-ink-200" />
-            <span className="size-2.5 rounded-full bg-ink-200" />
-            <span className="size-2.5 rounded-full bg-ink-200" />
+            <span className="size-2.5 rounded-full bg-rose-400" />
+            <span className="size-2.5 rounded-full bg-amber-400" />
+            <span className="size-2.5 rounded-full bg-emerald-400" />
           </span>
           <span className="ml-3 h-5 flex-1 rounded bg-white ring-1 ring-ink-100" aria-hidden="true" />
         </div>

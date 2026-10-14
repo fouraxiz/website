@@ -41,6 +41,7 @@ export default function TeamPage() {
   return (
     <>
       <PageHero
+        decor={{ icons: ["code", "palette", "test-tube", "headset", "compass"], center: "users" }}
         crumbs={[{ label: "Company", href: "/about" }, { label: "Our Team" }]}
         eyebrow="Our team"
         title="The people who design, build and support your software."

@@ -3,14 +3,17 @@ import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { IconTile } from "@/components/ui/IconTile";
 import { productKindLabel } from "@/data/products";
-import type { Product } from "@/types";
+import type { Hue } from "@/lib/palette";
+import type { Product, ProductKind } from "@/types";
+
+const hueByKind: Record<ProductKind, Hue> = { platform: "sky", standalone: "amber", "erp-module": "violet", custom: "emerald" };
 
 export function ProductCard({ product, headingLevel = "h2" }: { product: Product; headingLevel?: "h2" | "h3" }) {
   const H = headingLevel;
   return (
     <article className="group relative flex h-full flex-col rounded-[var(--radius-card)] border border-ink-200 bg-white p-6 transition-[border-color,box-shadow] hover:border-brand-200 hover:shadow-[var(--shadow-soft)]">
       <div className="flex items-start justify-between gap-4">
-        <IconTile name={product.icon} tone={product.kind === "custom" ? "neutral" : "brand"} />
+        <IconTile name={product.icon} hue={hueByKind[product.kind]} />
         <Badge tone={product.kind === "platform" ? "brand" : product.kind === "erp-module" ? "accent" : "neutral"}>
           {productKindLabel[product.kind]}
         </Badge>

@@ -7,6 +7,7 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
 import { IconTile } from "@/components/ui/IconTile";
 import { pageMetadata } from "@/lib/metadata";
+import { hueAt } from "@/lib/palette";
 import { services } from "@/data/services";
 import { processSteps } from "@/data/process";
 
@@ -22,6 +23,7 @@ export default function ServicesPage() {
   return (
     <>
       <PageHero
+        decor={{ icons: ["code", "smartphone", "cloud", "palette", "plug"], center: "layers" }}
         crumbs={[{ label: "Services" }]}
         eyebrow="Services"
         title="Engineering services from strategy to support."
@@ -52,10 +54,10 @@ export default function ServicesPage() {
               </span>
             </article>
           </li>
-          {rest.map((s) => (
+          {rest.map((s, idx) => (
             <li key={s.slug}>
               <article className="group relative flex h-full flex-col rounded-[var(--radius-card)] border border-ink-200 bg-white p-6 transition-[border-color,box-shadow] hover:border-brand-200 hover:shadow-[var(--shadow-soft)]">
-                <IconTile name={s.icon} />
+                <IconTile name={s.icon} hue={hueAt(idx + 1)} />
                 <h3 className="mt-5 text-lg font-semibold">
                   <Link href={`/services/${s.slug}`} className="after:absolute after:inset-0">
                     {s.title}

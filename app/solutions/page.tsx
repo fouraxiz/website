@@ -7,6 +7,7 @@ import { IconTile } from "@/components/ui/IconTile";
 import { ButtonLink } from "@/components/ui/Button";
 import { Icon } from "@/lib/icons";
 import { pageMetadata } from "@/lib/metadata";
+import { hueAt } from "@/lib/palette";
 import { solutions } from "@/data/solutions";
 import { publishedErpModules } from "@/data/erp-modules";
 
@@ -21,6 +22,7 @@ export default function SolutionsPage() {
   return (
     <>
       <PageHero
+        decor={{ icons: ["boxes", "brain", "globe", "smartphone", "workflow"], center: "sparkles" }}
         crumbs={[{ label: "Solutions" }]}
         eyebrow="Solutions"
         title="Technology solutions for every stage of growth."
@@ -40,7 +42,7 @@ export default function SolutionsPage() {
       <Section labelledBy="erp-feature">
         <div className="grid items-center gap-10 overflow-hidden rounded-2xl border border-ink-200 bg-gradient-to-br from-brand-50 to-white p-8 sm:p-12 lg:grid-cols-[1.1fr_1fr]">
           <div>
-            <IconTile name="boxes" size="lg" />
+            <IconTile name="boxes" size="lg" hue="sky" />
             <h2 id="erp-feature" className="mt-6 text-3xl font-bold tracking-tight">
               ERP Solutions
             </h2>
@@ -67,10 +69,10 @@ export default function SolutionsPage() {
         </div>
 
         <ul className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {solutions.map((s) => (
+          {solutions.map((s, idx) => (
             <li key={s.slug}>
               <article className="group relative flex h-full flex-col rounded-[var(--radius-card)] border border-ink-200 bg-white p-7 transition-[border-color,box-shadow] hover:border-brand-200 hover:shadow-[var(--shadow-soft)]">
-                <IconTile name={s.icon} tone={s.slug === "ai" ? "accent" : "brand"} />
+                <IconTile name={s.icon} hue={hueAt(idx + 1)} />
                 <h2 className="mt-6 text-xl font-semibold">
                   <Link href={s.href} className="after:absolute after:inset-0">
                     {s.title}

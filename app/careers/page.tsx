@@ -18,6 +18,7 @@ export default function CareersPage() {
   return (
     <>
       <PageHero
+        decor={{ icons: ["code", "palette", "users", "globe", "trending-up"], center: "rocket" }}
         crumbs={[{ label: "Company", href: "/about" }, { label: "Careers" }]}
         eyebrow="Careers"
         title="Build software that organisations rely on."
