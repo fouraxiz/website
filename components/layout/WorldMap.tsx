@@ -13,8 +13,28 @@ const project = (lat: number, lng: number) => {
   return { left: ((x - VIEW.x) / VIEW.w) * 100, top: ((y - VIEW.y) / VIEW.h) * 100 };
 };
 
+/** Default map positions by country code, used when an office has no latitude/longitude yet. */
+const fallback: Record<string, { lat: number; lng: number }> = {
+  BD: { lat: 23.82, lng: 90.37 },
+  NZ: { lat: -36.85, lng: 174.76 },
+  US: { lat: 42.53, lng: -92.45 },
+  XK: { lat: 42.66, lng: 21.17 },
+  GB: { lat: 51.51, lng: -0.13 },
+  AU: { lat: -33.87, lng: 151.21 },
+  CA: { lat: 43.65, lng: -79.38 },
+  AE: { lat: 25.2, lng: 55.27 },
+  IN: { lat: 28.61, lng: 77.21 },
+  SG: { lat: 1.35, lng: 103.82 },
+};
+
 export function WorldMap({ offices }: { offices: Office[] }) {
-  const pins = offices.filter((o): o is Office & { lat: number; lng: number } => typeof o.lat === "number" && typeof o.lng === "number");
+  const pins = offices
+    .map((o) => {
+      if (typeof o.lat === "number" && typeof o.lng === "number") return { ...o, lat: o.lat, lng: o.lng };
+      const f = fallback[o.countryCode?.toUpperCase()];
+      return f ? { ...o, ...f } : null;
+    })
+    .filter((o): o is Office & { lat: number; lng: number } => o !== null);
   return (
     <div className="relative mx-auto aspect-[127.5/61] w-full">
       <Image src="/images/world-dots.svg" alt="" fill className="pointer-events-none opacity-[0.16] select-none" unoptimized aria-hidden="true" />
