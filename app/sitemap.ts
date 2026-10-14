@@ -2,6 +2,9 @@ import type { MetadataRoute } from "next";
 import { site } from "@/data/site";
 import { getErpModules, getIndustries, getPosts, getProducts, getProjects, getServices, getSolutions } from "@/lib/cms/content";
 
+/** Built per request so newly added pages and posts appear immediately. */
+export const dynamic = "force-dynamic";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [solutions, publishedErpModules, products, services, projects, industries, posts] = await Promise.all([
     getSolutions(),

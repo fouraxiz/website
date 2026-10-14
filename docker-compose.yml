@@ -1,0 +1,48 @@
+# Production stack for the DigitalOcean VPS. See deploy/DEPLOY.md.
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: fouraxiz
+      POSTGRES_USER: fouraxiz
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    volumes:
+      - ./deploy/data/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fouraxiz -d fouraxiz"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    # No published port: the database is only reachable from the web container.
+
+  migrate:
+    build:
+      context: .
+      target: tools
+    environment:
+      DATABASE_URL: postgres://fouraxiz:${POSTGRES_PASSWORD}@db:5432/fouraxiz
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+
+  web:
+    build:
+      context: .
+      target: runner
+      args:
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://fouraxiz.com}
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgres://fouraxiz:${POSTGRES_PASSWORD}@db:5432/fouraxiz
+      SESSION_SECRET: ${SESSION_SECRET:?Set SESSION_SECRET in .env}
+      CONTACT_WEBHOOK_URL: ${CONTACT_WEBHOOK_URL:-}
+      UPLOAD_DIR: /data/uploads
+    volumes:
+      - ./deploy/data/uploads:/data/uploads
+    ports:
+      - "127.0.0.1:3000:3000" # Only Nginx on the host can reach it.
+    depends_on:
+      migrate:
+        condition: service_completed_successfully

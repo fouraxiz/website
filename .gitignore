@@ -11,3 +11,5 @@ next-env.d.ts
 npm-debug.log*
 .vercel
 uploads/
+deploy/data/
+backups/
