@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/sections/PageHero";
 import { CtaBand } from "@/components/sections/CtaBand";
+import { ClientsUsing } from "@/components/sections/ClientsUsing";
 import { RelatedProjects } from "@/components/sections/RelatedProjects";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
@@ -128,7 +129,9 @@ export default async function ServicePage({ params }: { params: Promise<Params> 
 
       <RelatedProjects projects={relatedProjects} tone="white" />
 
-      <Section tone={relatedProjects.length ? "muted" : "white"} labelledBy="other-services" className="py-16 sm:py-16">
+      <ClientsUsing kind="services" slug={s.slug} name={s.shortTitle} tone="muted" />
+
+      <Section tone="white" labelledBy="other-services" className="py-16 sm:py-16">
         <h2 id="other-services" className="text-lg font-semibold">
           Other services
         </h2>

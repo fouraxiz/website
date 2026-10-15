@@ -229,7 +229,7 @@ export const getHowWeWork = cache(async () =>
 );
 export const getOutcomes = cache(async () => list("outcomes", (d) => ({ value: str(d.value), label: str(d.label) })));
 export const getEngagements = cache(async () =>
-  list("engagements", (d) => ({ client: str(d.client), scope: str(d.scope), years: str(d.years), href: strOrNull(d.href) })),
+  list("engagements", (d) => ({ client: str(d.client), scope: str(d.scope), years: str(d.years), href: strOrNull(d.href), products: arr<string>(d.products), services: arr<string>(d.services) })),
 );
 export const getClientGroups = cache(async () => list("client_groups", (d) => ({ title: str(d.title), names: str(d.names) })));
 export const getTeamRoles = cache(async () => list("team_roles", (d) => ({ title: str(d.title), icon: (str(d.icon) || "users") as IconName, description: str(d.description) })));
@@ -261,7 +261,7 @@ export const getOffices = cache(async () =>
     lng: typeof d.lng === "number" ? d.lng : null,
   })),
 );
-export const getClients = cache(async () => list("clients", (d) => ({ name: str(d.name), logo: str(d.logo), url: strOrNull(d.url) })));
+export const getClients = cache(async () => list("clients", (d) => ({ name: str(d.name), logo: str(d.logo), url: strOrNull(d.url), products: arr<string>(d.products), services: arr<string>(d.services) })));
 export const getTestimonials = cache(async () =>
   list<Testimonial & { photo: string | null }>("testimonials", (d, r) => ({
     id: r.slug,

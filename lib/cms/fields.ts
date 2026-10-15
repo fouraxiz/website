@@ -9,6 +9,8 @@ export type Field =
   | { name: string; label: string; type: ScalarFieldType; required?: boolean; help?: string; placeholder?: string }
   | { name: string; label: string; type: "select"; options: { value: string; label: string }[]; required?: boolean; help?: string }
   | { name: string; label: string; type: "strings"; help?: string; placeholder?: string }
+  /** Pick several items from another collection (stored as their slugs). */
+  | { name: string; label: string; type: "relation"; collection: string; help?: string }
   | { name: string; label: string; type: "list"; fields: Field[]; itemLabel?: string; help?: string };
 
 export interface CollectionDef {
@@ -90,6 +92,7 @@ export function validateRecord(fields: Field[], input: Record<string, unknown>, 
         data[f.name] = n;
         break;
       }
+      case "relation":
       case "strings":
         data[f.name] = Array.isArray(v) ? v.map((s) => String(s ?? "").trim()).filter(Boolean) : [];
         break;

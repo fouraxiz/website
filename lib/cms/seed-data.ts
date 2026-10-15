@@ -125,7 +125,7 @@ export function buildSeed(): Record<string, SeedItem[]> {
     }),
     engagements: engagements.map((e, i) => ({ slug: `${slugify(e.client)}-${i}`, data: { ...e } })),
     client_groups: byName(clientGroups, (g) => g.title),
-    clients: byName(clients, (c) => c.name, (c) => ({ name: c.name, logo: c.logo.src, url: c.url ?? null })),
+    clients: byName(clients, (c) => c.name, (c) => ({ name: c.name, logo: c.logo.src, url: c.url ?? null, products: c.products ?? [], services: c.services ?? [] })),
     testimonials: byName(
       testimonials.filter((t) => t.approved),
       (t) => t.name,

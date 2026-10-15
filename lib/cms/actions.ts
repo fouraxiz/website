@@ -51,6 +51,19 @@ export async function loadCollection(collection: string): Promise<EditorItem[]> 
   return rows.map(toEditorItem);
 }
 
+/** Items of a collection as {slug, title}, for the "pick from a list" fields in the edit forms. */
+export async function loadOptions(collection: string): Promise<{ slug: string; title: string }[]> {
+  guard();
+  await requireEditor();
+  const def = getCollectionDef(collection);
+  const rows = await db
+    .select({ slug: contentItems.slug, data: contentItems.data })
+    .from(contentItems)
+    .where(eq(contentItems.collection, collection))
+    .orderBy(asc(contentItems.sort), asc(contentItems.createdAt));
+  return rows.map((r) => ({ slug: r.slug, title: String(r.data[def.titleField] ?? r.slug) }));
+}
+
 async function uniqueSlug(collection: string, wanted: string, exceptId?: string) {
   const base = slugify(wanted) || "item";
   let candidate = base;

@@ -49,6 +49,24 @@ export default async function TeamPage() {
     <>
       <PageHero
         edit={[{ label: "Heading", collection: "sections", slug: "page.team" }, { label: "Team members", collection: "team" }, { label: "Add team member", collection: "team", create: true }, { label: "Team roles", collection: "team_roles" }, { label: "What sets us apart", collection: "differentiators" }]}
+        aside={
+          team.length > 0 ? (
+            <div className="relative mx-auto w-full max-w-md" aria-hidden="true">
+              <div className="absolute -inset-4 -z-10 rounded-[2.5rem] bg-gradient-to-br from-brand-100/60 via-ink-100/60 to-transparent blur-xl" />
+              <ul className="grid grid-cols-3 gap-3">
+                {team.slice(0, 8).map((m, i) => (
+                  <li key={m.id} className={cn("flex aspect-square items-center justify-center rounded-3xl bg-gradient-to-br shadow-[var(--shadow-soft)]", i % 3 === 1 ? "translate-y-4" : "", i % 2 === 0 ? "from-brand-500 to-brand-700" : "from-ink-600 to-ink-900")}>
+                    <span className="font-display text-2xl font-bold text-white/95">{m.name.replace(/\b(Md|Mst)\.?\s/gi, "").split(" ").map((w) => w[0]).slice(0, 2).join("")}</span>
+                  </li>
+                ))}
+                <li className="col-span-1 flex aspect-square flex-col items-center justify-center rounded-3xl bg-white text-center shadow-[var(--shadow-soft)] ring-1 ring-ink-200">
+                  <span className="font-display text-3xl font-bold text-brand-600">45</span>
+                  <span className="text-xs text-ink-500">specialists</span>
+                </li>
+              </ul>
+            </div>
+          ) : undefined
+        }
         decor={{ icons: ["code", "palette", "test-tube", "headset", "compass"], center: "users" }}
         crumbs={[{ label: "Company", href: "/about" }, { label: "Our Team" }]}
         eyebrow={copy.eyebrow}
@@ -62,29 +80,26 @@ export default async function TeamPage() {
       />
 
       <Section labelledBy="leadership">
-        <div className="grid gap-12 lg:grid-cols-[1fr_2.4fr]">
-          <div>
-            <SectionHeading eyebrow="Key personnel" id="leadership" title="The core team on our programmes." />
-            <p className="mt-4 text-ink-500">{departments[0].description}</p>
-          </div>
-          <div>
-            {leadership.length > 0 ? (
-              <ul className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-                {leadership.map((m) => (
-                  <li key={m.id}>
-                    <TeamPortrait member={m} showBio />
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <>
-                <PlaceholderNote className="mb-8">
-                  Leadership profiles are awaiting approval. Sign in and use edit mode to add team members — placeholders below show the final layout.
-                </PlaceholderNote>
-                <EmptySlots count={4} label="Leadership placeholders" />
-              </>
-            )}
-          </div>
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <SectionHeading eyebrow="Key personnel" id="leadership" title="The core team on our programmes." description={departments[0].description} />
+        </div>
+        <div className="mt-14">
+          {leadership.length > 0 ? (
+            <ul className="grid gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+              {leadership.map((m) => (
+                <li key={m.id}>
+                  <TeamPortrait member={m} featured />
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <>
+              <PlaceholderNote className="mb-8">
+                Leadership profiles are awaiting approval. Sign in and use edit mode to add team members — placeholders below show the final layout.
+              </PlaceholderNote>
+              <EmptySlots count={4} label="Leadership placeholders" />
+            </>
+          )}
         </div>
       </Section>
 
@@ -97,24 +112,37 @@ export default async function TeamPage() {
           inverse
         />
         <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {teamComposition.map((g) => (
-            <div key={g.title} className="rounded-3xl bg-white/[0.04] p-7 ring-1 ring-white/10">
-              <h3 className="text-sm font-semibold tracking-[0.12em] text-ink-300 uppercase">{g.title}</h3>
-              <ul className="mt-6 space-y-5">
-                {g.items.map((it, i) => (
-                  <li key={it.label}>
-                    <div className="flex items-baseline justify-between gap-4">
-                      <span className="text-sm text-ink-200">{it.label}</span>
-                      <span className="font-display text-xl font-bold text-white">{it.value}%</span>
+          {teamComposition.map((g) => {
+            const colors = ["#e4603a", "#f5a386", "#98a1a9"];
+            let acc = 0;
+            const stops = g.items.map((it, i) => {
+              const from = acc;
+              acc += it.value;
+              return `${colors[i % colors.length]} ${from}% ${acc}%`;
+            });
+            return (
+              <div key={g.title} className="rounded-3xl bg-white/[0.04] p-7 ring-1 ring-white/10">
+                <h3 className="text-sm font-semibold tracking-[0.12em] text-ink-300 uppercase">{g.title}</h3>
+                <div className="mt-6 flex items-center gap-6">
+                  <div className="relative size-32 shrink-0 rounded-full" style={{ background: `conic-gradient(${stops.join(", ")})` }} role="img" aria-label={g.items.map((it) => `${it.label} ${it.value}%`).join(", ")}>
+                    <div className="absolute inset-[22%] flex items-center justify-center rounded-full bg-ink-950">
+                      <span className="font-display text-xl font-bold text-white">{g.items[0].value}%</span>
                     </div>
-                    <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/10">
-                      <div className={`h-full rounded-full ${["bg-brand-500", "bg-brand-300", "bg-ink-400"][i % 3]}`} style={{ width: `${it.value}%` }} />
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+                  </div>
+                  <ul className="space-y-3">
+                    {g.items.map((it, i) => (
+                      <li key={it.label} className="flex items-start gap-2.5 text-sm text-ink-200">
+                        <span className="mt-1.5 size-2.5 shrink-0 rounded-full" style={{ background: colors[i % colors.length] }} aria-hidden="true" />
+                        <span>
+                          <span className="font-semibold text-white">{it.value}%</span> {it.label}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </Section>
 
@@ -128,7 +156,7 @@ export default async function TeamPage() {
           />
           <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {roles.map((r, i) => (
-              <li key={r._id} className="flex gap-4 rounded-2xl bg-ink-50 p-6 ring-1 ring-ink-100">
+              <li key={r._id} className="group flex gap-4 rounded-3xl bg-ink-50 p-6 ring-1 ring-ink-100 transition hover:-translate-y-0.5 hover:bg-white hover:shadow-[var(--shadow-soft)] hover:ring-brand-200">
                 <span className={cn("inline-flex size-11 shrink-0 items-center justify-center rounded-xl text-white [&_svg]:size-5", hues[hueAt(i)].solid)}>
                   <Icon name={r.icon} />
                 </span>
@@ -144,24 +172,21 @@ export default async function TeamPage() {
 
       <Section tone="muted" labelledBy="teams">
         <SectionHeading eyebrow="Teams" id="teams" title="How we're organised." />
-        <div className="mt-12 space-y-14">
+        <div className="mt-12 space-y-12">
           {groups.map((g) => (
-            <div key={g.name} className="grid gap-8 border-t border-ink-200 pt-8 lg:grid-cols-[1fr_2.4fr]">
-              <div>
+            <div key={g.name}>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 border-b border-ink-200 pb-4">
                 <h3 className="text-xl font-semibold">{g.name}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-500">{g.description}</p>
+                <span className="rounded-full bg-brand-50 px-2.5 py-0.5 text-xs font-semibold text-brand-700 ring-1 ring-brand-100">{g.members.length}</span>
+                <p className="w-full text-sm leading-relaxed text-ink-500 sm:ml-2 sm:w-auto">{g.description}</p>
               </div>
-              {g.members.length > 0 ? (
-                <ul className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-                  {g.members.map((m) => (
-                    <li key={m.id}>
-                      <TeamPortrait member={m} showBio />
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="self-center text-sm text-ink-400 italic">Team profiles coming soon.</p>
-              )}
+              <ul className="mt-6 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                {g.members.map((m) => (
+                  <li key={m.id}>
+                    <TeamPortrait member={m} showBio />
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>

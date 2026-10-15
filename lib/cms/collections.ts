@@ -654,6 +654,8 @@ export const collections: CollectionDef[] = [
       { name: "name", label: "Name", type: "text", required: true },
       { name: "logo", label: "Logo", type: "image", required: true },
       { name: "url", label: "Website", type: "url" },
+      { name: "products", label: "Products this client uses", type: "relation", collection: "products", help: "These clients are listed on each product's page." },
+      { name: "services", label: "Services we delivered", type: "relation", collection: "services", help: "These clients are listed on each service's page." },
     ],
   },
   {
@@ -666,6 +668,8 @@ export const collections: CollectionDef[] = [
       { name: "client", label: "Client", type: "text", required: true },
       { name: "scope", label: "Scope of work", type: "textarea" },
       { name: "years", label: "Years (e.g. 5 years, Running)", type: "text" },
+      { name: "products", label: "Products used", type: "relation", collection: "products" },
+      { name: "services", label: "Services delivered", type: "relation", collection: "services" },
       { name: "href", label: "Link to project page (optional, e.g. /projects/kmix-erp)", type: "text" },
     ],
   },

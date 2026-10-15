@@ -1,11 +1,11 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { ArrowDown, ArrowUp, ChevronDown, ImagePlus, Loader2, Plus, Trash2, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowDown, ArrowUp, Check, ChevronDown, ImagePlus, Loader2, Plus, Trash2, X } from "lucide-react";
 import { Icon } from "@/lib/icons";
 import { cn } from "@/lib/utils";
 import { emptyRecord, type Field } from "@/lib/cms/fields";
-import { uploadImage } from "@/lib/cms/actions";
+import { loadOptions, uploadImage } from "@/lib/cms/actions";
 import { Markdown } from "@/components/blog/Markdown";
 import type { IconName } from "@/types";
 
@@ -103,6 +103,8 @@ export function FieldInput({
           {err}
         </div>
       );
+    case "relation":
+      return <RelationInput field={field} value={Array.isArray(value) ? (value as string[]) : []} onChange={onChange} label={label} help={help} err={err} />;
     case "image":
       return <ImageInput id={id} label={label} value={str} onChange={onChange} err={err} help={help} />;
     case "strings":
@@ -182,6 +184,74 @@ function ImageInput({ id, label, value, onChange, err, help }: { id: string; lab
           {message && <p className="text-xs font-medium text-red-600">{message}</p>}
         </div>
       </div>
+      {help}
+      {err}
+    </div>
+  );
+}
+
+/** Tick the items (products, services, …) this record belongs to. */
+function RelationInput({
+  field,
+  value,
+  onChange,
+  label,
+  help,
+  err,
+}: {
+  field: Extract<Field, { type: "relation" }>;
+  value: string[];
+  onChange: (v: unknown) => void;
+  label: React.ReactNode;
+  help: React.ReactNode;
+  err: React.ReactNode;
+}) {
+  const [options, setOptions] = useState<{ slug: string; title: string }[] | null>(null);
+  useEffect(() => {
+    let live = true;
+    loadOptions(field.collection)
+      .then((o) => live && setOptions(o))
+      .catch(() => live && setOptions([]));
+    return () => {
+      live = false;
+    };
+  }, [field.collection]);
+  const toggle = (slug: string) => onChange(value.includes(slug) ? value.filter((v) => v !== slug) : [...value, slug]);
+  const unknown = value.filter((v) => options && !options.some((o) => o.slug === v));
+  return (
+    <div>
+      {label}
+      {options === null ? (
+        <p className="flex items-center gap-2 text-xs text-ink-500">
+          <Loader2 className="size-3.5 animate-spin" aria-hidden="true" /> Loading…
+        </p>
+      ) : (
+        <ul className="grid max-h-56 gap-1.5 overflow-y-auto rounded-lg border border-ink-200 bg-ink-50/50 p-2 sm:grid-cols-2" role="group" aria-label={field.label}>
+          {options.map((o) => {
+            const on = value.includes(o.slug);
+            return (
+              <li key={o.slug}>
+                <button
+                  type="button"
+                  onClick={() => toggle(o.slug)}
+                  aria-pressed={on}
+                  className={cn(
+                    "flex w-full items-center gap-2 rounded-md px-2.5 py-1.5 text-left text-sm transition",
+                    on ? "bg-brand-500 font-medium text-white" : "bg-white text-ink-700 ring-1 ring-ink-200 ring-inset hover:bg-ink-100",
+                  )}
+                >
+                  <span className={cn("inline-flex size-4 shrink-0 items-center justify-center rounded border", on ? "border-white/70" : "border-ink-300")} aria-hidden="true">
+                    {on && <Check className="size-3" strokeWidth={3} />}
+                  </span>
+                  <span className="truncate">{o.title}</span>
+                </button>
+              </li>
+            );
+          })}
+          {options.length === 0 && <li className="px-1 py-1 text-xs text-ink-500">Nothing to choose from yet.</li>}
+        </ul>
+      )}
+      {unknown.length > 0 && <p className="mt-1 text-xs text-ink-400">Not found (removed?): {unknown.join(", ")}</p>}
       {help}
       {err}
     </div>
